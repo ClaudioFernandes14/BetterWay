@@ -17,6 +17,23 @@ Route::get('/', function () {
     return view('index');
 });
 
+
 Route::get('/Main', function () {
-    return view('welcome');
+    return view('Main');
+});
+
+Route::get('/mensagens.html', function () {
+    return view('mensagens');
+});
+
+Route::get('/favoritos.html', function () {
+    return view('favoritos');
+});
+
+Route::get('/perfil.html', function () {
+    return view('perfil');
+});
+
+Route::get('/anunciar.html', function () {
+    return view('anunciar');
 });

@@ -2,8 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <title>BetterWay</title>
+    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/realeases/v5.10.0/css/all.css"> -->
+    <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
-    <h1>Hola Manito</h1>
+    <section id="header">
+        <a href=""><img src="../resources/images/Logo-PNG.png" class="logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <img src="../resources/images/brilho-do-sol.png" width="20" height="20" title="Modo Claro" id="sol">
+                <label class="switchmode">
+                    <input type="checkbox" id="myCheck" onclick="myFunction()">
+                    <span class="slider round"></span>
+                </label> 
+                <img src="../resources/images/lua-crescente.png" width="20" height="20" title="Modo Escuro" id="lua">
+                <li><a href="favoritos.html" title="Favoritos"><img src="../resources/images/favoritos-white.png" width="30" height="30" title="Favoritos"></a></li>
+                <button class="button"><li><a href="mensagens.html">Mensagens</a></li></button>
+                <li><a href="perfil.html" title="Perfil"><img src="../resources/images/utilizador-png.png" title="Perfil" width="40" height="40"></a></img></li>
+                <button class="button"><a href="anunciar.html">Vender</a></button>
+            </ul>
+        </div>
+
+    </section>
+
+    <p id="text" style="display:none">Checkbox is CHECKED!</p>
+
+    <script src="../resources/js/app.js"></script>
 </body>
 </html>
