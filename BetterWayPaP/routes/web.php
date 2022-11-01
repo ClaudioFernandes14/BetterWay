@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/index.html', function () {
+    return view('index');
+});
+
 
 Route::get('/Main', function () {
     return view('Main');
@@ -36,4 +40,8 @@ Route::get('/perfil.html', function () {
 
 Route::get('/anunciar.html', function () {
     return view('anunciar');
+});
+
+Route::get('/login.html', function () {
+    return view('login');
 });

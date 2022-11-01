@@ -2,32 +2,47 @@
 <head>
     <meta charset="UTF-8">
     <title>BetterWay</title>
-    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/realeases/v5.10.0/css/all.css"> -->
     <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 <body>
     <section id="header">
-        <a href=""><img src="../resources/images/Logo-PNG.png" class="logo"></a>
-
-        <div>
-            <ul id="navbar">
-                <img src="../resources/images/brilho-do-sol.png" width="20" height="20" title="Modo Claro" id="sol">
-                <label class="switchmode">
-                    <input type="checkbox" id="myCheck" onclick="myFunction()">
-                    <span class="slider round"></span>
-                </label> 
-                <img src="../resources/images/lua-crescente.png" width="20" height="20" title="Modo Escuro" id="lua">
-                <li><a href="favoritos.html" title="Favoritos"><img src="../resources/images/favoritos-white.png" width="30" height="30" title="Favoritos"></a></li>
-                <button class="button"><li><a href="mensagens.html">Mensagens</a></li></button>
-                <li><a href="perfil.html" title="Perfil"><img src="../resources/images/utilizador-png.png" title="Perfil" width="40" height="40"></a></img></li>
-                <button class="button"><a href="anunciar.html">Vender</a></button>
-            </ul>
+        <div class="logo_header">
+            <input type="checkbox" id="chec">
+            <label for="chec">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </label>
+            <nav id="nav">
+                <ul>
+                    <li><a href="favoritos.html">Favoritos</a></li>
+                    <li><a href="mensagens.html">Mensagens</a></li>
+                    <li><a href="">Perfil</a></li>
+                    <li><a href="">Opcoes</a></li>
+                    <li></li>
+                </ul>
+            </nav>
+            <a href="index.html"><img src="../resources/images/logo.png" class="logo"></a>
         </div>
 
+        <div class="navigation_header" id="navigation_header">
+            <ul id="navbar">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="favoritos.html" title="Favoritos" class="active"><img src="../resources/images/favoritos-white.png" width="30" height="30" title="Favoritos"></a></li>
+                <li><a href="mensagens.html" title="Mensagens" class="active"><img src="../resources/images/mensagens.png" height="40" width="40" title="Mensagens"></img>Mensagens</a></li>
+                <li><a href="perfil.html" class="active" title="Perfil"><img src="../resources/images/utilizador-png.png" title="Perfil" width="40" height="40"></a></img></li>
+                <button class="btn third">Vender</button>
+            </ul>
+        </div>
     </section>
 
-    <p id="text" style="display:none">Checkbox is CHECKED!</p>
+    <section id="feature">
+        <div class="fe-box">
+            
+        </div>
+    </section>
 
     <script src="../resources/js/app.js"></script>
 </body>
+
 </html>
