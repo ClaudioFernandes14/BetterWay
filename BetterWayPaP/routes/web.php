@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,17 @@ Route::get('/anunciar.html', function () {
     return view('anunciar');
 });
 
-Route::get('/login.html', function () {
+Route::get('/login', function () {
     return view('login');
 });
+
+
+
+//Route::get('/login.html', [UserController::class, 'index']) -> name('home.login');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

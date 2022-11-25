@@ -1,7 +1,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>BetterWay | Login</title>
+    <title>Bem Vindo</title>
     <link rel="stylesheet" href="../resources/css/register-style.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
         <div class="slider-tab"></div>
       </div>
       <div class="form-inner">
-        <form action="#" class="login">
+        <form action="" class="login">
           <div class="field">
             <input type="text" placeholder="Email" required>
           </div>
@@ -48,7 +48,7 @@
           </div>
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Signup">
+            <input type="submit" value="Registar">
           </div>
           <div class="termos-link">Ao se registar vai aceitar os nossos termos e condicoes <a href="">Termos e Condições</a></div>
         </form>
