@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/index.html', function () {
+Route::get('/index', function () {
     return view('index');
 });
 
@@ -27,33 +27,21 @@ Route::get('/Main', function () {
     return view('Main');
 });
 
-Route::get('/mensagens.html', function () {
+Route::get('/mensagens', function () {
     return view('mensagens');
 });
 
-Route::get('/favoritos.html', function () {
+Route::get('/favoritos', function () {
     return view('favoritos');
 });
 
-Route::get('/perfil.html', function () {
+Route::get('/perfil', function () {
     return view('perfil');
 });
 
-Route::get('/anunciar.html', function () {
+Route::get('/anunciar', function () {
     return view('anunciar');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [UserController::class, 'index']) -> name('login');
 
-
-
-//Route::get('/login.html', [UserController::class, 'index']) -> name('home.login');
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
