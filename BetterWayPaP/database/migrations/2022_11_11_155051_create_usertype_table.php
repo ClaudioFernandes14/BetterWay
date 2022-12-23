@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('nif');
             $table->unsignedInteger('idProdutos');
             $table->unsignedInteger('idFavoritos');
-            $table->unsignedInteger('idMensagens');
             $table->unsignedInteger('idClassificacao');
             $table->string('imagem');
+            $table->unsignedInteger('idCargo');
         });
     }
 

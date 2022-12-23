@@ -1,8 +1,4 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +10,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
+// Route::get('/index', function () {
+//     return view('index');
+// });
 
 
 Route::get('/Main', function () {
@@ -43,5 +42,15 @@ Route::get('/anunciar', function () {
     return view('anunciar');
 });
 
-Route::get('/login', [UserController::class, 'index']) -> name('login');
+Route::get('/confirmar', function () {
+    return view('confirmarConta');
+});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+
+
 
