@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Route::get('/index', function () {
-//     return view('index');
-// });
+Route::get('/index', function () {
+    return view('index');
+});
 
 
 Route::get('/Main', function () {
@@ -49,7 +49,7 @@ Route::get('/confirmar', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 
 

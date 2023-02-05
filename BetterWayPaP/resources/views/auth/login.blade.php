@@ -38,6 +38,8 @@
               </div>
           </div>
 
+          <br>
+
           <div class="row mb-3">
               <div class="field">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password * " name="password" required autocomplete="current-password">
@@ -60,8 +62,6 @@
                   @enderror
               </div>
           </div>
-
-          
 
           <div class="row mb-3">
               <div class="col-md-6 offset-md-4">
@@ -94,8 +94,6 @@
     </div>
   </div>
 
-
-  
   <script src="../resources/js/registar.js"></script>
 
 </body>

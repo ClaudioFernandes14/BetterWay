@@ -1,3 +1,8 @@
+:root{
+    --blue:#1a75ff;
+}
+
+
 *
 {
     margin: 0;
@@ -40,7 +45,7 @@ a
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
-    background: #39ac31;
+    background: var(--blue);
     display: inline-block;
 }
 
