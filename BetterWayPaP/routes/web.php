@@ -34,9 +34,6 @@ Route::get('/favoritos', function () {
     return view('favoritos');
 });
 
-Route::get('/perfil', function () {
-    return view('perfil');
-});
 
 Route::get('/anunciar', function () {
     return view('anunciar');
@@ -50,7 +47,7 @@ Route::get('/confirmar', function () {
 Auth::routes();
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
+Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil');
 
 
 
