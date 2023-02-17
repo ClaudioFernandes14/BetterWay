@@ -73,6 +73,8 @@
         </div>
         
         @else
+
+       
         <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="{{Auth::user()->avatar}}"></a></div>
 
        

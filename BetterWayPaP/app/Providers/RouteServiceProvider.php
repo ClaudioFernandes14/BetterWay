@@ -18,6 +18,9 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/index';
+    public const TWOFA = '/2FA';
+    public const VERIFICAR_CONTA = '/verificar/conta';
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

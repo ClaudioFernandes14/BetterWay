@@ -29,7 +29,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    protected $redirectTos = RouteServiceProvider::VERIFICAR_CONTA;
+
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function verifica_redirect(){
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect($redirectTos)->with('success', 'Seu e-mail já foi verificado!');
+        }
+    }
+
 
     /**
      * Create a new controller instance.

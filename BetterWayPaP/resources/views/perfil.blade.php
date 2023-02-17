@@ -21,6 +21,14 @@
 
 </head>
 <body>
+
+  
+    @if (Auth::check() && !Auth::user()->hasVerifiedEmail())
+        return redirect()->route('/verificar/conta');
+    @endif
+      
+    
+
     
 <!-- header section starts  -->
 
@@ -61,7 +69,7 @@
             <li class="title login">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
-        @endif
+            @endif
         </div>
 
         <div class="teste-register">
@@ -154,7 +162,6 @@
         <img src="{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
         <h3>Bem vindo ao seu perfil <span>{{$user->name}} </span></h3>
         <p>Aqui podera mudar as suas<span class="spans"> informacoes pessoais</span></p>
-        <p>Lembre se de ser amig</p>
     </div>
 </section>
 
