@@ -237,9 +237,9 @@
   } 
 
   .field .eye{
-    position: absolute;
-    left: 57%;
-    top: 58%;
+    position: fixed;
+    left: 59rem;
+    top: 29.8rem;
     transition: all 0.4s ease;
     cursor: pointer;
   }
@@ -250,9 +250,9 @@
   }
 
   .field .eyeRegister{
-    position: absolute;
-    left: 59%;
-    top: 57%;
+    position: fixed;
+    left: 61rem;
+    top: 29.3rem;
     transition: all 0.4s ease;
     cursor: pointer;
   }
@@ -263,9 +263,9 @@
   }
 
   .field .eyeConf{
-    position: absolute;
-    left: 59%;
-    top: 68%;
+    position: fixed;
+    left: 61rem;
+    top: 33.8rem;
     transition: all .5s;
     cursor: pointer;
   }

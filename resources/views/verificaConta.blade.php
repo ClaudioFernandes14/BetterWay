@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/register-style.css">
 </head>
 
-<link rel="icon" type="image/png" sizes="50x50" href="resources/images/icon_logo-removebg-preview.png">
+<link rel="icon" type="image/png" sizes="50x50" href="../resources/images/icon_logo-removebg-preview.png">
 
 <body>
 
@@ -27,7 +27,7 @@
 
       <div class="form-inner">
         @if (Auth::user()->hasVerifiedEmail())
-            <p>Seu e-mail já foi verificado!</p>
+            <h4>Sua conta já foi verificada!</h4>
         @else
             @if (session('success'))
                 <p>{{ session('success') }}</p>
@@ -45,11 +45,18 @@
             
         @endif
       </div>
-            <a href="/index" class="links"> Voltar</a> <i class="fas fa-arrow-left"></i>
+      <br>
+
+      <form action="/index" method="POST">
+        @csrf
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Voltar">
+        </div>
+      </form>
+            
     </div>
   </div>
-
-  <script src="../resources/js/registar.js"></script>
 
 </body>
   

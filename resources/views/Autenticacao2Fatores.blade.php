@@ -55,7 +55,7 @@
             <br>
             <div class="field btn">
               <div class="btn-layer-vermelho"></div>
-              <input type="submit" style="color: red" value="Retirar a autenticacao">
+              <input type="submit" style="color: white" value="Retirar a autenticacao">
             </div>
           @else
 

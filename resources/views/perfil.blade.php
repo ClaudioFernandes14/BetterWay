@@ -16,20 +16,15 @@
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="../resources/css/style-perfil.css">
+   
 
     <link rel="icon" type="image/png" sizes="100x100" href="resources/images/icon_logo-removebg-preview.png">
 
+
+
 </head>
 <body>
-
-  
-    @if (Auth::check() && !Auth::user()->hasVerifiedEmail())
-        return redirect()->route('/verificar/conta');
-    @endif
-      
-    
-
-    
+   
 <!-- header section starts  -->
 
 <header class="header">
@@ -81,7 +76,7 @@
         </div>
         
         @else
-        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="{{Auth::user()->avatar}}"></a></div>
+        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/{{Auth::user()->avatar}}"></a></div>
         <li class="nav-link dropdown">
 
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -108,49 +103,6 @@
         <input type="search" id="search-box" placeholder="pesquisar">
         <label for="search-box" class="fas fa-search"></label>
     </form>
-
-    <div class="shopping-cart">
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-1.png" alt="">
-            <div class="content">
-                <h3>watermelon</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-2.png" alt="">
-            <div class="content">
-                <h3>onion</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-3.png" alt="">
-            <div class="content">
-                <h3>chicken</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="total"> total : $19.69/- </div>
-        <a href="#" class="btn">checkout</a>
-    </div>
-
-    {{-- <form method="POST" action="{{ route('login') }}" class="login-form">
-       
-        <h3>login now</h3>
-        <input type="email" placeholder="your email" class="box">
-        <input type="password" placeholder="your password" class="box">
-        <p>forget your password <a href="#">click here</a></p>
-        <p>don't have an account <a href="#">create now</a></p>
-        <input type="submit" value="login now" class="btn">
-    </form> --}}
-
 </header>
 
 <!-- header section ends -->
@@ -159,15 +111,40 @@
 
 <section class="home" id="home">
     <div class="content">
-        <img src="{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
+        <img src="../resources/images/{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
         <h3>Bem vindo ao seu perfil <span>{{$user->name}} </span></h3>
         <p>Aqui podera mudar as suas<span class="spans"> informacoes pessoais</span></p>
+
+     
+    </div>
+
+</section>
+
+
+<section class="perfil" id="perfil">
+    <div class="box-container">
+        <div class="box">
+            <form enctype="multipart/form-data" action="/perfil" method="POST">
+                <h2>Inserir Imagem</h2>
+                <input type="file" name="avatar" style="cursor: pointer; padding:2rem">
+                <input type="hidden" name="_token"  value="{{ csrf_token() }}">
+                <br>
+                <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 
+
 <!-- home section ends -->
 
+
 <!-- features section starts  -->
+
+
 
 <section class="features" id="features">
     

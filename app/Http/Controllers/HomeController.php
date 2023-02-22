@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use Image;
 use Illuminate\Auth\Notifications\VerifyEmail;  
 
 class HomeController extends Controller
@@ -37,19 +38,39 @@ class HomeController extends Controller
     }
 
 
+
     /**
-     * Valida se o email do utilizador ja foi verificado
-     * Reenvia a notificacao do email
+     * Faz upload na foto que o utilizador quer
      */
-    public function resendEmailVerification()
-    {
-        if (Auth::user()->hasVerifiedEmail()) {
-            return redirect('/welcome')->with('success', 'Seu e-mail já foi verificado!');
+    public function updateAvatar(Request $request){
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/resources/images/' . $filename));
+
+            $user = auth()->user();
+            $user->avatar = $filename;
+            $user->save();
+            
         }
 
-        Auth::user()->sendEmailVerificationNotification();
-
-        return redirect()->back()->with('success', 'Um novo e-mail de verificação foi enviado para o seu endereço de e-mail!');
+        return view('/perfil', array('user' => Auth::user()));
     }
+
+
+    // /**
+    //  * Valida se o email do utilizador ja foi verificado
+    //  * Reenvia a notificacao do email
+    //  */
+    // public function resendEmailVerification()
+    // {
+    //     if (Auth::user()->hasVerifiedEmail()) {
+    //         return redirect('/welcome')->with('success', 'Seu e-mail já foi verificado!');
+    //     }
+
+    //     Auth::user()->sendEmailVerificationNotification();
+
+    //     return redirect()->back()->with('success', 'Um novo e-mail de verificação foi enviado para o seu endereço de e-mail!');
+    // }
     
 }
