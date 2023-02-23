@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('idProdutos');
             $table->unsignedInteger('idFavoritos');
             $table->unsignedInteger('idClassificacao');
-            $table->unsignedInteger('idCargo');
+            
         });
     }
 

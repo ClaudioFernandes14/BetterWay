@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Cargo;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+  
     use RegistersUsers;
 
     /**
@@ -71,13 +72,36 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \App\Models\User
+     * 
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'idCargo' => 1,
         ]);
+
+
+
+        //    // Cria o user
+        //     $user = User::create([
+        //         'name' => $data['name'],
+        //         'email' => $data['email'],
+        //         'password' => Hash::make($data['password']),
+        //     ]);
+
+        //     // Cria o cargo do utilizador
+        //     $cargo = Cargo::create([
+        //         'cargos' => 'cliente',
+        //     ]);
+
+        //     // Associa o cargo ao usuário criado
+        //     $user->cargo()->associate($cargo);
+        //     $user->save();
+
+        //     return $user;
     }
 }

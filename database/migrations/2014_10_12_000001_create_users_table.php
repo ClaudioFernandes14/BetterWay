@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')-> default('guest-image.jpg');
+            $table->unsignedBigInteger('idCargo')->default(1);
+            $table->foreign('idCargo')->references('id')->on('cargo');
             $table->rememberToken();
             $table->timestamps();
         });

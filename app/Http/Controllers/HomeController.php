@@ -43,6 +43,7 @@ class HomeController extends Controller
      * Faz upload na foto que o utilizador quer
      */
     public function updateAvatar(Request $request){
+        
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();

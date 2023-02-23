@@ -133,7 +133,7 @@ li{
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: none;
     transition: all .2s linear;
 }
 
@@ -429,8 +429,6 @@ section{
     padding:1rem 0;
     line-height: 1.8;
 }
-
-
 
 .perfil .box-container{
     margin-left: 49rem;
@@ -814,7 +812,7 @@ form .btn{
     border-radius: 15px;
     position: relative;
     overflow: hidden;
-    background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6);
+    background: #0073e6;
   }
   form .btn .btn-layer{
     height: 100%;

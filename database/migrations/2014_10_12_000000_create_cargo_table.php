@@ -14,9 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cargo', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->enum('cargos', ['admin', 'cliente']);
         });
+
+
+        DB::table('cargo')->insert([
+            ['cargos' => 'admin'],
+            ['cargos' => 'cliente']
+        ]);
     }
 
     /**
