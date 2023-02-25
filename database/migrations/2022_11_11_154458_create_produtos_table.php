@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('morada', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('morada');
-            $table->integer('cod_postal');
+        Schema::create('produtos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->unsignedInteger('id_imagem');
+            $table->unsignedInteger('id_categoria');
+            $table->unsignedInteger('id_morada');
+            $table->string('descricao');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('morada');
+        Schema::dropIfExists('produtos');
     }
 };

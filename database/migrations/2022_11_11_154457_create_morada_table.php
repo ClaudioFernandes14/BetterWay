@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('favoritos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('id_produto');
+        Schema::create('morada', function (Blueprint $table) {
+            $table->id();
+            $table->string('morada');
+            $table->integer('cod_postal');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favoritos');
+        Schema::dropIfExists('morada');
     }
 };

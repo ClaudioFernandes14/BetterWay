@@ -14,15 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('usertype', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('idUser');
+            $table->id();
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->string('nome');
-            $table->unsignedInteger('idMorada');
+            $table->unsignedBigInteger('idMorada');
+            $table->foreign('idMorada')->references('id')->on('morada');
             $table->string('telemovel');
             $table->string('nif');
-            $table->unsignedInteger('idProdutos');
-            $table->unsignedInteger('idFavoritos');
-            $table->unsignedInteger('idClassificacao');
+            $table->unsignedBigInteger('idProdutos');
+            $table->foreign('idProdutos')->references('id')->on('produtos');
+            $table->unsignedBigInteger('idFavoritos');
+            $table->foreign('idFavoritos')->references('id')->on('favoritos');
+            $table->unsignedBigInteger('idClassificacao');
+            $table->foreign('idClassificacao')->references('id')->on('classificacao');
             
         });
     }

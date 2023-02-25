@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produtos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nome');
-            $table->unsignedInteger('id_imagem');
-            $table->unsignedInteger('id_categoria');
-            $table->unsignedInteger('id_morada');
-            $table->string('descricao');
+        Schema::create('favoritos', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('id_produto');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produtos');
+        Schema::dropIfExists('favoritos');
     }
 };

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -19,8 +20,6 @@
    
 
     <link rel="icon" type="image/png" sizes="100x100" href="resources/images/icon_logo-removebg-preview.png">
-
-
 
 </head>
 <body>
@@ -99,7 +98,7 @@
         @endguest
     </div>
 
-    <form action="" class="search-form">
+    <form action="" class="search-form" autocomplete="off">
         <input type="search" id="search-box" placeholder="pesquisar">
         <label for="search-box" class="fas fa-search"></label>
     </form>
@@ -114,24 +113,21 @@
         <img src="../resources/images/{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
         <h3>Bem vindo ao seu perfil <span>{{$user->name}} </span></h3>
         <p>Aqui podera mudar as suas<span class="spans"> informacoes pessoais</span></p>
-
-     
     </div>
-
 </section>
 
 
 <section class="perfil" id="perfil">
     <div class="box-container">
-        <div class="box">
-            <form enctype="multipart/form-data" action="/perfil" method="POST">
+        <div class="box-img">
+            <form enctype="multipart/form-data" autocomplete="off" action="/perfil" method="POST" >
                 <h2>Inserir Imagem</h2>
                 <input type="file" name="avatar" style="cursor: pointer; padding:2rem">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
                 <br>
                 <div class="field btn">
                     <div class="btn-layer"></div>
-                    <input type="submit" value="Enviar">
+                    <input type="submit" autocomplete="off" value="Enviar">
                 </div>
             </form>
         </div>
@@ -144,42 +140,77 @@
 
 <!-- features section starts  -->
 
-
-
-<section class="features" id="features">
+<form action="users.update-profile" method="POST">
+    <div class="card border border-primary shadow-0 ">
+        <h1 class="heading"><span>Informacoes Pessoais</span></h1>
+        <table class="tabelaInf">
+            <tr class="tr1">
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Nome *</h5>
+                  
+                        <input class="card-text" type="text" name="nome" autocomplete="off" placeholder="{{Auth::user()->name}}" size="20" required>
+                  
+                    </div>
+                </td>
     
-    <h1 class="heading"><span>Categorias</span> </h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <img src="resources/images/monitor.jpg" alt="">
-            <h3>Tecnologia</h3>
-            <a href="#" class="btn">Ver Produtos</a>
-        </div>
-
-        <div class="box">
-            <img src="resources/images/ps5.jpg" alt="">
-            <h3>Lazer</h3>
-            <a href="#" class="btn">Ver Produtos</a>
-        </div>
-
-        <div class="box">
-            <img src="resources/images/papagaio.png" alt="">
-            <h3>Animais</h3>
-            <a href="#" class="btn">Ver Produtos</a>
-        </div>
-
-        <div class="box">
-            <img src="image/feature-img-3.png" alt="">
-            <h3>easy payments</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
-            <a href="#" class="btn">read more</a>
-        </div>
-
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Email *</h5> 
+                  
+                        <input class="card-text" type="text" name="email" placeholder="{{Auth::user()->email}}" autocomplete="off" size="30" required>
+                  
+                    </div>
+                </td>
+    
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Telemovel *</h5> 
+                  
+                        <input class="card-text" type="text" name="telemovel" size="20" required>
+                  
+                    </div>
+                </td>
+    
+            </tr>
+    
+            <tr class="tr1">
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Password *</h5> 
+                  
+                        <input class="card-text" type="text" name="password" size="20" required>
+                  
+                    </div>
+                </td>   
+    
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Morada *</h5> 
+                  
+                        <input class="card-text" type="text" name="morada" size="20" required>
+                    </div>
+                </td> 
+                
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 class="card-title">Nif *</h5> 
+                  
+                        <input class="card-text" type="text" name="nif" size="20" required>
+                  
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
+    
+    <div class="field btn-Inf">
+        <div class="btn-layer-Inf"></div>
+        <input type="submit" value="Atualizar">
+    </div>
+</form> 
 
-</section>
+
 
 <!-- features section ends -->
 
@@ -320,75 +351,6 @@
 </section>
 
 <!-- products section ends -->
-
-
-<!-- review section starts  -->
-
-<section class="review" id="review">
-
-    <h1 class="heading"> customer's <span>review</span> </h1>
-
-    <div class="swiper review-slider">
-
-        <div class="swiper-wrapper">
-
-            <div class="swiper-slide box">
-                <img src="image/pic-1.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-2.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-3.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-4.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 <!-- footer section starts  -->
 

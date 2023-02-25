@@ -10,7 +10,6 @@
     --outline-hover:.2rem solid var(--black);
 }
 
-
 .testeLogin{
     display: inline-block;
     margin: -20%; padding: 19%;
@@ -431,16 +430,18 @@ section{
 }
 
 .perfil .box-container{
-    margin-left: 49rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 39rem;
     margin-bottom: 9rem;
-    display: grid;
+    display: flex;
     width: 50rem;
-    /* grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); */
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap:1.5rem;
 }
 
 
-.perfil .box-container .box{
+.perfil .box-container .box-img{
     padding:3rem 1rem;
     background: #fff;
     color: var(--blue);
@@ -456,18 +457,18 @@ section{
     outline-offset: 0rem;
 }
 
-.perfil .box-container .box img{
+.perfil .box-container .box-img img{
     margin:1rem 0;
     height: 15rem;
 }
 
-.perfil .box-container .box h3{
+.perfil .box-container .box-img h3{
     font-size: 2.5rem;
     line-height: 1.8;
     color:var(--black);
 }
 
-.perfil .box-container .box p{
+.perfil .box-container .box-img p{
     font-size: 1.5rem;
     line-height: 1.8;
     color:var(--light-color);
@@ -806,9 +807,10 @@ section{
     color:var(--blue);
 }
 
+
 form .btn{
     height: 50px;
-    width: 30%;
+    width: 39%;
     border-radius: 15px;
     position: relative;
     overflow: hidden;
@@ -843,6 +845,85 @@ form .btn{
     
   }
 
+  form .btn-Inf{
+    left: 44%;
+    position: fixed;
+    height: 50px;
+    width: 10%;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    background: #0073e6;
+  }
+  form .btn .btn-layer-Inf{
+    height: 100%;
+    width: 300%;
+    position: absolute;
+    left: -100%;
+    /* background: -webkit-linear-gradient(right,#003366,#004080,#0059b3, #0073e6); */
+    border-radius: 15px;
+    transition: all 0.4s ease;;
+  }
+
+  form .btn:hover .btn-layer-Inf{
+    left: 0;
+  }
+  form .btn-Inf input[type="submit"]{
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    background: none;
+    border: none;
+    color: #fff;
+    padding-left: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    
+  }
+
+
+/* Card Body */
+
+.tabelaInf{
+    margin-left: 12%;
+}
+
+.card-body{
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem; */
+    border: var(--border);
+    padding: 2%;
+    margin-left: 12%;
+    width: 30rem;
+    background: #eee;
+    padding:3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    outline-color: #0073e6;
+    box-shadow: var(--box-shadow);
+}
+
+.card-title{
+    color: var(--blue);
+}
+
+.card-text{
+    border: var(--border);
+}
+
+.tabelaInf{
+    padding:3rem;
+}
+
+.tabelaInf .td1{
+    padding:1rem;
+}
+
+
 /* media queries  */
 
 @media (max-width:991px){
@@ -852,12 +933,28 @@ form .btn{
     }
 
     .header{
-        padding:2rem;
+        padding:1rem;
     }
 
     section{
         padding:2rem;
     }
+
+   form .btn-Inf{
+    display: inline-block;
+    width: 20%;
+   }
+
+   .box-img {
+        margin-right: 150%;
+   }
+
+
+   .tabelaInf .td1{
+        display: inline-block;
+        
+   }
+
 
 }
 
@@ -870,6 +967,7 @@ form .btn{
     .header .search-form{
         width:90%;
     }
+
 
     .header .navbar{
         position: absolute;
@@ -891,6 +989,7 @@ form .btn{
         display: block;
     }
 
+    
 }
 
 @media (max-width:450px){
@@ -907,8 +1006,10 @@ form .btn{
         text-align: center;
     }
 
+
     .footer .box-container .box .payment-img{
         margin: 2rem auto;
     }
+
 
 }
