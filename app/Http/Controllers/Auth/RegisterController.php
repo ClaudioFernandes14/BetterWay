@@ -76,12 +76,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $cargo = 2;
 
+        // Cria a conta do user
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'idCargo' => 2,
+            'idCargo' => $cargo,
         ]);
 
 

@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Auth;
 use Image;
 use Illuminate\Auth\Notifications\VerifyEmail;  
+use App\Http\Requests\UpdateProfileRequest;
 
 class HomeController extends Controller
 {
@@ -38,6 +39,24 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * Faz Ligacao com a tabela UserType
+     */
+    public function usertype()
+    {
+        return $this->hasOne(UserTypeModel::class);
+    }
+
+
+    /**
+     * Faz Ligacao com a tabela Morada
+     */
+    public function morada()
+    {
+        return $this->hasOne(MoradaModel::class);
+    }
+
+
 
     /**
      * Faz upload na foto que o utilizador quer
@@ -47,7 +66,7 @@ class HomeController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save(public_path('/resources/images/' . $filename));
+            Image::make($avatar)->resize(300, 300)->save(public_path('resources/images/' . $filename));
 
             $user = auth()->user();
             $user->avatar = $filename;
@@ -56,6 +75,48 @@ class HomeController extends Controller
         }
 
         return view('/perfil', array('user' => Auth::user()));
+    }
+
+
+    /**
+     * Vai atualizar o perfil do utilizador
+     */
+    public function updateProfile(UpdateProfileRequest $request){
+        try {
+            $user = auth()->user();
+    
+            // atualiza os dados do usuário na tabela "users"
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+    
+            // busca o usuário atualizado
+            $user = User::findOrFail($user->id);
+    
+            // atualiza ou cria o registro na tabela "usertype"
+            $userType = $user->userType ?? new UserTypeModel;
+            $userType->idUser = $user->id;
+            $userType->telemovel = $request->telemovel;
+            $userType->nif = $request->nif;
+            $userType->save();
+    
+            // atualiza ou cria o registro na tabela "morada"
+            $morada = $user->morada ?? new MoradaModel;
+            $morada->morada = $request->morada;
+            $morada->cod_postal = $request->cod_postal;
+            $morada->save();
+    
+            session()->flash('success', 'O seu perfil foi atualizado com sucesso');
+    
+            return redirect()->back();
+        } catch (\Exception $e) {
+            session()->flash('error', 'Ocorreu um erro ao atualizar o seu perfil. Por favor, tente novamente.');
+    
+            return redirect()->back()->withInput();
+        }
+
     }
 
 

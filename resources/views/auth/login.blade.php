@@ -28,7 +28,7 @@
 
           <div class="row mb-3">
               <div class="field">
-                  <input id="email" type="email" placeholder="Email *" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                  <input id="email" type="email" autocomplete="off" placeholder="Email *" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                   @error('email')
                       <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
           <div class="row mb-3">
               <div class="col-md-6 offset-md-4">
                   <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                      <input class="form-check-input"  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                       <label class="form-check-label" for="remember">
                           {{ __('Lembrar de Mim') }}

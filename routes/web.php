@@ -57,13 +57,15 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('/verificar/conta', [App\Http\Controllers\EmailVerificationController::class, '__invoke'])->name('verification.notice');
     Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
+   
 
 // </Forma as rotas>
 
 
 // <Publica as rotas>
     Route::post('/index', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::post('/perfil', [App\Http\Controllers\HomeController::class, 'updateAvatar']);
+    Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']);
+    Route::post('/perfil/editar', [App\Http\Controllers\HomeController::class, 'updateProfile']);
 // </Publica as rotas>
 
 

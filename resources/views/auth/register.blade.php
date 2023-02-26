@@ -29,7 +29,7 @@
 
             <div class="field">
                 <div class="col-md-6">
-                    <input id="name" type="text" placeholder="Nome *" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" autocomplete="off" placeholder="Nome *" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
 
             <div class="field">
                 <div class="col-md-6">
-                    <input id="email" type="email" placeholder="Email *" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    <input id="email" type="email" autocomplete="off" placeholder="Email *" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">

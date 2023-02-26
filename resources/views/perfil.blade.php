@@ -120,7 +120,7 @@
 <section class="perfil" id="perfil">
     <div class="box-container">
         <div class="box-img">
-            <form enctype="multipart/form-data" autocomplete="off" action="/perfil" method="POST" >
+            <form enctype="multipart/form-data" autocomplete="off" action="/perfil/avatar" method="POST" >
                 <h2>Inserir Imagem</h2>
                 <input type="file" name="avatar" style="cursor: pointer; padding:2rem">
                 <input type="hidden" name="_token"  value="{{ csrf_token() }}">
@@ -140,7 +140,8 @@
 
 <!-- features section starts  -->
 
-<form action="users.update-profile" method="POST">
+<form action="/perfil/editar" method="POST">
+    @csrf
     <div class="card border border-primary shadow-0 ">
         <h1 class="heading"><span>Informacoes Pessoais</span></h1>
         <table class="tabelaInf">
@@ -149,7 +150,7 @@
                     <div class="card-body">
                         <h1 class="card-title">Nome *</h5>
                   
-                        <input class="card-text" type="text" name="nome" autocomplete="off" placeholder="{{Auth::user()->name}}" size="20" required>
+                        <input class="card-text" type="text" name="name" autocomplete="off" placeholder="{{Auth::user()->name}}" size="20" required>
                   
                     </div>
                 </td>
@@ -179,7 +180,7 @@
                     <div class="card-body">
                         <h1 class="card-title">Password *</h5> 
                   
-                        <input class="card-text" type="text" name="password" size="20" required>
+                        <input class="card-text" type="password" name="password" size="20" required>
                   
                     </div>
                 </td>   
@@ -189,6 +190,14 @@
                         <h1 class="card-title">Morada *</h5> 
                   
                         <input class="card-text" type="text" name="morada" size="20" required>
+                    </div>
+                </td> 
+
+                <td class="td1">
+                    <div class="card-body">
+                        <h1 for="cod_postal" class="card-title">Codigo Postal *</h5> 
+                  
+                        <input class="card-text" autocomplete="off" type="text" name="cod_postal" size="20" required>
                     </div>
                 </td> 
                 
