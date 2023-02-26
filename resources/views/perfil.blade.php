@@ -140,7 +140,7 @@
 
 <!-- features section starts  -->
 
-<form action="/perfil/editar" method="POST">
+<form action="/perfil" method="POST">
     @csrf
     <div class="card border border-primary shadow-0 ">
         <h1 class="heading"><span>Informacoes Pessoais</span></h1>

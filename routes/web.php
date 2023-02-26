@@ -64,8 +64,8 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
 
 // <Publica as rotas>
     Route::post('/index', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']);
-    Route::post('/perfil/editar', [App\Http\Controllers\HomeController::class, 'updateProfile']);
+    Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']) ->name('perfil');
+    Route::post('/perfil', [App\Http\Controllers\HomeController::class, 'updateProfile']);
 // </Publica as rotas>
 
 

@@ -26,11 +26,11 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
-            'password' => 'required|min:8|confirmed',
-            'telemovel' => 'required',
-            'morada' => 'required',
-            'cod_postal' => 'required',
-            'nif' => 'required|digits:9',
+            'password' => 'required|min:8',
+            // 'telemovel' => 'required',
+            // 'morada' => 'required',
+            // 'cod_postal' => 'required',
+            // 'nif' => 'required|digits:9',
         ];
     }
 }
