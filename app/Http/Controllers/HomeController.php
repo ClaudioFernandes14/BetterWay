@@ -62,6 +62,8 @@ class HomeController extends Controller
             $user = auth()->user();
             $user->avatar = $filename;
             $user->save();
+
+            return redirect('/perfil')->with('success', 'O avatar foi carregado com sucesso!');
             
         }
 
