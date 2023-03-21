@@ -246,11 +246,11 @@
 
                        
 
-                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                        {{-- <div class="dropdown d-none d-lg-inline-block ms-1">
                             <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                                 <i class="ri-fullscreen-line"></i>
                             </button>
-                        </div>
+                        </div> --}}
 
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
@@ -393,7 +393,7 @@
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="index.html" class="waves-effect">
+                                <a href="/admin/dashboard" class="waves-effect">
                                     <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
                                     <span>Dashboard</span>
                                 </a>
@@ -630,7 +630,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Upcube</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">BetterWay</a></li>
                                             <li class="breadcrumb-item active">Dashboard</li>
                                         </ol>
                                     </div>
@@ -646,7 +646,7 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">Total Sales</p>
+                                                <p class="text-truncate font-size-14 mb-2">Vendas</p>
                                                 <h4 class="mb-2">1452</h4>
                                                 <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>9.23%</span>from previous period</p>
                                             </div>
@@ -664,13 +664,15 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">New Orders</p>
+                                                <p class="text-truncate font-size-14 mb-2">Novos Produtos</p>
                                                 <h4 class="mb-2">938</h4>
                                                 <p class="text-muted mb-0"><span class="text-danger fw-bold font-size-12 me-2"><i class="ri-arrow-right-down-line me-1 align-middle"></i>1.09%</span>from previous period</p>
                                             </div>
                                             <div class="avatar-sm">
                                                 <span class="avatar-title bg-light text-success rounded-3">
-                                                    <i class="mdi mdi-currency-usd font-size-24"></i>  
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
+                                                    <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+                                                  </svg>
                                                 </span>
                                             </div>
                                         </div>                                              
@@ -682,7 +684,7 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">New Users</p>
+                                                <p class="text-truncate font-size-14 mb-2">Novos Utilizadores</p>
                                                 <h4 class="mb-2">8246</h4>
                                                 <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>16.2%</span>from previous period</p>
                                             </div>
@@ -700,13 +702,15 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">Unique Visitors</p>
+                                                <p class="text-truncate font-size-14 mb-2">Reports</p>
                                                 <h4 class="mb-2">29670</h4>
                                                 <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>11.7%</span>from previous period</p>
                                             </div>
                                             <div class="avatar-sm">
                                                 <span class="avatar-title bg-light text-success rounded-3">
-                                                    <i class="mdi mdi-currency-btc font-size-24"></i>  
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="27" style="color: brown" height="27" fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
+                                                    <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+                                                  </svg>
                                                 </span>
                                             </div>
                                         </div>                                              
@@ -1024,11 +1028,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Upcube.
+                                <script>document.write(new Date().getFullYear())</script> © BetterWay.
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
-                                    Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                    Credits to Themesdesign
                                 </div>
                             </div>
                         </div>
