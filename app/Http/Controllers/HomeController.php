@@ -13,6 +13,8 @@ use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserTypeModel;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AccountDeleted;
 
 
 
@@ -82,9 +84,20 @@ class HomeController extends Controller
      */
     public function updateProfile(UpdateProfileRequest $request){
         $user = auth()->user();
-        $passwordHash = Hash::make($request->password);
+        // $passwordHash = Hash::make($request->password);
+
+      // verifica se uma nova senha foi fornecida
+        if (!empty($request->password)) {
+            // se sim, criptografa a nova senha como hash
+            $passwordHash = Hash::make($request->password);
+        } else {
+            // caso contrário, mantém a senha atual
+            $passwordHash = $user->password;
+        }
 
         try {
+
+            // Atualiza os dados do utilizador
             $user->update([
                 'name' => $request->name ?: $user->name,
                 'email' => $request->email ?: $user->email,
@@ -95,39 +108,34 @@ class HomeController extends Controller
                 'nif' => $request->nif ?: $user->nif,
             ]);
 
+
+            // Salva as alteracões feitas do utilizador
             $user->save();
             
 
             return redirect('/perfil');
-            // // atualiza os dados da morada
-            // $user->morada->update([
-            //     'morada' => $request->morada,
-            //     'cod_postal' => $request->cod_postal,
-            // ]);
-
-            // $userType = $user->usertype;
-            // dd($request->all(), $userType->toArray()); // verificar os dados passados pelo request e os dados do usertype
-            // $userType->update([
-            //     'telemovel' => $request->telemovel,
-            //     'nif' => $request->nif,
-            // ]);
-            // // atualiza os dados do usertype
-            // $userType = $user->usertype;
-            // $userType->fill([
-            //     'user_id' => $user->id,
-            //     'idMorada' => $request->idMorada,
-            //     'telemovel' => $request->telemovel,
-            //     'nif' => $request->nif,
-            //     'idProdutos' => $request->idProdutos,
-            //     'idFavoritos' => $request->idFavoritos,
-            //     'idClassificacao' => $request->idClassificacao,
-            // ]);
-            // $userType->save();
+       
         } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
 
+
+    // Vai eliminar a conta do utilizador
+    public function deleteProfile(Request $request, $id){
+
+        $user = User::find($id);
+
+        if (Hash::check($request->password, $user->password)) {
+            \App\Models\UserTypeModel::where('user_id', $id)->delete();
+            $user->delete();
+            // Enviar e-mail de agradecimento
+            Mail::to(Auth::user()->email)->send(new AccountDeleted());
+            return redirect()->route('login')->with('success', 'Conta eliminada com sucesso');
+        }
+
+        return back()->withErrors(['password' => 'Senha incorreta']);
+    }
 
     // /**
     //  * Valida se o email do utilizador ja foi verificado

@@ -43,28 +43,9 @@
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
                           <a href="/" class="logo"><img src="../resources/images/logo.png" height="70px"></a>
-                            {{-- <a href="index.html" class="logo logo-dark">
-                                <span class="logo-sm">
-                                    <img src="../resources/images/logo-sm.png" alt="logo-sm" height="22">
-                                </span>
-                                <span class="logo-lg">
-                                  <a href="/" class="logo"><img src="../resources/images/logo.png" height="70px"></a>
-                                </span>
-                            </a>
-
-                            <a href="index.html" class="logo logo-light">
-                                <span class="logo-sm">
-                                    <img src="../resources/images/logo-sm.png" alt="logo-sm-light" height="22">
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="../resources/images/logo-light.png" alt="logo-light" height="20">
-                                </span>
-                            </a> --}}
                         </div>
 
-                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
-                            <i class="ri-menu-2-line align-middle"></i>
-                        </button>
+                        
 
                         <!-- App Search-->
                         <form class="app-search d-none d-lg-block">
@@ -229,19 +210,20 @@
                             </div>
                         </div>
 
-                        <div class="dropdown d-none d-sm-inline-block">
-                            <button type="button" class="btn header-item waves-effect"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="" src="../resources/images/flags/portugal.png" alt="Header Language" height="20">
+                        <div class="dropdown d-none d-sm-inline-block" >
+                            
+                            <button type="button" class="btn header-item waves-effect "
+                            style="cursor: default">
+                                <img class="" src="../resources/images/flags/portugal.png" style="cursor: default" alt="Header Language" height="20">
                             </button>
-                            <div class="dropdown-menu dropdown-menu-end">
+                            {{-- <div class="dropdown-menu dropdown-menu-end">
                     
                                 <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <img src="../resources/images/flags/us.jpg" alt="user-image" class="me-1" height="16"> <span class="align-middle">Inglês</span>
                                 </a>
 
-                            </div>
+                            </div> --}}
                         </div>
 
                        
@@ -351,12 +333,21 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My Wallet</a>
-                                <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>
-                                <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a>
+                                <a class="dropdown-item" href="/perfil"><i class="ri-user-line align-middle me-1"></i> Perfil</a>
+                                 {{-- <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a> --}}
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger"  href="{{ route('logout') }}"
+                                
+                                    onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                                  <i class="ri-shut-down-line align-middle me-1 text-danger"></i>
+                                     {{ __('Logout') }}
+                                     
+                                </a>
+                                
+                                <form  id="logout-form"  action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
 

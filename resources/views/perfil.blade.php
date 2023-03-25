@@ -14,6 +14,9 @@
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+    <!-- Icons Css -->
+    <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="../resources/css/style-perfil.css">
@@ -80,17 +83,22 @@
 
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name}}
+                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </a>
 
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
+               
                 <a href="/perfil" class="links"><i class="fas fa-arrow-right"></i> Perfil</a>
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
+                <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
+                                
+                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <i class="ri-shut-down-line align-middle me-1 text-danger" style="color: red"></i>
                     {{ __('Logout') }}
+                 
                 </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            
+                <form  id="logout-form"  action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
             </div>
@@ -140,7 +148,8 @@
 
 <!-- features section starts  -->
 
-    <form action="/perfil" method="POST">
+    <form action="{{ route('perfil.update') }}" method="POST">
+        @method('PUT')
         @csrf
         <div class="card border border-primary shadow-0 ">
             <h1 class="heading"><span>Informações Pessoais</span></h1>
@@ -210,6 +219,17 @@
                       
                         </div>
                     </td>
+
+                    
+                    <td class="td1">
+                        <div class="card-body">
+                            <h1 class="card-title">Idade *</h5> 
+                    
+                            <input class="card-text" type="date" name="idade" size="20">
+                    
+                        </div>
+                    </td>
+
                 </tr>
             </table>
             
@@ -217,19 +237,64 @@
 
         <br>
         <br>
-        
-        <div class="field btn-Inf">
-            <div class="btn-layer-Inf"></div>
-            <input type="submit" value="Atualizar">
-        </div>
+
     
+        {{-- Botoes que vão editar e eliminar a conta --}}
+        <table class="EliminarEditarBotoes">
+            <tr class="Buttons">
+                <td>
+                    <div class="field btn-Inf">
+                        <div class="btn-layer-Inf"></div>
+                        <input type="submit" value="Atualizar">
+                    </div>
+                </td>
+            </tr>
+        </table>
     
     </form>
-    
-   
 
+
+    <div class="popup" id="confirm-popup">
+        <div class="popup-content">
+          <h2>Confirmar password para excluir a conta</h2>
+          <br>
+          <p style="color: red">ATENÇÃO ao clicar em confirmar a sua conta será Eliminada</p>
+          <br>
+          <form action="{{ route('users.delete', Auth::user()->id) }}" method="POST" id="delete-form">
+            @method('DELETE')
+            @csrf
+            <label for="password"><h2>Password:</h2></label>
+            <input type="password" id="password" name="password" required>
+            <div class="buttons">
+              <button type="submit" class="confirm-btn">Confirmar</button>
+              <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+            </div>
+          </form>
+        </div>
+    </div>
+      
+    <div class="Eliminar">
+    <button type="button" class="delete-btn" onclick="openPopup()">Eliminar Conta</button>
+    </div>
+
+
+    {{-- <div class="Eliminar">
+       
+        <form action="{{route('users.delete', Auth::user()->id) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <div class="field btn-Inf">
+                <div class="btn-layer-Inf"></div>
+                <input type="submit" value="Eliminar Conta">
+            </div>
+        </form> 
+
+    </div> --}}
+    
 
 <!-- features section ends -->
+
+
 
 <!-- products section starts  -->
 
@@ -248,7 +313,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-            <a href="#" class="btn">Ver Produto</a>
+            <a style="color: white" href="#" class="btn">Ver Produto</a>
         </div>
 
         <div class="box">
@@ -408,6 +473,8 @@
 
 <!-- custom js file link  -->
 <script src="../resources/js/script.js"></script>
+<script src="../resources/js/perfil.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

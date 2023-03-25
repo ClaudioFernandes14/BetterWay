@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\HomeController;
 use Laravel\Fortify\Http\Providers\FortifyServiceProvider;
 use Laravel\Fortify\Http\Controllers\LoginController;
 use Laravel\Fortify\Http\Controllers\RegisterController;
@@ -56,9 +57,9 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Auth::routes();
     Route::get('/verificar/conta', [App\Http\Controllers\EmailVerificationController::class, '__invoke'])->name('verification.notice');
     Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-    Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
+    // Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
-
+    Route::match(['get', 'put' ,'delete'], '/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
 // </Forma as rotas>
 
 
@@ -66,9 +67,14 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/verificar/conta', [EmailVerificationController::class, '__invoke'])->name('verification.notice');
     Route::post('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']) ->name('perfil');
-    Route::post('/perfil', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth');
+    Route::put('/perfil/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth')->name('perfil.update');
 // </Publica as rotas>
 
+
+// <Elimina dados>
+    Route::delete('/user/{id}', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->middleware('auth')->name('users.delete');
+    // Route::delete('/perfil/{user}/delete-account', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->name('delete-account');
+// </Elimina dados>
 
 // Route::middleware(['web'])
 //     ->prefix('login')

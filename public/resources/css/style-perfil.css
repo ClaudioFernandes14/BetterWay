@@ -809,9 +809,9 @@ section{
 
 
 form .btn{
-    height: 50px;
-    width: 39%;
-    border-radius: 15px;
+    height: 60px;
+    width: 50%;
+    border-radius: 40px;
     position: relative;
     overflow: hidden;
     background: #0073e6;
@@ -925,6 +925,119 @@ form .btn{
     display: flexbox;
 }
 
+
+
+.Buttons  .btn-Inf {
+    left: 57rem;
+    position: fixed;
+    height: 59px;
+    width: 16rem;   
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    background: #0073e6;
+    cursor: pointer;
+    margin-right: 18px;
+    
+}
+
+
+/* .Eliminar  .btn-Inf {
+    left: 77rem;
+    bottom: 5.9rem;
+    position: fixed;
+    height: 59px;
+    width: 16rem;   
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    background: red;
+    cursor: pointer;
+    margin-right: 18px;
+    
+} */
+
+
+/* Estilo do popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+  }
+  
+  .popup-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    background-color: #fff;
+  }
+  
+  .popup-content h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .popup-content label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .popup-content input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .popup-content .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .popup-content .confirm-btn {
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .popup-content .cancel-btn {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .Eliminar {
+    margin-top: 20px;
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 78rem;
+    top: -7.8rem;
+    height: 59px;
+    width: 16rem;
+    position: relative;
+    overflow: hidden;
+  }
 
 /* media queries  */
 
@@ -1055,3 +1168,33 @@ form .btn{
         }
     }
 }
+
+
+/*Resolução do Monitor*/
+/* @media screen and (max-width: 1920px) and (max-height: 1080px) {
+    .box-img {
+        margin-right: -33rem;
+    }
+
+  
+    .tabelaInf .tr1{
+        display: block;
+        margin-left: 25rem;
+        
+    }
+
+    .tabelaInf .td1{
+        margin-right: 10%;
+    }
+    @media (max-width:991px){
+        .box-img {
+            margin-right: 150%;
+            
+        }
+
+
+        .tabelaInf .td1{
+             display: block;
+        }
+    }
+} */

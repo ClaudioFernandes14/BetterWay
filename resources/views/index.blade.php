@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
+    <!-- Icons Css -->
+    <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
+
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -80,18 +83,21 @@
         <li class="nav-link dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name}}
+                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </a>
 
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
                 <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil</a>
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
+                <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
+                                
+                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <i class="ri-shut-down-line align-middle me-1 text-danger" style="color: red"></i>
                     {{ __('Logout') }}
+             
                 </a>
-
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        
+                <form  id="logout-form"  action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
             </div>
@@ -189,10 +195,9 @@
         </div>
 
         <div class="box">
-            <img src="image/feature-img-3.png" alt="">
-            <h3>easy payments</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
-            <a href="#" class="btn">read more</a>
+            <img src="resources/images/papagaio.png" alt="">
+            <h3>Brinquedos</h3>
+            <a href="#" class="btn">Ver Produtos</a>
         </div>
 
     </div>
