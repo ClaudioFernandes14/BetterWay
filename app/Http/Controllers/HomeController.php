@@ -86,7 +86,7 @@ class HomeController extends Controller
         $user = auth()->user();
         // $passwordHash = Hash::make($request->password);
 
-      // verifica se uma nova senha foi fornecida
+        // verifica se uma nova senha foi fornecida
         if (!empty($request->password)) {
             // se sim, criptografa a nova senha como hash
             $passwordHash = Hash::make($request->password);

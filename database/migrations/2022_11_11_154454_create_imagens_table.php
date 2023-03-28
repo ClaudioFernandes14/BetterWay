@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('imagens', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('url')->default('Sem imagens Inseridas');
             $table->timestamps();
         });
+
+        DB::table('imagens')->insert([
+            ['url' => 'Sem imagens Inseridas'],
+        ]);
     }
 
     /**

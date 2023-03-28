@@ -811,7 +811,7 @@ section{
 form .btn{
     height: 60px;
     width: 50%;
-    border-radius: 40px;
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
     background: #0073e6;
@@ -942,6 +942,27 @@ form .btn{
 }
 
 
+.Editar .edit-btn{
+    left: 57rem;
+    bottom: 0rem;
+    position: fixed;
+    height: 59px;
+    width: 16rem;   
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    background: blue;
+    color: white;
+    cursor: pointer;
+    margin-right: 18px;
+}
+
+.Editar .edit-btn:hover{
+    background: var(--blue);
+}
+
+
+
 /* .Eliminar  .btn-Inf {
     left: 77rem;
     bottom: 5.9rem;
@@ -1026,7 +1047,7 @@ form .btn{
   }
   
   .delete-btn {
-    background-color: red;
+    background-color: crimson;
     color: #fff;
     border: none;
     border-radius: 20px;
@@ -1037,6 +1058,11 @@ form .btn{
     width: 16rem;
     position: relative;
     overflow: hidden;
+  }
+
+
+  .delete-btn:hover{
+    background: red;
   }
 
 /* media queries  */
