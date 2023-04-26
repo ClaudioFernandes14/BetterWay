@@ -326,7 +326,7 @@
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="../resources/images/{{Auth::user()->avatar}}"
+                                <img class="rounded-circle header-profile-user" src="../resources/images/user-img/{{Auth::user()->avatar}}"
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1">{{Auth::user()->name}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -369,7 +369,7 @@
                     <!-- User details -->
                     <div class="user-profile text-center mt-3">
                         <div class="">
-                            <img src="../resources/images/{{Auth::user()->avatar}}" alt="" class="avatar-md rounded-circle">
+                            <img src="../resources/images/user-img/{{Auth::user()->avatar}}" alt="" class="avatar-md rounded-circle">
                         </div>
                         <div class="mt-3">
                             <h4 class="font-size-16 mb-1">{{Auth::user()->name}}</h4>

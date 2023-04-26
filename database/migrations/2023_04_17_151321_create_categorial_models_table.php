@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('imagens', function (Blueprint $table) {
+        Schema::create('categorial_models', function (Blueprint $table) {
             $table->id();
-            $table->string('url')->default('Sem imagens Inseridas');
             $table->timestamps();
         });
-
-        DB::table('imagens')->insert([
-            ['url' => 'Sem imagens Inseridas'],
-        ]);
     }
 
     /**
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagens');
+        Schema::dropIfExists('categorial_models');
     }
 };

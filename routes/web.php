@@ -60,6 +60,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     // Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
     Route::match(['get', 'put' ,'delete'], '/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
+    Route::get('/produtos/criar', [App\Http\Controllers\CriarProdutosController::class, 'mostraCriarProdutos'])->middleware('verified');
 // </Forma as rotas>
 
 

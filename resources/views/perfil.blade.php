@@ -78,7 +78,7 @@
         </div>
         
         @else
-        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/{{Auth::user()->avatar}}"></a></div>
+        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
         <li class="nav-link dropdown">
 
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -118,7 +118,7 @@
 
 <section class="home" id="home">
     <div class="content">
-        <img src="../resources/images/{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
+        <img src="../resources/images/user-img/{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
         <h3>Bem vindo ao seu perfil <span>{{$user->name}} </span></h3>
         <p>Aqui podera mudar as suas<span class="spans"> Informações Pessoaís</span></p>
     </div>
@@ -295,22 +295,7 @@
       
     <div class="Eliminar">
         <button type="button" class="delete-btn" onclick="openPopup()">Eliminar Conta</button>
-    </div>
-
-
-    {{-- <div class="Eliminar">
-       
-        <form action="{{route('users.delete', Auth::user()->id) }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <div class="field btn-Inf">
-                <div class="btn-layer-Inf"></div>
-                <input type="submit" value="Eliminar Conta">
-            </div>
-        </form> 
-
-    </div> --}}
-    
+    </div>    
 
 <!-- features section ends -->
 
@@ -333,7 +318,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
             </div>
-            <a style="color: white" href="#" class="btn">Ver Produto</a>
+            <a  href="#" class="btn">Ver Produto</a>
         </div>
 
         <div class="box">
