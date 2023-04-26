@@ -24,6 +24,12 @@
 
     <link rel="icon" type="image/png" sizes="100x100" href="../resources/images/icon_logo-removebg-preview.png">
 
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 </head>
 <body>
    
@@ -54,7 +60,7 @@
     <div class="icons">
         <div class="fas fa-bars" id="menu-btn" ></div>
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+        <div class="fas fa-shopping-cart" id="cart-btn"><a href="produtos/criar"></a></div>
     </div>
 
     <div class="dropdown">
@@ -122,14 +128,16 @@
 <section class="criarProdutos" id="idCriarProdutos">
     <form>
         <div class="form-group">
-            <label for="imagem">Imagens:</label>
-            <div class="imagem-box">
-                <div class="imagem-item" style="background-image: url('../resources/images/papagaio.png');"></div>
-                <div class="imagem-item" style="background-image: url('../resources/images/papagaio.png');"></div>
-                <div class="imagem-item" style="background-image: url('../resources/images/papagaio.png');"></div>
+            <label for="imagem">Imagens*:</label>
+            
+            <div class="imagem-slide">
+              <div class="imagem-box">
+              </div>
+        
             </div>
-            <input type="file" id="imagem" name="imagem" onchange="adicionarImagem(this)">
-        </div>
+            
+            <input type="file" id="imagem" name="imagem" onchange="adicionarImagem()">
+          </div>
       <div class="form-group">
         <label for="nome">Nome *:</label>
         <input type="text" id="nome" name="nome">
@@ -154,29 +162,29 @@
             @endforeach
         </select>
     </div>
-      <button type="submit">Criar produto</button>
+    <div class="popup" id="confirm-popup">
+        <div class="popup-content">
+          <h2>Confirma password para por o seu produto à venda</h2>
+          <br>
+
+          <label for="passwordEditar"><h2>Password:</h2></label>
+            <input type="password" id="passwordEditar" name="password" required>
+            <div class="buttons">
+              <button type="submit" class="confirm-btn">Confirmar</button>
+              <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+            </div>
+          
+        </div>
+    </div>
+
+    <div class="Editar">
+        <button type="button" class="edit-btn" onclick="openPopup()">Confirmar Produto</button>
+    </div>
     </form>
   </section>
 
 
-     {{-- <div class="popup" id="confirm-popup">
-            <div class="popup-content">
-              <h2>Confirmar password para editar a conta</h2>
-              <br>
-
-              <label for="passwordEditar"><h2>Password:</h2></label>
-                <input type="password" id="passwordEditar" name="password" required>
-                <div class="buttons">
-                  <button type="submit" class="confirm-btn">Confirmar</button>
-                  <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
-                </div>
-              
-            </div>
-        </div>
-
-        <div class="Editar">
-            <button type="button" class="edit-btn" onclick="openPopup()">Editar Conta</button>
-        </div> --}}
+    
 
 
 <!-- features section ends -->

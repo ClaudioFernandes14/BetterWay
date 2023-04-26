@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('avatar')-> default('guest-image.jpg');
             $table->unsignedBigInteger('idCargo')->default(2);
             $table->foreign('idCargo')->references('id')->on('cargo');
+            $table->date('data_nascimento');
             $table->rememberToken();
             $table->timestamps();
         });

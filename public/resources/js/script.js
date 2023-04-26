@@ -11,11 +11,7 @@ document.querySelector('#search-btn').onclick = () =>{
 let shoppingCart = document.querySelector('.shopipng-cart');
 
 document.querySelector('#cart-btn').onclick = () =>{
-    shoppingCart.classList.toggle('active');
-    searchForm.classList.remove('active');
-    loginForm.classList.remove('active');
-    navbar.classList.remove('active');
-    
+  window.location.href = '/produtos/criar';
 }
 
 let loginForm = document.querySelector('.login-form');

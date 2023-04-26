@@ -186,8 +186,14 @@
                     <td class="td1">
                         <div class="card-body">
                             <h1 class="card-title">Telemovel *</h5> 
-                    
-                            <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}">
+                            @if ($user->telemovel == 1)
+                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="Sem telemovel definido">
+                            
+                            @else
+                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}">
+                            
+                            @endif
+                            
                     
                         </div>
                     </td>
@@ -214,9 +220,11 @@
                     <td class="td1">
                         <div class="card-body">
                             <h1 class="card-title">Nif *</h5> 
-                      
-                            <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}">
-                      
+                            @if($user->nif == 1)
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="Sem nif definido">
+                            @else
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}">
+                            @endif
                         </div>
                     </td>
 
