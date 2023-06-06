@@ -69,6 +69,8 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']) ->name('perfil');
     Route::put('/perfil/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth')->name('perfil.update');
+    Route::post('/produtos', [App\Http\Controllers\CriarProdutosController::class, 'criarProduto'])->name('produtos.mostrar');
+    Route::post('/criar-produto', 'CriarProdutoController@criarProduto');
 // </Publica as rotas>
 
 
@@ -76,29 +78,5 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::delete('/user/{id}', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->middleware('auth')->name('users.delete');
     // Route::delete('/perfil/{user}/delete-account', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->name('delete-account');
 // </Elimina dados>
-
-// Route::middleware(['web'])
-//     ->prefix('login')
-//     ->group(function () {
-//         Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-//         Route::post('/login', [LoginController::class, 'login']);
-//     });
-
-// Route::middleware(['web'])
-//     ->prefix('register')
-//     ->group(function () {
-//         Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-//         Route::post('/register', [RegisterController::class, 'register']);
-//     });
-
-
-// Route::middleware(['web'])
-//     ->prefix('password/reset')
-//     ->group(function () {
-//         Route::get('/', [ResetPasswordController::class, 'showResetForm'])->name('password.request');
-//         Route::post('/', [ResetPasswordController::class, 'reset']);
-//     });
-
-
 
 

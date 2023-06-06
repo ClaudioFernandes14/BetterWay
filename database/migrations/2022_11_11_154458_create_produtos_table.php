@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('idUser')->nullable();
+            $table->foreign('idUser')->references('id')->on('users');
             $table->string('nome');
             $table->unsignedBigInteger('id_categoria')->default(1);
             $table->integer('preco');
@@ -25,9 +27,9 @@ return new class extends Migration
 
 
 
-        DB::table('produtos')->insert([
-            ['nome' => 'vazio', 'preco' =>1 , 'morada' => 'vazio', 'descricao' => 'vazio'],
-        ]);
+        // DB::table('produtos')->insert([
+        //     ['nome' => 'vazio', 'preco' =>1 , 'morada' => 'vazio', 'descricao' => 'vazio'],
+        // ]);
     }
 
     /**

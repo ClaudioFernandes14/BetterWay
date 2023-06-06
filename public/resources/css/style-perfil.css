@@ -1025,7 +1025,7 @@ form .btn{
   }
   
   .popup-content .confirm-btn {
-    background-color: red;
+    background-color: var(--blue);
     color: #fff;
     border: none;
     border-radius: 5px;

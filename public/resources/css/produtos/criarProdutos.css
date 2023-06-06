@@ -430,7 +430,7 @@ section{
 
 
 .criarProdutos {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     margin-top:3%;
     padding: 20px;
@@ -494,16 +494,56 @@ section{
   }
   
   .imagem-box {
-    display: flex;
-  }
-  
-  .imagem-item {
-    width: 200px;
-    height: 200px;
+    width: 170px;
+    height: 170px;
+    background-color: #ccc;
+    display: inline-block;
+    margin-right: 10px;
     background-size: cover;
     background-position: center;
-    margin-right: 10px;
+    position: relative;
   }
+
+  .adicionar-imagem {
+    display: block;
+  }
+  
+  .adicionar-imagem p,
+  .adicionar-imagem button {
+    display: block;
+  }
+  
+  .adicionar-imagem:not(.com-imagem) {
+    display: none;
+  }
+
+  .imagem-box .botao-editar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
+  }
+  
+  .imagem-box::before {
+    content: "+";
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+
+  
+  #imagem {
+    display: none;
+  }
+  
+ 
 
 
   .popup {
@@ -579,7 +619,7 @@ section{
     position: fixed;
     height: 4rem;
     width: 15rem;   
-    border-radius: 16px;
+    border-radius: 11px;
     position: relative;
     overflow: hidden;
     background: blue;
@@ -588,8 +628,6 @@ section{
     margin-right: 18px;
 }
   
-  
-
 
   .categorias-select {
     font-size: 1.5rem;

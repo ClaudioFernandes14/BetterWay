@@ -26,11 +26,14 @@ return new class extends Migration
             $table->string('avatar')-> default('guest-image.jpg');
             $table->unsignedBigInteger('idCargo')->default(2);
             $table->foreign('idCargo')->references('id')->on('cargo');
-            $table->date('data_nascimento');
+            $table->date('date_of_birth')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
 
+        // DB::table('users')->insert([
+        //     ['nome' => 'vazio', 'preco' =>1 , 'morada' => 'vazio', 'descricao' => 'vazio'],
+        // ]);
 
     }
 

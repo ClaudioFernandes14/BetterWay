@@ -59,7 +59,7 @@ class HomeController extends Controller
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save(public_path('resources/images/user-img/' . $filename));
+            Image::make($avatar)->resize(500, 500)->save(public_path('resources/images/user-img/' . $filename));
 
             $user = auth()->user();
             $user->avatar = $filename;
@@ -129,6 +129,7 @@ class HomeController extends Controller
         if (Hash::check($request->password, $user->password)) {
             \App\Models\UserTypeModel::where('user_id', $id)->delete();
             $user->delete();
+            
             // Enviar e-mail de agradecimento
             Mail::to(Auth::user()->email)->send(new AccountDeleted());
             return redirect()->route('login')->with('success', 'Conta eliminada com sucesso');

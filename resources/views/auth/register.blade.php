@@ -52,6 +52,24 @@
             </div>
 
             <div class="row mb-3">
+              <div class="field">
+                  <h5>Data de Nascimento *</h5>
+                  <input id="date_of_birth" type="date" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
+          
+             
+                  @if ($errors->has('date_of_birth') && $errors->first('date_of_birth'))
+                    
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('date_of_birth') }}</strong>
+                      </span>
+                      
+                  @endif
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row mb-3">
                 <div class="field">
                     <input id="password" type="password" placeholder="Password * " class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -103,16 +121,12 @@
                 <input type="submit" value="Registar" >
             </div>
 
-            <div class="termos-link">Ao se registar vai aceitar os nossos termos e condicoes <a href="">Termos e Condições</a></div>
+            <div class="termos-link">Ao se registar vai aceitar os nossos <a href="">Termos e Condições!</a></div>
         </form>
         
       </div>
     </div>
-    
-
   </div>
-  
-  
 </body>
 
 <script src="../resources/js/registar.js"></script>

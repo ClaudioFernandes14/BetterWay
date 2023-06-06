@@ -140,6 +140,7 @@ return [
     'uploaded' => 'Falha ao enviar :attribute.',
     'url' => ':attribute deve ser uma URL válida.',
     'uuid' => ':attribute deve ser um UUID válido.',
+    'adult' => 'O utilizador deve ser maior de 18 anos.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

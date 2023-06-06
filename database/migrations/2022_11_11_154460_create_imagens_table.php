@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('imagens', function (Blueprint $table) {
             $table->id();
             $table->string('url')->default('Sem imagens Inseridas');
-            $table->unsignedBigInteger('id_produto')->default(1);
+            $table->unsignedBigInteger('id_produto')->nullable();
             $table->foreign('id_produto')->references('id')->on('produtos');
             $table->timestamps();
         });

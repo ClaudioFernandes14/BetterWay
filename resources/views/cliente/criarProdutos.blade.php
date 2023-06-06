@@ -29,6 +29,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
 
 </head>
 <body>
@@ -126,60 +128,65 @@
 <!-- features section starts  -->
 <h1 class="heading"><span>Adicionar Produtos</span></h1>
 <section class="criarProdutos" id="idCriarProdutos">
-    <form>
+    <form method="POST" autocomplete="off"  action="{{ route('produtos.mostrar') }}" enctype="multipart/form-data">
+        @csrf
         <div class="form-group">
-            <label for="imagem">Imagens*:</label>
-            
-            <div class="imagem-slide">
-              <div class="imagem-box">
-              </div>
-        
-            </div>
-            
-            <input type="file" id="imagem" name="imagem" onchange="adicionarImagem()">
+          <label for="imagem">Imagens *:   Min(3)</label>
+          <div class="imagem-slide">
+            <div class="imagem-box" id="img1"></div>
+            <div class="imagem-box" id="img2"></div>
+            <div class="imagem-box" id="img3"></div>
+            <div class="imagem-box" id="img4"></div>
+            <div class="imagem-box" id="img5"></div>
           </div>
-      <div class="form-group">
-        <label for="nome">Nome *:</label>
-        <input type="text" id="nome" name="nome">
-      </div>
-      <div class="form-group">
-        <label for="descricao">Descrição *:</label>
-        <textarea id="descricao" name="descricao"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="preco">Preço *:</label>
-        <input type="number" id="preco" name="preco" step="0.01" min="0">
-      </div>
-      <div class="form-group">
-        <label for="morada">Morada *:</label>
-        <input type="text" id="morada" name="morada">
-      </div>
-      <div class="form-group">
-        <label for="categorias">Categorias *:</label>
-        <select id="categorias" name="categorias" class="categorias-select">
-            @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}" class="categorias-option">{{ $categoria->categoria }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="popup" id="confirm-popup">
-        <div class="popup-content">
-          <h2>Confirma password para por o seu produto à venda</h2>
-          <br>
 
-          <label for="passwordEditar"><h2>Password:</h2></label>
-            <input type="password" id="passwordEditar" name="password" required>
-            <div class="buttons">
-              <button type="submit" class="confirm-btn">Confirmar</button>
-              <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
-            </div>
+          <input type="file" id="imagem" name="url[]" onchange="adicionarImagem()" multiple> 
+        
           
+          <div class="imagem-preview"></div> <!-- Adiciona a div de preview de imagem -->
         </div>
-    </div>
+        <div class="form-group">
+            <label for="nome">Nome *:</label>
+            <input type="text" id="nome" name="nome">
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição *:</label>
+            <textarea id="descricao" name="descricao" ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="preco">Preço *:</label>
+            <input type="number" id="preco" name="preco" step="0.01" min="0">
+        </div>
+        <div class="form-group">
+            <label for="morada">Morada *:</label>
+            <input type="text" id="morada" name="morada">
+        </div>
+        <div class="form-group">
+            <label for="categorias">Categorias *:</label>
+            <select id="categorias" name="categorias" class="categorias-select">
+                @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" class="categorias-option">{{ $categoria->categoria }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="popup" id="confirm-popup">
+            <div class="popup-content">
+            <h2>Confirma password para por o seu produto à venda</h2>
+            <br>
 
-    <div class="Editar">
-        <button type="button" class="edit-btn" onclick="openPopup()">Confirmar Produto</button>
-    </div>
+            <label for="passwordEditar"><h2>Password:</h2></label>
+                <input type="password" id="passwordEditar" name="password" required>
+                <div class="buttons">
+                <button type="submit" class="confirm-btn">Confirmar</button>
+                <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="Editar">
+            <button type="button" class="edit-btn" onclick="openPopup()">Confirmar Produto</button>
+        </div>
     </form>
   </section>
 

@@ -77,7 +77,7 @@
         
         @else
         
-        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/{{Auth::user()->avatar}}"></a></div>
+        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
        
        
         <li class="nav-link dropdown">

@@ -118,7 +118,7 @@
 
 <section class="home" id="home">
     <div class="content">
-        <img src="../resources/images/user-img/{{$user->avatar}}" style="height:150px; width:150px; float:left; border-radius:50%; margin-right:25px">
+        <img src="../resources/images/user-img/{{$user->avatar}}" style="height:170px; width:170px; float:left; border-radius:50%; margin-right:25px">
         <h3>Bem vindo ao seu perfil <span>{{$user->name}} </span></h3>
         <p>Aqui podera mudar as suas<span class="spans"> Informações Pessoaís</span></p>
     </div>
@@ -219,9 +219,9 @@
                     
                     <td class="td1">
                         <div class="card-body">
-                            <h1 class="card-title">Nif *</h5> 
+                            <h1 class="card-title">NIF *</h5> 
                             @if($user->nif == 1)
-                                <input class="card-text" type="text" name="nif" size="20" placeholder="Sem nif definido">
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="Sem NIF definido">
                             @else
                                 <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}">
                             @endif
@@ -233,7 +233,7 @@
                         <div class="card-body">
                             <h1 class="card-title">Idade *</h5> 
                     
-                            <input class="card-text" type="date" name="idade" size="20">
+                            <input class="card-text" name="idade" size="20" placeholder="{{$user->date_of_birth}}">
                     
                         </div>
                     </td>

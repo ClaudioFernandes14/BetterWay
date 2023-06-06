@@ -15,13 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
     // use \Illuminate\Auth\Authenticatable; // trait para autenticação
 
-    // // implementação dos métodos obrigatórios da interface Authenticatable
-    // public function getAuthIdentifierName(){}
-    // public function getAuthIdentifier(){}
-    // public function getAuthPassword(){}
-    // public function getRememberToken(){}
-    // public function setRememberToken($value){}
-    // public function getRememberTokenName(){}
+   
     /**
     * Faz Ligacao com a tabela UserType
     */
@@ -57,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'cod_postal',
         'telemovel',
         'nif',
+        'date_of_birth'
     ];
 
     /**
