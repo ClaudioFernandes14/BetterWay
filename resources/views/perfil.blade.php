@@ -148,6 +148,7 @@
 
 <!-- features section starts  -->
 
+
     <form action="{{ route('perfil.update') }}" method="POST">
         @method('PUT')
         @csrf
@@ -260,7 +261,7 @@
         </table> --}}
 
 
-        <div class="popup" id="confirm-popup">
+        <div class="popup" id="confirm-popup1">
             <div class="popup-content">
               <h2>Confirmar password para editar a conta</h2>
               <br>
@@ -269,41 +270,49 @@
                 <input type="password" id="passwordEditar" name="password" required>
                 <div class="buttons">
                   <button type="submit" class="confirm-btn">Confirmar</button>
-                  <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+                  <button type="button" class="cancel-btn" onclick="closePopupEdit()">Cancelar</button>
                 </div>
-              
+
             </div>
         </div>
 
         <div class="Editar">
-            <button type="button" class="edit-btn" onclick="openPopup()">Editar Conta</button>
+            <button type="button" class="edit-btn" onclick="openPopupEdit()">Editar Conta</button>
         </div>
-    
     </form>
 
 
-    <div class="popup" id="confirm-popup">
-        <div class="popup-content">
-          <h2>Confirmar password para excluir a conta</h2>
-          <br>
-          <p style="color: red">ATENÇÃO ao clicar em confirmar a sua conta será Eliminada</p>
-          <br>
-          <form action="{{ route('users.delete', Auth::user()->id) }}" method="POST" id="delete-form">
-            @method('DELETE')
-            @csrf
-            <label for="password"><h2>Password:</h2></label>
-            <input type="password" id="password" name="password" required>
-            <div class="buttons">
-              <button type="submit" class="confirm-btn">Confirmar</button>
-              <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
-            </div>
-          </form>
+    <form action="{{ route('users.delete', ['id' => $user->id]) }}" method="POST" id="delete-form">
+        @method('DELETE')
+        @csrf
+        <div class="popup" id="confirm-popup">
+            <div class="popup-content">
+              <h2>Confirmar password para excluir a conta</h2>
+              <br>
+              <p style="color: red">ATENÇÃO ao clicar em confirmar a sua conta será Eliminada</p>
+              <br>
+              <label for="password"><h2>Password:</h2></label>
+                <input type="password" id="password" name="password" required>
+                <div class="buttons">
+                <button type="submit" class="confirm-btn">Confirmar</button>
+                <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+                </div>
+                </div>
         </div>
-    </div>
-      
+        
+      </form>
+
+
+
+    
+
     <div class="Eliminar">
-        <button type="button" class="delete-btn" onclick="openPopup()">Eliminar Conta</button>
-    </div>    
+    <button type="button" class="delete-btn" onclick="openPopup()">Eliminar Conta</button>
+    </div>
+   
+    
+
+  
 
 <!-- features section ends -->
 

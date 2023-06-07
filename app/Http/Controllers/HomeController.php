@@ -123,21 +123,23 @@ class HomeController extends Controller
 
     // Vai eliminar a conta do utilizador
     public function deleteProfile(Request $request, $id){
-
         $user = User::find($id);
-
+    
         if (Hash::check($request->password, $user->password)) {
+    
+            // Exclui o registro da tabela 'user_type' relacionado ao usuário
             \App\Models\UserTypeModel::where('user_id', $id)->delete();
+    
+            // Exclui o registro da tabela 'users'
             $user->delete();
-            
-            // Enviar e-mail de agradecimento
-            Mail::to(Auth::user()->email)->send(new AccountDeleted());
+    
+            // // Enviar e-mail de agradecimento
+            // Mail::to(Auth::user()->email)->send(new AccountDeleted());
             return redirect()->route('login')->with('success', 'Conta eliminada com sucesso');
+        } else {
+            return back()->withErrors(['password' => 'Senha incorreta']);
         }
-
-        return back()->withErrors(['password' => 'Senha incorreta']);
     }
-
     // /**
     //  * Valida se o email do utilizador ja foi verificado
     //  * Reenvia a notificacao do email

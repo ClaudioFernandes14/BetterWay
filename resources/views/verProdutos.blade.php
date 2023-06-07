@@ -161,9 +161,9 @@
         <div class="form-group">
             <label for="categorias">Categorias *:</label>
             <select id="categorias" name="categorias" class="categorias-select">
-                @foreach ($categorias as $categoria)
-                    <option value="{{ $categoria->id }}" class="categorias-option">{{ $categoria->categoria }}</option>
-                @endforeach
+                {{-- @foreach ($categorias as $categoria)
+                    
+                @endforeach --}}
             </select>
         </div>
         <div class="popup" id="confirm-popup">

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProdutosController;
 use Laravel\Fortify\Http\Providers\FortifyServiceProvider;
 use Laravel\Fortify\Http\Controllers\LoginController;
 use Laravel\Fortify\Http\Controllers\RegisterController;
@@ -61,6 +62,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
     Route::match(['get', 'put' ,'delete'], '/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/produtos/criar', [App\Http\Controllers\CriarProdutosController::class, 'mostraCriarProdutos'])->middleware('verified');
+    Route::get('/produtos/ver', [App\Http\Controllers\ProdutosController::class, 'mostraProdutos']);
 // </Forma as rotas>
 
 
@@ -70,7 +72,6 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']) ->name('perfil');
     Route::put('/perfil/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth')->name('perfil.update');
     Route::post('/produtos', [App\Http\Controllers\CriarProdutosController::class, 'criarProduto'])->name('produtos.mostrar');
-    Route::post('/criar-produto', 'CriarProdutoController@criarProduto');
 // </Publica as rotas>
 
 
