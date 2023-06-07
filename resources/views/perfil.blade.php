@@ -247,20 +247,6 @@
         <br>
         <br>
 
-    
-        {{-- Botoes que vão editar e eliminar a conta --}}
-        {{-- <table class="EliminarEditarBotoes">
-            <tr class="Buttons">
-                <td>
-                    <div class="field btn-Inf">
-                        <div class="btn-layer-Inf"></div>
-                        <input type="submit" value="Atualizar">
-                    </div>
-                </td>
-            </tr>
-        </table> --}}
-
-
         <div class="popup" id="confirm-popup1">
             <div class="popup-content">
               <h2>Confirmar password para editar a conta</h2>
@@ -301,11 +287,7 @@
         </div>
         
       </form>
-
-
-
-    
-
+      
     <div class="Eliminar">
     <button type="button" class="delete-btn" onclick="openPopup()">Eliminar Conta</button>
     </div>

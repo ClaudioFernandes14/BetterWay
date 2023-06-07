@@ -84,40 +84,48 @@ class HomeController extends Controller
      */
     public function updateProfile(UpdateProfileRequest $request){
         $user = auth()->user();
+        // dd($request->all());
         // $passwordHash = Hash::make($request->password);
 
-        // verifica se uma nova senha foi fornecida
-        if (!empty($request->password)) {
-            // se sim, criptografa a nova senha como hash
-            $passwordHash = Hash::make($request->password);
-        } else {
-            // caso contrário, mantém a senha atual
-            $passwordHash = $user->password;
+
+        if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
+            return redirect('/perfil')->with('error', 'Senha incorreta.');
+        }else {
+            // verifica se uma nova senha foi fornecida
+            if (!empty($request->password)) {
+                // se sim, criptografa a nova senha como hash
+                $passwordHash = Hash::make($request->password);
+            } else {
+                // caso contrário, mantém a senha atual
+                $passwordHash = $user->password;
+            }
+
+            try {
+
+                // Atualiza os dados do utilizador
+                $user->update([
+                    'name' => $request->name ?: $user->name,
+                    'email' => $request->email ?: $user->email,
+                    'password' => $passwordHash ?: $user->password,
+                    'morada' => $request->morada ?: $user->morada,
+                    'cod_postal' => $request->cod_postal ?: $user->cod_postal,
+                    'telemovel' => $request->telemovel ?: $user->telemovel,
+                    'nif' => $request->nif ?: $user->nif,
+                ]);
+
+
+                // Salva as alteracões feitas do utilizador
+                $user->save();
+                
+
+                return redirect('/perfil');
+        
+            } catch (Exception $e) {
+                dd($e->getMessage());
+            }
         }
 
-        try {
-
-            // Atualiza os dados do utilizador
-            $user->update([
-                'name' => $request->name ?: $user->name,
-                'email' => $request->email ?: $user->email,
-                'password' => $passwordHash ?: $user->password,
-                'morada' => $request->morada ?: $user->morada,
-                'cod_postal' => $request->cod_postal ?: $user->cod_postal,
-                'telemovel' => $request->telemovel ?: $user->telemovel,
-                'nif' => $request->nif ?: $user->nif,
-            ]);
-
-
-            // Salva as alteracões feitas do utilizador
-            $user->save();
-            
-
-            return redirect('/perfil');
-       
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
+        
     }
 
 
@@ -125,8 +133,9 @@ class HomeController extends Controller
     public function deleteProfile(Request $request, $id){
         $user = User::find($id);
     
+        // Verifica se a senha inserida pelo usuário é a mesma que a senha armazenada no banco de dados
         if (Hash::check($request->password, $user->password)) {
-    
+            
             // Exclui o registro da tabela 'user_type' relacionado ao usuário
             \App\Models\UserTypeModel::where('user_id', $id)->delete();
     

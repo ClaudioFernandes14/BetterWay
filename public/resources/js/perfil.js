@@ -1,5 +1,4 @@
 
-
 function openPopup() {
   document.getElementById('confirm-popup').style.display = 'block';
 }
@@ -32,14 +31,13 @@ document.getElementById('delete-form').addEventListener('submit', function(e) {
 });
 
 
-document.getElementById('edit-form').addEventListener('submit', function(e) {
+document.querySelector('#edit-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  var password = document.getElementById('password').value;
+  var password = document.querySelector('#password').value;
   if (password === '') {
       h3('Por favor, insira a sua senha para editar a sua conta.');
   } else {
-      document.getElementById('edit-form').submit();
+      e.target.submit();
   }
 });
-
 
