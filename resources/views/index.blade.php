@@ -25,6 +25,7 @@
 </head>
 <body>
     
+    
 <!-- header section starts  -->
 
 <header class="header">
@@ -45,14 +46,13 @@
               </svg> 
               ‎ Favoritos
         </a>
-        <a href="#categories">categories</a>
-        <a href="#review">review</a>
+        <a href="#categories">Categorias</a>
+        <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
     <div class="icons">
         <div class="fas fa-bars" id="menu-btn" ></div>
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
     </div>
 
     <div class="dropdown">
@@ -141,17 +141,6 @@
         <div class="total"> total : $19.69/- </div>
         <a href="#" class="btn">checkout</a>
     </div>
-
-    {{-- <form method="POST" action="{{ route('login') }}" class="login-form">
-       
-        <h3>login now</h3>
-        <input type="email" placeholder="your email" class="box">
-        <input type="password" placeholder="your password" class="box">
-        <p>forget your password <a href="#">click here</a></p>
-        <p>don't have an account <a href="#">create now</a></p>
-        <input type="submit" value="login now" class="btn">
-    </form> --}}
-
 </header>
 
 <!-- header section ends -->
@@ -160,8 +149,8 @@
 
 <section class="home" id="home">
     <div class="content">
-        <h3>Produtos <span>utilizados </span> ou novos, mais faceis de encontrar</h3>
-        <p>Encontre tudo o que precisa da sua forma.</p>
+        <h3><span>Venda </span> os seus produtos novos ou antigos.</h3>
+        <p>Aqui tem a possibilidade de falar diretamente com o <span>vendedor</span></p>
         <p>Lembre se de ser amigavel com os outros utilizadores</p>
     </div>
 </section>
@@ -386,128 +375,6 @@
 
 <!-- categories section ends -->
 
-<!-- review section starts  -->
-
-<section class="review" id="review">
-
-    <h1 class="heading"> customer's <span>review</span> </h1>
-
-    <div class="swiper review-slider">
-
-        <div class="swiper-wrapper">
-
-            <div class="swiper-slide box">
-                <img src="image/pic-1.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-2.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-3.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="swiper-slide box">
-                <img src="image/pic-4.png" alt="">
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est maxime ad tempore quasi tenetur.</p>
-                <h3>john deo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- review section ends -->
-
-<!-- blogs section starts  -->
-
-{{-- <section class="blogs" id="blogs">
-
-    <h1 class="heading"> our <span>blogs</span> </h1>
-
-    <div class="box-container">
-
-        <div class="box">
-            <img src="image/blog-1.jpg" alt="">
-            <div class="content">
-                <div class="icons">
-                    <a href="#"> <i class="fas fa-user"></i> by user auth </a>
-                    <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2021 </a>
-                </div>
-                <h3>fresh and organic vegitables and fruits</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-        </div>
-
-        <div class="box">
-            <img src="image/blog-2.jpg" alt="">
-            <div class="content">
-                <div class="icons">
-                    <a href="#"> <i class="fas fa-user"></i> by user </a>
-                    <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2021 </a>
-                </div>
-                <h3>fresh and organic vegitables and fruits</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-        </div>
-
-        <div class="box">
-            <img src="image/blog-3.jpg" alt="">
-            <div class="content">
-                <div class="icons">
-                    <a href="#"> <i class="fas fa-user"></i> by user </a>
-                    <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2021 </a>
-                </div>
-                <h3>fresh and organic vegitables and fruits</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                <a href="#" class="btn">read more</a>
-            </div>
-        </div>
-
-    </div>
-
-</section> --}}
-
-<!-- blogs section ends -->
 
 <!-- footer section starts  -->
 
@@ -534,13 +401,15 @@
             <a href="/mensagens" class="links"> <i class="fas fa-arrow-right"></i> Mensagens </a>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
         </div>
 
     </div>
+    
 
 </section>
+
 
 <!-- footer section ends -->
 

@@ -56,13 +56,12 @@
               ‎ Favoritos
         </a>
         <a href="#categories">Categorias</a>
-        <a href="#review">Reviews</a>
+        <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
     <div class="icons">
         <div class="fas fa-bars" id="menu-btn" ></div>
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"><a href="produtos/criar"></a></div>
     </div>
 
     <div class="dropdown">
@@ -131,7 +130,7 @@
             <div class="{{ session('class') }}">{{ session('error') }}</div>
         @endif
         <div class="form-group">
-          <label for="imagem">Imagens *:   Min(3)</label>
+          <label for="imagem">Imagens *:   </label>
           <div class="imagem-slide">
             <div class="imagem-box" id="img1"></div>
             <div class="imagem-box" id="img2"></div>
@@ -222,8 +221,8 @@
             <a href="/mensagens" class="links"> <i class="fas fa-arrow-right"></i> Mensagens </a>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
         </div>
 
     </div>

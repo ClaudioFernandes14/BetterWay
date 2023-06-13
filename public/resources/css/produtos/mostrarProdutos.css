@@ -522,12 +522,16 @@ section{
     padding: 10px;
     margin-bottom: 20px;
     width: 20rem;
-    background-color: #fff;
+    background-color: #f9f9f9;
     
   }
 
   .detalhes-produto h2{
     font-size: 3rem;
+  }
+
+  .detalhes-produto h3{
+    font-size: 2rem;
   }
   
   input[type="text"],

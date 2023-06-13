@@ -217,6 +217,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Response' => Illuminate\Support\Facades\Response::class,
     ])->toArray(),
 
 ];

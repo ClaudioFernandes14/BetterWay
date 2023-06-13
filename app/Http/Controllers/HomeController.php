@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\UserTypeModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountDeleted;
+use Illuminate\Support\Str;
 
 
 
@@ -37,7 +38,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!request()->hasCookie('cookie_consent')) {
+            return response(view('index'))->withCookie(cookie('cookie_consent', Str::uuid(), 365));
+        }
         return view('index');
+    }
+
+    public function getCookie() {
+       return request()->cookie('cookie_consent');
+    }
+
+    public function deleteCookie(){
+        
+        return response('deleted')->withCookie(cookie('cookie_consent', null, -1));
     }
 
     /**

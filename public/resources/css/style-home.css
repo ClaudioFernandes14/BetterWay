@@ -333,6 +333,60 @@ section{
     font-size: 1.6rem;
 }
 
+/* #cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    height: 14rem;
+    background-color: #ccc;
+    color: #000;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+#cookie-consent p{
+    font-size: 1.3rem;
+}
+
+#cookie-consent.hide {
+    opacity: 0;
+}
+
+#accept-cookies-btn {
+    background-color: #fff;
+    color: #333;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+} */
+
+
+.lgpd{
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    padding: 20px;
+    background-color: #ccc;
+    color: black;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lgpd button{
+    background-color: var(--blue);
+    cursor: pointer;
+    border: 0;
+    color: white;
+    padding: 10px 30px;
+}
+
+
 .header .shopping-cart .box .content .quantity{
     padding-left: 1rem;
 }

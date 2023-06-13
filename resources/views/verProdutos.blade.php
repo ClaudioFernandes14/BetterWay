@@ -56,13 +56,13 @@
               ‎ Favoritos
         </a>
         <a href="#categories">Categorias</a>
-        <a href="#review">Reviews</a>
+        <a href="/produtos/criar">Adicionar Produto</a>
     </nav>
 
     <div class="icons">
-        <div class="fas fa-bars" id="menu-btn" ></div>
+        {{-- <div class="fas fa-bars" id="menu-btn" ></div> --}}
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"><a href="produtos/criar"></a></div>
+        {{-- <div class="fas fa-shopping-cart" id="cart-btn"><a href="produtos/criar"></a></div> --}}
     </div>
 
     <div class="dropdown">
@@ -123,7 +123,7 @@
 <!-- header section ends -->
 
 <!-- features section starts  -->
-<h1 class="heading"><span>Comprar Produtos</span></h1>
+<h1 class="heading"><span><h3>{{ $produto->nome }}</h3></span></h1>
 <section id="mostrarProdutos" class="criarProdutos">
     <form action="verProdutos">
         <div class="form-group">
@@ -163,33 +163,25 @@
             <br>
             <div class="detalhes-produto">
                 <h1>Nome</h1>
-                <h2>{{ $produto->nome }}</h2>
-
+                <h3>{{ $produto->nome }}</h3>
+                <h2>{{ $produto->preco }} €</h2>
                 
             </div>
 
-            <div class="detalhes-produto">
-                <h2>{{ $produto->preco }} €</h2>
-            </div>
-
-
+            
             <div class="detalhes-produto">
                 <h1>Categoria</h1>
-                <h2>{{ $categoria->categoria }}</h2>
+                <h3>{{ $categoria->categoria }}</h3>
             </div>
 
             <div class="detalhes-produto">
                 <h1>Descricao</h1>
-                <h2>{{ $produto->descricao }}</h2>
+                <h3>{{ $produto->descricao }}</h3>
             </div>
-
-           
-
-           
 
             <div class="detalhes-produto">
                 <h1>Morada</h1>
-                <h2>{{ $produto->morada }}</h2>
+                <h3>{{ $produto->morada }}</h3>
             </div>
             
         </div>
