@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
     <!-- Icons Css -->
-    <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/resources/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../resources/css/produtos/criarProdutos.css">
+    <link rel="stylesheet" href="/resources/css/produtos/mostrarProdutos.css">
    
 
-    <link rel="icon" type="image/png" sizes="100x100" href="../resources/images/icon_logo-removebg-preview.png">
+    <link rel="icon" type="image/png" sizes="100x100" href="/resources/images/icon_logo-removebg-preview.png">
 
 
 
@@ -39,7 +39,7 @@
 
 <header class="header">
 
-    <a href="/" class="logo"><img src="../resources/images/logo.png" height="90px"></a>
+    <a href="/" class="logo"><img src="/resources/images/logo.png" height="90px"></a>
 
     <nav class="navbar">
         <a href="#features">
@@ -86,7 +86,7 @@
         </div>
         
         @else
-        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
+        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="/resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
         <li class="nav-link dropdown">
 
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -123,69 +123,80 @@
 <!-- header section ends -->
 
 <!-- features section starts  -->
-<h1 class="heading"><span>Adicionar Produtos</span></h1>
-<section class="criarProdutos" id="idCriarProdutos">
-    <form method="POST" autocomplete="off"  action="{{ route('produtos.mostrar') }}" enctype="multipart/form-data">
-        @csrf
+<h1 class="heading"><span>Comprar Produtos</span></h1>
+<section id="mostrarProdutos" class="criarProdutos">
+    <form action="verProdutos">
         <div class="form-group">
-          <label for="imagem">Imagens *:   Min(3)</label>
-          <div class="imagem-slide">
-            <div class="imagem-box" id="img1"></div>
-            <div class="imagem-box" id="img2"></div>
-            <div class="imagem-box" id="img3"></div>
-            <div class="imagem-box" id="img4"></div>
-            <div class="imagem-box" id="img5"></div>
-          </div>
-
-          <input type="file" id="imagem" name="url[]" onchange="adicionarImagem()" multiple> 
+            <div class="slider">
+                <input type="radio" name="radio-btn" id="radio1" data-slide="1">
+                <input type="radio" name="radio-btn" id="radio2" data-slide="2">
+                <input type="radio" name="radio-btn" id="radio3" data-slide="3">
+                <input type="radio" name="radio-btn" id="radio4" data-slide="4">
         
-          
-          <div class="imagem-preview"></div> <!-- Adiciona a div de preview de imagem -->
-        </div>
-        <div class="form-group">
-            <label for="nome">Nome *:</label>
-            <input type="text" id="nome" name="nome">
-        </div>
-        <div class="form-group">
-            <label for="descricao">Descrição *:</label>
-            <textarea id="descricao" name="descricao" ></textarea>
-        </div>
-        <div class="form-group">
-            <label for="preco">Preço *:</label>
-            <input type="number" id="preco" name="preco" step="0.01" min="0">
-        </div>
-        <div class="form-group">
-            <label for="morada">Morada *:</label>
-            <input type="text" id="morada" name="morada">
-        </div>
-        <div class="form-group">
-            <label for="categorias">Categorias *:</label>
-            <select id="categorias" name="categorias" class="categorias-select">
-                {{-- @foreach ($categorias as $categoria)
-                    
-                @endforeach --}}
-            </select>
-        </div>
-        <div class="popup" id="confirm-popup">
-            <div class="popup-content">
-            <h2>Confirma password para por o seu produto à venda</h2>
-            <br>
-
-            <label for="passwordEditar"><h2>Password:</h2></label>
-                <input type="password" id="passwordEditar" name="password" required>
-                <div class="buttons">
-                <button type="submit" class="confirm-btn">Confirmar</button>
-                <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+                <div class="slider-wrapper">
+                    @foreach($imagens as $imagem)
+                        <div class="slide">
+                            <img src="/resources/images/produtos/{{ $imagem->url }}" alt="">
+                        </div>
+                     @endforeach
                 </div>
-            
+
+                <a class="prev" onclick="prevSlide()">&#10094;</a>
+                <a class="next" onclick="nextSlide()">&#10095;</a>
+                
             </div>
         </div>
 
-        <div class="Editar">
-            <button type="button" class="edit-btn" onclick="openPopup()">Confirmar Produto</button>
+
+        <div class="form-group">
+            
+            <div class="avatarVer" id="cart-btn">
+                <h1>Utilizador</h1> 
+                <img id="imagemUt" src="/resources/images/user-img/{{ $user->avatar }}">
+                <h1 class="nameVendor">{{ $user->name }} <i class="fa fa-envelope" aria-hidden="true" data-email="{{ $user->email }}" data-phone="{{ is_numeric($user->telemovel) ? $user->telemovel : 'Sem telemovel definido porfavor' }}"></i></h1>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="detalhes-produto">
+                <h1>Nome</h1>
+                <h2>{{ $produto->nome }}</h2>
+
+                
+            </div>
+
+            <div class="detalhes-produto">
+                <h2>{{ $produto->preco }} €</h2>
+            </div>
+
+
+            <div class="detalhes-produto">
+                <h1>Categoria</h1>
+                <h2>{{ $categoria->categoria }}</h2>
+            </div>
+
+            <div class="detalhes-produto">
+                <h1>Descricao</h1>
+                <h2>{{ $produto->descricao }}</h2>
+            </div>
+
+           
+
+           
+
+            <div class="detalhes-produto">
+                <h1>Morada</h1>
+                <h2>{{ $produto->morada }}</h2>
+            </div>
+            
         </div>
     </form>
-  </section>
+    
+    
+</section>
 
 
     
@@ -234,10 +245,13 @@
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="../resources/js/script.js"></script>
-<script src="../resources/js/perfil.js"></script>
-<script src="../resources/js/produtos/criarProdutos.js"></script>
+<script src="/resources/js/script.js"></script>
+<script src="/resources/js/perfil.js"></script>
+<script src="/resources/js/produtos/mostrarProdutos.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
 
 </body>
 </html>

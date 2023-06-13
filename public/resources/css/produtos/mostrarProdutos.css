@@ -26,11 +26,72 @@
     justify-content: space-between;
 }
 
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 9999;
+}
+  
+  .popup label {
+    font-weight: bold;
+  }
+  
+  .popup span {
+    margin-left: 5px;
+  }
+  
+  .popup button.closeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .popup button.closeButton:hover {
+    color: #333;
+  }
+
 .avatar{
     display: inline-block;
     align-content: space-between;
     margin-left: 12px;
     margin-top: 5ch;
+}
+
+
+.avatarVer{
+    display: inline-block;
+    align-content: space-between;
+    margin-left: 12px;
+    margin-top: 5ch;
+}
+
+.avatarVer #imagemUt{
+    height:70px;
+    width:70px;
+    border-radius:50%;
+    margin-bottom: -8ch;
+    margin-right: 6ch;
+    align-content: space-between;
+    display: grid;
+    bottom: 2rem;
+   
+}
+
+.avatarVer .nameVendor{
+    display: inline-block;
+    margin-left:10rem;
+    bottom: 54rem;
+    cursor: pointer;
 }
 
 .avatar #imagemUt{
@@ -448,6 +509,26 @@ section{
     font-weight: bold;
     margin-bottom: 5px;
   }
+
+  h1{
+    font-size: 2rem;
+    color: var(--blue);
+  }
+
+  
+
+
+  .detalhes-produto {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 20rem;
+    background-color: #fff;
+    
+  }
+
+  .detalhes-produto h2{
+    font-size: 3rem;
+  }
   
   input[type="text"],
   input[type="number"],
@@ -460,6 +541,145 @@ section{
     font-size: 16px;
     margin-bottom: 10px;
   }
+
+.slider {
+position: relative;
+height: 400px;
+width: 600px;
+margin: 0 auto;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    backface-visibility: hidden;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider input[type="radio"] {
+    display: none;
+}
+
+.slider {
+    position: relative;
+    height: 400px;
+    width: 600px;
+    margin: 0 auto;
+    backface-visibility: hidden;
+}
+
+.slider label {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    margin: 0 8px;
+    padding: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.slider label:hover {
+    background: #ccc;
+}
+
+.slider input[type="radio"]:checked + label {
+    background: #000;
+}
+
+.slider input[type="radio"]:checked ~ .slide {
+    display: none;
+}
+
+.slider input[type="radio"]:checked ~ .slide:nth-of-type(1) {
+    display: block;
+}
+
+.slider input[type="radio"]:checked ~ .slide:nth-of-type(2) {
+    display: block;
+}
+
+.slider input[type="radio"]:checked ~ .slide:nth-of-type(3) {
+    display: block;
+}
+
+.slider input[type="radio"]:checked ~ .slide:nth-of-type(4) {
+    display: block;
+}
+
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: block;
+    padding: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev.disabled, .next.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.prev.disabled:hover, .next.disabled:hover {
+    background-color: transparent;
+}
+.slider-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .slider-wrapper .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  
+  .slider-wrapper .slide img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .slider-wrapper .slide:first-of-type {
+    display: block;
+  }
+
+@media (max-width: 768px) {
+    .prev, .next {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
 
 
   label {
@@ -528,7 +748,6 @@ section{
   }
   
   .imagem-box::before {
-    content: "+";
     color: #fff;
     font-size: 30px;
     position: absolute;
@@ -536,118 +755,14 @@ section{
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
-
-  
-  #imagem {
-    display: none;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: large;
-    left: 12rem;
-  }
 
 
-  .popup {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow: auto;
-  }
-  
-  .popup-content {
+  .image-slider{
+    min-height: 30rem;
+    height: 100vh;
     position: relative;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 5px;
-    width: 400px;
-    background-color: #fff;
   }
   
-  .popup-content h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .popup-content label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .popup-content input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-  }
-  
-  .popup-content .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .popup-content .confirm-btn {
-    background-color: var(--blue);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .popup-content .cancel-btn {
-    background-color: #ccc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-
-  .popup-content .cancel-btn:hover {
-    background-color: red;
-   
-  }
-
-
-  .Editar .edit-btn{
-    bottom: -0.1rem;
-    position: fixed;
-    height: 4rem;
-    width: 15rem;   
-    border-radius: 11px;
-    position: relative;
-    overflow: hidden;
-    background: blue;
-    color: white;
-    cursor: pointer;
-    margin-right: 18px;
-}
-  
-
-  .categorias-select {
-    font-size: 1.5rem;
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-color: var(--blue);
-    padding: 5px;
-    border-radius: 5px;
-    width: 30%; 
-  }
-  
-  .categorias-option {
-    padding: 10px;
-  }
-
 
 
 .features .box-container{

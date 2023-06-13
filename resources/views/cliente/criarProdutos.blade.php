@@ -127,6 +127,9 @@
 <section class="criarProdutos" id="idCriarProdutos">
     <form method="POST" autocomplete="off"  action="{{ route('produtos.mostrar') }}" enctype="multipart/form-data">
         @csrf
+        @if(session('error'))
+            <div class="{{ session('class') }}">{{ session('error') }}</div>
+        @endif
         <div class="form-group">
           <label for="imagem">Imagens *:   Min(3)</label>
           <div class="imagem-slide">

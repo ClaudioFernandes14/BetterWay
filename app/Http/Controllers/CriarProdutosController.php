@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\CategoriaModel; 
 use App\Models\ProdutosModel; 
 use App\Models\ImagensModel;
+use App\Models\UserTypeModel;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use Illuminate\Support\Facades\Hash;
 
 
 // use App\Http\Controllers\Categoria;
@@ -40,41 +42,52 @@ class CriarProdutosController extends Controller
             'url.*' => 'image|max:2048' // validar imagens enviadas
         ]);
 
+        $user = auth()->user();
 
-         
-         // Criar o produto
-        $produto = new ProdutosModel;
-        $produto->nome = $validatedData['nome'];
-        $produto->descricao = $validatedData['descricao'];
-        $produto->preco = $validatedData['preco'];
-        $produto->morada = $validatedData['morada'];
-        $produto->id_categoria = $validatedData['categorias'];
-        $produto->idUser = Auth::user()->id;
-        $produto->save();
+         if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
+            return redirect('/produtos/criar')->with('error', 'Senha incorreta.')->with('class', 'error-message');
+         } else {
+                // Criar o produto
+                $produto = new ProdutosModel;
+                $produto->nome = $validatedData['nome'];
+                $produto->descricao = $validatedData['descricao'];
+                $produto->preco = $validatedData['preco'];
+                $produto->morada = $validatedData['morada'];
+                $produto->id_categoria = $validatedData['categorias'];
+                $produto->idUser = Auth::user()->id;
+                $produto->save();
 
 
-       // Processar imagens
-        if ($request->hasFile('url')) {
-            $arquivos = $request->file('url');
-            $numImagens = count($arquivos);
-            foreach ($arquivos as $arquivo) {
-                // Salvar a imagem no servidor
-                $nomeArquivo = time() . '_' . $arquivo->getClientOriginalName();
-                $path = public_path('resources/images/produtos/' . $nomeArquivo);
-                Image::make($arquivo)->resize(500, 500)->save($path);
+                $usertype = UserTypeModel::where('user_id', Auth::user()->id)->first();
+                $usertype->idProdutos = $produto->id;
+                $usertype->update();
 
-                // Cria um novo objeto ImagemModel e define os valores
-                $imagemModel = new ImagensModel;
-                
-                $imagemModel->url = $nomeArquivo;
-                $imagemModel->id_produto = $produto->id;
 
-                // Salva a URL da imagem no banco de dados
-                $imagemModel->save();
+            // Processar imagens
+                if ($request->hasFile('url')) {
+                    $arquivos = $request->file('url');
+                    $numImagens = count($arquivos);
+                    foreach ($arquivos as $arquivo) {
+                        // Salvar a imagem no servidor
+                        $nomeArquivo = time() . '_' . $arquivo->getClientOriginalName();
+                        $path = public_path('resources/images/produtos/' . $nomeArquivo);
+                        Image::make($arquivo)->resize(500, 500)->save($path);
+
+                        // Cria um novo objeto ImagemModel e define os valores
+                        $imagemModel = new ImagensModel;
+                        
+                        $imagemModel->url = $nomeArquivo;
+                        $imagemModel->id_produto = $produto->id;
+
+                        // Salva a URL da imagem no banco de dados
+                        $imagemModel->save();
+                    }
+                } else {
+                    $numImagens = 0;
+                }
+
+                return redirect('/produtos/ver');
             }
-        } else {
-            $numImagens = 0;
-        }
-        
     }
+        
 }

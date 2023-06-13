@@ -23,6 +23,14 @@ class ProdutosModel extends Model
         return $this->hasOne(ImagensModel::class);
     }
 
+    public function usertype(){
+        return $this->hasOne(UserTypeModel::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 
     protected $fillable = [
         'nome',

@@ -22,6 +22,7 @@ return new class extends Migration
         DB::table('categorias')->insert([
             ['categoria' => 'Lazer'],
             ['categoria' => 'Animais' ],
+            ['categoria' => 'Outros' ],
         ]);
     }
 
