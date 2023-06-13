@@ -26,6 +26,11 @@
     justify-content: space-between;
 }
 
+.fab.fa-whatsapp.custom-size {
+    font-size: 2rem;
+    color: var(--blue);
+}
+
 .popup {
     position: fixed;
     top: 50%;
@@ -39,10 +44,14 @@
   
   .popup label {
     font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--blue);
   }
   
   .popup span {
     margin-left: 5px;
+    font-size: 1.5rem;
+    
   }
   
   .popup button.closeButton {
@@ -52,12 +61,12 @@
     border: none;
     background-color: transparent;
     font-size: 16px;
-    color: #ccc;
+    color: black;
     cursor: pointer;
   }
   
   .popup button.closeButton:hover {
-    color: #333;
+    color: var(--blue);
   }
 
 .avatar{
@@ -92,7 +101,18 @@
     margin-left:10rem;
     bottom: 54rem;
     cursor: pointer;
+    font-size: 2rem;
 }
+
+
+.avatarVer .nameVendor i{
+    display: inline-block;
+    align-items: center;
+    align-content: space-between;
+    right: 3rem;
+    font-size: 2rem;
+}
+
 
 .avatar #imagemUt{
     height:47px;

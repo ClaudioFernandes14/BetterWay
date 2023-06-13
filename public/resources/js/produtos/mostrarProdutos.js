@@ -50,43 +50,62 @@ $(document).ready(function() {
 
 
 var envelope = document.querySelector('.fa-envelope');
+var popup = null;
 
 envelope.addEventListener('click', function() {
-  var email = this.dataset.email; // Substitua isto com o endereço de e-mail do usuário
-  var phone = this.dataset.phone; // Substitua isto com o número de telefone do usuário
-
-  var popup = document.createElement('div');
-  popup.classList.add('popup');
-
-  var emailLabel = document.createElement('label');
-  emailLabel.textContent = 'E-mail: ';
-
-  var emailText = document.createElement('span');
-  emailText.textContent = email;
-
-  var phoneLabel = document.createElement('label');
-  phoneLabel.textContent = 'Telemovel: ';
-
-  var phoneText = document.createElement('span');
-  phoneText.textContent = phone;
-
-  var closeButton = document.createElement('button');
-  closeButton.textContent = 'Fechar';
-  closeButton.classList.add('closeButton');
-
-  popup.appendChild(emailLabel);
-  popup.appendChild(emailText);
-  popup.appendChild(document.createElement('br'));
-  popup.appendChild(phoneLabel);
-  popup.appendChild(phoneText);
-  popup.appendChild(document.createElement('br'));
-  popup.appendChild(closeButton);
-
-  document.body.appendChild(popup);
-
-  closeButton.addEventListener('click', function() {
+  if (popup !== null) {
+    // Se já existir um popup aberto, remova-o
     document.body.removeChild(popup);
-  });
-});
+    popup = null;
+  } else {
+    // Caso contrário, crie um novo popup
+    var email = this.dataset.email; // Substitua isto com o endereço de e-mail do usuário
+    var phone = this.dataset.phone; // Substitua isto com o número de telefone do usuário
 
+    popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    var emailLabel = document.createElement('label');
+    emailLabel.textContent = 'E-mail: ';
+
+    var emailText = document.createElement('span');
+    emailText.textContent = email;
+
+    var phoneLabel = document.createElement('label');
+    phoneLabel.textContent = 'Telemovel: ';
+
+    var phoneText = document.createElement('span');
+    phoneText.textContent = phone;
+
+    var closeButton = document.createElement('button');
+    closeButton.textContent = 'Fechar';
+    closeButton.classList.add('closeButton');
+
+    var whatsappLink = document.createElement('a');
+    whatsappLink.href = 'https://wa.me/' + phone;
+    whatsappLink.target = '_blank';
+    whatsappLink.classList.add('whatsappLink');
+    whatsappLink.innerHTML = '<i class="fab fa-whatsapp custom-size"></i>';
+
+    var space = document.createElement('span');
+    space.innerHTML = '&nbsp;'; // Adiciona um espaço em branco
+
+    popup.appendChild(emailLabel);
+    popup.appendChild(emailText);
+    popup.appendChild(document.createElement('br'));
+    popup.appendChild(phoneLabel);
+    popup.appendChild(phoneText);
+    popup.appendChild(space); // Adiciona o espaço em branco
+    popup.appendChild(whatsappLink);
+    popup.appendChild(document.createElement('br'));
+    popup.appendChild(closeButton);
+
+    document.body.appendChild(popup);
+
+    closeButton.addEventListener('click', function() {
+      document.body.removeChild(popup);
+      popup = null;
+    });
+  }
+});
 
