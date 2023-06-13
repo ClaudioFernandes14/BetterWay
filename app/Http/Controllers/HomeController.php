@@ -16,6 +16,8 @@ use App\Models\UserTypeModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountDeleted;
 use Illuminate\Support\Str;
+use DateTime;
+
 
 
 
@@ -95,15 +97,41 @@ class HomeController extends Controller
     /**
      * Vai atualizar o perfil do utilizador
      */
-    public function updateProfile(UpdateProfileRequest $request){
+    public function updateProfile(Request $request)
+    {
         $user = auth()->user();
-        // dd($request->all());
-        // $passwordHash = Hash::make($request->password);
-
-
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->user()->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'morada' => 'nullable|string|max:255',
+            'cod_postal' => 'nullable|string|max:255',
+            'telemovel' => 'nullable|string|max:255',
+            'nif' => 'nullable|string|max:255',
+            'data_nascimento' => [
+                'required',
+                'date_format:d/m/Y',
+                function ($attribute, $value, $fail) {
+                    $data_nascimento = DateTime::createFromFormat('d/m/Y', $value);
+        
+                    if (!$data_nascimento) {    
+                        $fail('A data de nascimento é inválida.');
+                    } else {
+                        $hoje = new DateTime();
+                        $idade = $hoje->diff($data_nascimento)->y;
+        
+                        if ($idade < 18) {
+                            $fail('Você deve ter pelo menos 18 anos para ter uma conta.');
+                        }
+                    }
+                },
+            ],
+        ]);
+    
         if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
             return redirect('/perfil')->with('error', 'Senha incorreta.');
-        }else {
+        } else {
             // verifica se uma nova senha foi fornecida
             if (!empty($request->password)) {
                 // se sim, criptografa a nova senha como hash
@@ -112,9 +140,8 @@ class HomeController extends Controller
                 // caso contrário, mantém a senha atual
                 $passwordHash = $user->password;
             }
-
+    
             try {
-
                 // Atualiza os dados do utilizador
                 $user->update([
                     'name' => $request->name ?: $user->name,
@@ -124,21 +151,18 @@ class HomeController extends Controller
                     'cod_postal' => $request->cod_postal ?: $user->cod_postal,
                     'telemovel' => $request->telemovel ?: $user->telemovel,
                     'nif' => $request->nif ?: $user->nif,
+                    'date_of_birth' => date_create_from_format('d/m/Y', $request->data_nascimento)->format('Y-m-d'),
                 ]);
-
-
+    
                 // Salva as alteracões feitas do utilizador
                 $user->save();
-                
-
+    
                 return redirect('/perfil');
-        
+    
             } catch (Exception $e) {
                 dd($e->getMessage());
             }
         }
-
-        
     }
 
 

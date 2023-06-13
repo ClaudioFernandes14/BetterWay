@@ -48,13 +48,12 @@
               ‎ Favoritos
         </a>
         <a href="#categories">Categorias</a>
-        <a href="#review">Reviews</a>
+        <a href="/produtos/criar">Adicionar Produto</a>
     </nav>
 
     <div class="icons">
         <div class="fas fa-bars" id="menu-btn" ></div>
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
     </div>
 
     <div class="dropdown">
@@ -220,22 +219,26 @@
                     
                     <td class="td1">
                         <div class="card-body">
-                            <h1 class="card-title">NIF *</h5> 
+                          <h1 class="card-title">NIF *</h5> 
                             @if($user->nif == 1)
-                                <input class="card-text" type="text" name="nif" size="20" placeholder="Sem NIF definido">
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="Sem NIF definido(Insira um NIF valido)" pattern="[0-9]{9}">
                             @else
-                                <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}">
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}" pattern="[0-9]{9}" value="{{$user->nif}}">
                             @endif
                         </div>
-                    </td>
+                      </td>
 
                     
-                    <td class="td1">
+                      <td class="td1">
                         <div class="card-body">
-                            <h1 class="card-title">Idade *</h5> 
+                            <h1 class="card-title">Data de Nascimento: *</h1>
+                            <input id="data_nascimento" type="text" class="form-control @error('data_nascimento') is-invalid @enderror" name="data_nascimento" value="{{ old('data_nascimento') ?: ($user->date_of_birth ? date('d/m/Y', strtotime($user->date_of_birth)) : '') }}" required autocomplete="data_nascimento" autofocus>
                     
-                            <input class="card-text" name="idade" size="20" placeholder="{{$user->date_of_birth}}">
-                    
+                            @error('data_nascimento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </td>
 
@@ -463,8 +466,9 @@
             <a href="/mensagens" class="links"> <i class="fas fa-arrow-right"></i> Mensagens </a>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produto </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+            
         </div>
 
     </div>
