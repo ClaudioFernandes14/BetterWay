@@ -20,6 +20,7 @@
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="../resources/css/style-perfil.css">
+    
    
 
     <link rel="icon" type="image/png" sizes="100x100" href="resources/images/icon_logo-removebg-preview.png">
@@ -34,13 +35,6 @@
     <a href="/" class="logo"><img src="../resources/images/logo.png" height="90px"></a>
 
     <nav class="navbar">
-        <a href="#features">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
-                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>
-            ‎ Mensagens
-        </a>
         <a href="/favoritos">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -187,14 +181,16 @@
                         <div class="card-body">
                             <h1 class="card-title">Telemovel *</h5> 
                             @if ($user->telemovel == 1)
-                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="Sem telemovel definido">
-                            
+                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
                             @else
-                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}">
-                            
+                                <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
                             @endif
-                            
-                    
+                        
+                            @error('telemovel')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>O número de telefone deve ter exatamente 9 dígitos.</strong>
+                                </span>
+                            @enderror
                         </div>
                     </td>
                 </tr>
@@ -223,7 +219,7 @@
                             @if($user->nif == 1)
                                 <input class="card-text" type="text" name="nif" size="20" placeholder="Sem NIF definido(Insira um NIF valido)" pattern="[0-9]{9}">
                             @else
-                                <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}" pattern="[0-9]{9}" value="{{$user->nif}}">
+                                <input class="card-text" type="text" name="nif" size="20" placeholder="{{$user->nif}}" pattern="[0-9]{9}">
                             @endif
                         </div>
                       </td>
@@ -305,139 +301,43 @@
 
 <!-- products section starts  -->
 
-<section class="features" id="features">
+
     <h1 class="heading"><span>Meus Produtos</span></h1>
-    <div class="box-container">
-        
-        <div class="box">
-            <img src="image/product-1.png" alt="">
-            <h3>fresh orange</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a  href="#" class="btn">Ver Produto</a>
-        </div>
 
-        <div class="box">
-            <img src="image/product-3.png" alt="">
-            <h3>fresh meat</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
+    <form action="meusProdutos">
+        <section class="features" id="features">
+            <div class="box-container">
+                @foreach ($produtos as $produto)
+                    <div class="box">
+                        @foreach ($imagens->take(1) as $imagem)
+                            <div class="imagem">
+                                <img src="resources/images/produtos/{{ $imagem->url }}" alt="">
+                            </div>
+                        @endforeach
+                        <h3>{{ $produto->nome }}</h3>
+                        <div class="price">{{ $produto->preco }} €</div>
+                        
+                        <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a>
+                    </div>
+                @endforeach
             </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
+           
+        </section>
+    </form>
 
-        <div class="box">
-            <img src="image/product-4.png" alt="">
-            <h3>fresh cabbage</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
    
-        <div class="box">
-            <img src="image/product-5.png" alt="">
-            <h3>fresh potato</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
 
-        <div class="box">
-            <img src="image/product-6.png" alt="">
-            <h3>fresh avocado</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-7.png" alt="">
-            <h3>fresh carrot</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        
-        <div class="box">
-            <img src="resources/images/logo.png" alt="">
-            <h3>green lemon</h3>
-            <div class="price">10€</div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="resources/images/logo.png" alt="">
-            <h3>green lemon</h3>
-            <div class="price">10€</div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-7.png" alt="">
-            <h3>fresh carrot</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-    </div>
-</section>
+    {{-- <div class="stars">
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $produto->avaliacao)
+                            <i class="fas fa-star"></i>
+                        @elseif ($i == ceil($produto->avaliacao))
+                            <i class="fas fa-star-half-alt"></i>
+                        @else
+                            <i class="far fa-star"></i>
+                        @endif
+                    @endfor
+                </div> --}}
 
 <!-- products section ends -->
 
@@ -463,7 +363,6 @@
 
         <div class="box">
             <h3>Links Rapidos</h3>
-            <a href="/mensagens" class="links"> <i class="fas fa-arrow-right"></i> Mensagens </a>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
             <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produto </a>

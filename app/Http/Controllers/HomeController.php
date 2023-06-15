@@ -13,6 +13,8 @@ use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserTypeModel;
+use App\Models\ProdutosModel;
+use App\Models\ImagensModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountDeleted;
 use Illuminate\Support\Str;
@@ -55,15 +57,28 @@ class HomeController extends Controller
         return response('deleted')->withCookie(cookie('cookie_consent', null, -1));
     }
 
+    public function imagens()
+    {
+        return $this->hasMany(ImagensModel::class, 'id_produto');
+    }
+
     /**
      * Vai para a pagina do perfil
      */
     public function perfil(){
+        // Obtém as informações do utilizador autenticado
         $user = Auth::user();
-        // $userType = $user->usertype;    // vai buscar o id do user no usertype
-        // $idMorada = $userType->idMorada;    // vai buscar o id da morda na tabela do user
-        // 'morada' => MoradaModel::find($idMorada)
-        return view('perfil', array('user' => $user));
+
+        // Obtém os produtos relacionados ao utilizador autenticado
+        $produtos = ProdutosModel::where('IdUser', $user->id)->get();
+
+        $imagens = ImagensModel::whereIn('id_produto', $produtos->pluck('id'))->get();
+        
+        return view('perfil', [
+            'user' => $user,
+            'produtos' => $produtos,
+            'imagens' => $imagens
+        ]);
     }
 
     /**
@@ -102,13 +117,7 @@ class HomeController extends Controller
         $user = auth()->user();
     
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->user()->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'morada' => 'nullable|string|max:255',
-            'cod_postal' => 'nullable|string|max:255',
-            'telemovel' => 'nullable|string|max:255',
-            'nif' => 'nullable|string|max:255',
+            
             'data_nascimento' => [
                 'required',
                 'date_format:d/m/Y',
