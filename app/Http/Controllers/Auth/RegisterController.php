@@ -99,7 +99,6 @@ class RegisterController extends Controller
                 // 'idMorada' => $morada->id,
                 // 'telemovel' => 1,
                 // 'nif' => 1,    
-                'idProdutos' => null,
                 'idFavoritos' => null,    
                 'idClassificacao' => null,
             ]

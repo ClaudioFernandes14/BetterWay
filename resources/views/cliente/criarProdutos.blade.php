@@ -146,7 +146,7 @@
         </div>
         <div class="form-group">
             <label for="nome">Nome *:</label>
-            <input type="text" id="nome" name="nome">
+            <input type="text" id="nome" name="nome" autocomplete="on">
         </div>
         <div class="form-group">
             <label for="descricao">Descrição *:</label>

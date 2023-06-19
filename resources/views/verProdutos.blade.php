@@ -42,13 +42,6 @@
     <a href="/" class="logo"><img src="/resources/images/logo.png" height="90px"></a>
 
     <nav class="navbar">
-        <a href="#features">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
-                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>
-            ‎ Mensagens
-        </a>
         <a href="/favoritos">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -219,7 +212,6 @@
 
         <div class="box">
             <h3>Links Rapidos</h3>
-            <a href="/mensagens" class="links"> <i class="fas fa-arrow-right"></i> Mensagens </a>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>

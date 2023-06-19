@@ -58,6 +58,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::match(['get', 'put' ,'delete'], '/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/produtos/criar', [App\Http\Controllers\CriarProdutosController::class, 'mostraCriarProdutos'])->middleware('verified');
     Route::get('/produtos/ver/{id}', [App\Http\Controllers\ProdutosController::class, 'mostraProdutos'])->middleware('auth')->middleware('verified');
+    Route::get('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->middleware('verified');
    
     // Route::get('set-cookie', [App\Http\Controllers\HomeController::class, 'setCookie']);
     Route::get('get-cookie', [App\Http\Controllers\HomeController::class, 'getCookie']);
@@ -71,11 +72,13 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/perfil/avatar', [App\Http\Controllers\HomeController::class, 'updateAvatar']) ->name('perfil');
     Route::put('/perfil/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth')->name('perfil.update');
     Route::post('/produtos', [App\Http\Controllers\CriarProdutosController::class, 'criarProduto'])->name('produtos.mostrar');
+    Route::put('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->name('produtos.update');
 // </Publica as rotas>
 
 
 // <Elimina dados>
     Route::delete('/user/{id}', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->middleware('auth')->name('users.delete');
+    Route::delete('/produtos/{id}', [App\Http\Controllers\ProdutosController::class, 'destroy'])->middleware('auth')->name('produtos.destroy');
     // Route::delete('/perfil/{user}/delete-account', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->name('delete-account');
 // </Elimina dados>
 

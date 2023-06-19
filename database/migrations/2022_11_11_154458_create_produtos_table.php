@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->string('morada');
             $table->string('descricao');
+            $table->timestamps();
         });
 
 

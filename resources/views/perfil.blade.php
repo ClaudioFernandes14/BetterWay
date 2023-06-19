@@ -309,15 +309,15 @@
             <div class="box-container">
                 @foreach ($produtos as $produto)
                     <div class="box">
-                        @foreach ($imagens->take(1) as $imagem)
+                        @if ($imagens->where('id_produto', $produto->id)->count() > 0)
                             <div class="imagem">
-                                <img src="resources/images/produtos/{{ $imagem->url }}" alt="">
+                                <img src="resources/images/produtos/{{ $imagens->where('id_produto', $produto->id)->first()->url }}" alt="">
                             </div>
-                        @endforeach
+                        @endif
                         <h3>{{ $produto->nome }}</h3>
                         <div class="price">{{ $produto->preco }} €</div>
-                        
-                        <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a>
+                        <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
+                        <a href="/produtos/editar/{{$produto->id}}" class="btn">Editar Produto</a>
                     </div>
                 @endforeach
             </div>

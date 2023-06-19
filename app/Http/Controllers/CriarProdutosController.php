@@ -35,7 +35,7 @@ class CriarProdutosController extends Controller
         // Validar os dados recebidos
         $validatedData = $request->validate([   
             'nome' => 'required',
-            'descricao' => 'required',
+            'descricao' => 'required|max:255', 
             'preco' => 'required|numeric|min:0',
             'morada' => 'required',
             'categorias' => 'required',
@@ -57,10 +57,6 @@ class CriarProdutosController extends Controller
                 $produto->idUser = Auth::user()->id;
                 $produto->save();
 
-
-                $usertype = UserTypeModel::where('user_id', Auth::user()->id)->first();
-                $usertype->idProdutos = $produto->id;
-                $usertype->update();
 
 
             // Processar imagens
@@ -86,7 +82,7 @@ class CriarProdutosController extends Controller
                     $numImagens = 0;
                 }
 
-                return redirect('/produtos/ver');
+                return redirect('/produtos/ver/' . $produto->id);
             }
     }
         

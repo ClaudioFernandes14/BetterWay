@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('idProdutos')->nullable();
-            $table->foreign('idProdutos')->references('id')->on('produtos');
             $table->unsignedBigInteger('idFavoritos')->nullable();
             $table->foreign('idFavoritos')->references('id')->on('favoritos');
             $table->unsignedBigInteger('idClassificacao')->nullable();
