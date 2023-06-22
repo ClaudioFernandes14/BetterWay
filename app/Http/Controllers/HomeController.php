@@ -196,5 +196,21 @@ class HomeController extends Controller
         }
     }
     
+
+    public function verPerfil(Request $request, $id){
+        // Obtém as informações do utilizador autenticado
+        $user = Auth::user();
+
+        // Obtém os produtos relacionados ao utilizador autenticado
+        $produtos = ProdutosModel::where('IdUser', $user->id)->get();
+
+        $imagens = ImagensModel::whereIn('id_produto', $produtos->pluck('id'))->get();
+        
+        return view('perfil', [
+            'user' => $user,
+            'produtos' => $produtos,
+            'imagens' => $imagens
+        ]);
+    }
     
 }

@@ -61,16 +61,6 @@ class ProdutosController extends Controller
         if (!empty($request->password) && !Hash::check($request->password, $user->password)) { 
             return redirect('/produtos/editar/' . $produto->id)->with('error', 'Senha incorreta.');
         } else{
-
-            // verifica se uma nova senha foi fornecida
-            if (!empty($request->password)) {
-                // se sim, criptografa a nova senha como hash
-                $passwordHash = Hash::make($request->password);
-            } else {
-                // caso contrário, mantém a senha atual
-                $passwordHash = $user->password;
-            }
-
             try {
                 $produto->nome = $request->nome ?: $produto->nome;
                 $produto->descricao = $request->descricao ?: $produto->descricao;
@@ -78,25 +68,9 @@ class ProdutosController extends Controller
                 $produto->morada = $request->morada ?: $produto->morada;
                 $produto->id_categoria = $request->categorias ?: $produto->id_categoria;
             
-               // Atualizar as imagens do produto
-                 $urls = [];
-                foreach ($imagens as $imagem) {
-                    $nomeImagem = uniqid() . '.' . $imagem->getClientOriginalExtension();
-                    $imagem->move(public_path('resources/images/produtos/'), $nomeImagem);
-                    $urls[] = $nomeImagem;
-                }
-
-                // Salvar as URLs das imagens no banco de dados
-                foreach ($urls as $url) {
-                    $imagem = new ImagensModel();
-                    $imagem->id_produto = $produto->id;
-                    $imagem->url = $url;
-                    $imagem->save();
-                }
-            
                 // Atualizar as informações do produto
                 $produto->update();
-                // return redirect('/produtos/ver/' . $produto->id);
+                
 
             } catch (\Throwable $th) {
             }
