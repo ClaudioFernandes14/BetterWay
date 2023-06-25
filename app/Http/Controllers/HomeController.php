@@ -198,15 +198,19 @@ class HomeController extends Controller
     
 
     public function verPerfil(Request $request, $id){
-        // Obtém as informações do utilizador autenticado
-        $user = Auth::user();
-
-        // Obtém os produtos relacionados ao utilizador autenticado
-        $produtos = ProdutosModel::where('IdUser', $user->id)->get();
-
+        // Obtém as informações do usuário com o id presente na URL
+        $user = User::find($id);
+    
+        if (!$user) {
+            abort(404, 'Utilizador não encontrado');
+        }
+       
+        // Obtém os produtos relacionados ao usuário com o id presente na URL
+        $produtos = ProdutosModel::where('idUser', $id)->get();
+    
         $imagens = ImagensModel::whereIn('id_produto', $produtos->pluck('id'))->get();
         
-        return view('perfil', [
+        return view('verPerfil', [
             'user' => $user,
             'produtos' => $produtos,
             'imagens' => $imagens

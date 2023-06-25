@@ -63,7 +63,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     // Route::get('set-cookie', [App\Http\Controllers\HomeController::class, 'setCookie']);
     Route::get('get-cookie', [App\Http\Controllers\HomeController::class, 'getCookie']);
     Route::get('delete-cookie', [App\Http\Controllers\HomeController::class, 'deleteCookie']);
-    Route::get('/produtos/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified');
+    Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified');
 // </Forma as rotas>
 
 

@@ -19,7 +19,7 @@
     <link href="/resources/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="/resources/css/produtos/mostrarProdutos.css">
+    <link rel="stylesheet" href="/resources/css/verPerfil.css">
    
 
     <link rel="icon" type="image/png" sizes="100x100" href="/resources/images/icon_logo-removebg-preview.png">
@@ -116,30 +116,9 @@
 <!-- header section ends -->
 
 <!-- features section starts  -->
-<h1 class="heading"><span><h3>Produto</h3></span></h1>
+<h1 class="heading"><span><h3>Perfil</h3></span></h1>
 <section id="mostrarProdutos" class="criarProdutos">
     <form action="verProdutos">
-        <div class="form-group">
-            <div class="slider">
-                <input type="radio" name="radio-btn" id="radio1" data-slide="1">
-                <input type="radio" name="radio-btn" id="radio2" data-slide="2">
-                <input type="radio" name="radio-btn" id="radio3" data-slide="3">
-                <input type="radio" name="radio-btn" id="radio4" data-slide="4">
-        
-                <div class="slider-wrapper">
-                    @foreach($imagens as $imagem)
-                        <div class="slide">
-                            <img src="/resources/images/produtos/{{ $imagem->url }}" alt="">
-                        </div>
-                     @endforeach
-                </div>
-
-                <a class="prev" onclick="prevSlide()">&#10094;</a>
-                <a class="next" onclick="nextSlide()">&#10095;</a>
-                
-            </div>
-        </div>
-
 
         <div class="form-group">
             
@@ -155,36 +134,51 @@
             <br>
             <br>
             <div class="detalhes-produto">
-                <h1>Nome</h1>
-                <h3>{{ $produto->nome }}</h3>
-                <h2>{{ $produto->preco }} €</h2>
+                <h1>Morada</h1>
+                <h3>{{ $user->morada }}</h3>
                 
             </div>
 
             
             <div class="detalhes-produto">
-                <h1>Categoria</h1>
-                <h3>{{ $categoria->categoria }}</h3>
+                <h1>Codigo Postal</h1>
+                <h3>{{ $user->cod_postal }}</h3>
             </div>
 
             <div class="detalhes-produto">
-                <h1>Descricao</h1>
-                <h3>{{ $produto->descricao }}</h3>
-            </div>
-
-            <div class="detalhes-produto">
-                <h1>Morada</h1>
-                <h3>{{ $produto->morada }}</h3>
+                <h1>NIF</h1>
+                <?php if ($user->nif == 1): ?>
+                    <h3>Sem NIF definido</h3>
+                <?php else: ?>
+                    <h3><?php echo $user->nif; ?></h3>
+                <?php endif; ?>
             </div>
             
         </div>
     </form>
-    
-    
 </section>
 
 
-    
+<h1 class="heading"><span>Produtos do Utilizador</span></h1>
+
+<form action="meusProdutos">
+    <section class="features" id="features">
+        <div class="box-container">
+            @foreach ($produtos as $produto)
+                <div class="box">
+                    @if ($imagens->where('id_produto', $produto->id)->count() > 0)
+                        <div class="imagem">
+                            <img src="../resources/images/produtos/{{ $imagens->where('id_produto', $produto->id)->first()->url }}" alt="">
+                        </div>
+                    @endif
+                    <h3>{{ $produto->nome }}</h3>
+                    <div class="price">{{ $produto->preco }} €</div>
+                    <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
+                </div>
+            @endforeach
+        </div>
+    </section>
+</form>
 
 
 <!-- features section ends -->
@@ -214,8 +208,8 @@
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produto </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
         </div>
 
     </div>
