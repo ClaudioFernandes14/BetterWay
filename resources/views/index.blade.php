@@ -157,17 +157,21 @@
 
 <section class="features" id="features">
     <h1 class="heading"><span>Produtos Recentes</span></h1>
-    <div class="box-container">
-        @foreach ($produtos as $produto)
-            <div class="box">
-                <img src="../resources/images/produtos/{{ $produto->imagens->first()->url }}" alt="">
-                        
-                <h3>{{ $produto->nome }}</h3>
-                <div class="price">{{ $produto->preco }} €</div>
-                <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
-            </div>
-        @endforeach
-    </div>
+
+    @if(!empty($produtos))
+        <div class="box-container">
+            @foreach ($produtos as $produto)
+                <div class="box">
+                    <img src="../resources/images/produtos/{{ $produto->imagens->first()->url }}" alt="">
+                    <h3>{{ $produto->nome }}</h3>
+                    <div class="price">{{ $produto->preco }} €</div>
+                    <p class="user">{{ $produto->user->name }}</p>
+                    <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
+                </div>
+            @endforeach
+        </div>
+    @endif
+    
 </section>
 
 <!-- products section ends -->

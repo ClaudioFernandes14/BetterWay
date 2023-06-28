@@ -30,6 +30,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(ProdutosModel::class, 'favoritos', 'idUser', 'idProdutos');
     }
 
+    public function cargo()
+    {
+        return $this->belongsTo(CargoModel::class, 'idCargo');
+    }
     
     // /**
     //  * Faz Ligacao com a tabela Morada
