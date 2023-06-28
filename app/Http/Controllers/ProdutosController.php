@@ -133,7 +133,7 @@ class ProdutosController extends Controller
         // Adicionar o produto favorito ao usuário
         $user->favoritos()->attach($produto->id);
 
-        return redirect()->route('index')->with('success', 'Produto adicionado aos favoritos.');
+        return redirect()->route('cliente.favoritos')->with('success', 'Produto adicionado aos favoritos.');
     }
 
 

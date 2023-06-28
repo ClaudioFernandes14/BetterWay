@@ -64,6 +64,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('get-cookie', [App\Http\Controllers\HomeController::class, 'getCookie']);
     Route::get('delete-cookie', [App\Http\Controllers\HomeController::class, 'deleteCookie']);
     Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified');
+    Route::get('/favoritos', [App\Http\Controllers\FavoritosController::class, 'mostraFavoritos'])->name('cliente.favoritos')->middleware('auth')->middleware('verified');
 // </Forma as rotas>
 
 
@@ -75,6 +76,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/produtos', [App\Http\Controllers\CriarProdutosController::class, 'criarProduto'])->name('produtos.mostrar');
     Route::put('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->name('produtos.update');
     Route::post('/favoritos/add/{id}', [App\Http\Controllers\ProdutosController::class, 'adicionarAosFavoritos'])->middleware('auth')->name('favoritos.adicionar');
+    Route::post('/favoritos/remover/{produto}', [App\Http\Controllers\FavoritosController::class, 'removerFavorito'])->middleware('auth');
 // </Publica as rotas>
 
 
