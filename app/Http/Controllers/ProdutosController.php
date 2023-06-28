@@ -109,6 +109,34 @@ class ProdutosController extends Controller
         }
     }
 
+    /**
+     * Adiciona o produto aos favoritos
+     */
+    public function adicionarAosFavoritos(Request $request, $id)
+    {
+        // Verificar se o utilizador está autenticado
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        // Obter o produto a ser adicionado aos favoritos
+        $produto = ProdutosModel::find($id);
+
+        // Obter o utilizador autenticado
+        $user = Auth::user();
+
+        // Verificar se o produto já foi adicionado aos favoritos do utilizador
+        if ($user->favoritos()->where('idProdutos', $produto->id)->exists()) {
+            return redirect()->back()->with('message', 'Este produto já está nos seus favoritos!');
+        }
+
+        // Adicionar o produto favorito ao usuário
+        $user->favoritos()->attach($produto->id);
+
+        return redirect()->route('index')->with('success', 'Produto adicionado aos favoritos.');
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class, 'idUser');

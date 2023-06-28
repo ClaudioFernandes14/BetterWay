@@ -25,6 +25,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function favoritos()
+    {
+        return $this->belongsToMany(ProdutosModel::class, 'favoritos', 'idUser', 'idProdutos');
+    }
+
     
     // /**
     //  * Faz Ligacao com a tabela Morada

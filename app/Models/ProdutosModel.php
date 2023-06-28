@@ -32,6 +32,12 @@ class ProdutosModel extends Model
         return $this->belongsTo(User::class, 'idUser');
     }
 
+
+    public function favoritos()
+    {
+        return $this->belongsToMany(ProdutosModel::class, 'favoritos', 'idUser', 'idProdutos');
+    }
+
     protected $fillable = [
         'nome',
         'id_categoria',

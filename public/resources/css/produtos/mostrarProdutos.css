@@ -536,7 +536,27 @@ section{
     color: var(--blue);
   }
 
-  
+
+  .favorito-btn{
+    width: 6rem;
+    height: 4rem;
+    cursor: pointer;
+  }
+
+  .my-custom-class {
+    font-size: 1.7em;
+    color: var(--blue);
+    }
+
+  .favorito-btn bi bi-star{
+    color: rebeccapurple;
+  }
+
+
+  .favorito:hover{
+    color: #1a75ff;
+  }
+
 
 
   .detalhes-produto {

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('favoritos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('id_produto');
+            $table->unsignedBigInteger('idUser')->nullable();
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->unsignedBigInteger('idProdutos')->nullable();
+            $table->foreign('idProdutos')->references('id')->on('produtos');
         });
     }
 

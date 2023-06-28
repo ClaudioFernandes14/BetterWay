@@ -74,6 +74,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::put('/perfil/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->middleware('auth')->name('perfil.update');
     Route::post('/produtos', [App\Http\Controllers\CriarProdutosController::class, 'criarProduto'])->name('produtos.mostrar');
     Route::put('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->name('produtos.update');
+    Route::post('/favoritos/add/{id}', [App\Http\Controllers\ProdutosController::class, 'adicionarAosFavoritos'])->middleware('auth')->name('favoritos.adicionar');
 // </Publica as rotas>
 
 
