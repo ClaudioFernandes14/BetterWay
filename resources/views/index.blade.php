@@ -39,7 +39,7 @@
               </svg> 
               ‎ Favoritos
         </a>
-        <a href="#categories">Categorias</a>
+        <a href="/index">Categorias</a>
         <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
@@ -191,136 +191,21 @@
 <!-- products section starts  -->
 
 <section class="features" id="features">
-    <h1 class="heading"><span>produtos</span></h1>
+    <h1 class="heading"><span>Produtos Recentes</span></h1>
     <div class="box-container">
         
-        <div class="box">
-            <img src="image/product-1.png" alt="">
-            <h3>fresh orange</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
+        @foreach ($produtos as $produto)
+            <div class="box">
+                @if ($imagens->where('id_produto', $produto->id)->count() > 0)
+                    <div class="imagem">
+                        <img src="../resources/images/produtos/{{ $imagens->where('id_produto', $produto->id)->first()->url }}" alt="">
+                    </div>
+                @endif
+                <h3>{{ $produto->nome }}</h3>
+                <div class="price">{{ $produto->preco }} €</div>
+                <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
             </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-3.png" alt="">
-            <h3>fresh meat</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-4.png" alt="">
-            <h3>fresh cabbage</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-   
-        <div class="box">
-            <img src="image/product-5.png" alt="">
-            <h3>fresh potato</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-6.png" alt="">
-            <h3>fresh avocado</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-7.png" alt="">
-            <h3>fresh carrot</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        
-        <div class="box">
-            <img src="resources/images/logo.png" alt="">
-            <h3>green lemon</h3>
-            <div class="price">10€</div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="resources/images/logo.png" alt="">
-            <h3>green lemon</h3>
-            <div class="price">10€</div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
-        <div class="box">
-            <img src="image/product-7.png" alt="">
-            <h3>fresh carrot</h3>
-            <div class="price"> $4.99/- - 10.99/- </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-            <a href="#" class="btn">ver produto</a>
-        </div>
-
+         @endforeach
     </div>
 </section>
 
@@ -349,7 +234,7 @@
         <div class="box">
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
-            <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
             <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
         </div>

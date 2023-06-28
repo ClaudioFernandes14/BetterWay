@@ -48,7 +48,7 @@
               </svg> 
               ‎ Favoritos
         </a>
-        <a href="#categories">Categorias</a>
+        <a href="/index">Categorias</a>
         <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
@@ -212,7 +212,7 @@
         <div class="box">
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
-            <a href="/categorias" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
+            <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
             <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
         </div>
