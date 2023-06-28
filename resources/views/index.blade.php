@@ -103,37 +103,6 @@
         <label for="search-box" class="fas fa-search"></label>
     </form>
 
-    <div class="shopping-cart">
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-1.png" alt="">
-            <div class="content">
-                <h3>watermelon</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-2.png" alt="">
-            <div class="content">
-                <h3>onion</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="box">
-            <i class="fas fa-trash"></i>
-            <img src="image/cart-img-3.png" alt="">
-            <div class="content">
-                <h3>chicken</h3>
-                <span class="price">$4.99/-</span>
-                <span class="quantity">qty : 1</span>
-            </div>
-        </div>
-        <div class="total"> total : $19.69/- </div>
-        <a href="#" class="btn">checkout</a>
-    </div>
 </header>
 
 <!-- header section ends -->
@@ -161,25 +130,21 @@
         <div class="box">
             <img src="resources/images/monitor.jpg" alt="">
             <h3>Tecnologia</h3>
-            <a href="#" class="btn">Ver Produtos</a>
         </div>
 
         <div class="box">
             <img src="resources/images/ps5.jpg" alt="">
             <h3>Lazer</h3>
-            <a href="#" class="btn">Ver Produtos</a>
         </div>
 
         <div class="box">
             <img src="resources/images/papagaio.png" alt="">
             <h3>Animais</h3>
-            <a href="#" class="btn">Ver Produtos</a>
         </div>
 
         <div class="box">
             <img src="resources/images/papagaio.png" alt="">
             <h3>Brinquedos</h3>
-            <a href="#" class="btn">Ver Produtos</a>
         </div>
 
     </div>
@@ -193,19 +158,15 @@
 <section class="features" id="features">
     <h1 class="heading"><span>Produtos Recentes</span></h1>
     <div class="box-container">
-        
         @foreach ($produtos as $produto)
             <div class="box">
-                @if ($imagens->where('id_produto', $produto->id)->count() > 0)
-                    <div class="imagem">
-                        <img src="../resources/images/produtos/{{ $imagens->where('id_produto', $produto->id)->first()->url }}" alt="">
-                    </div>
-                @endif
+                <img src="../resources/images/produtos/{{ $produto->imagens->first()->url }}" alt="">
+                        
                 <h3>{{ $produto->nome }}</h3>
                 <div class="price">{{ $produto->preco }} €</div>
                 <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
             </div>
-         @endforeach
+        @endforeach
     </div>
 </section>
 
