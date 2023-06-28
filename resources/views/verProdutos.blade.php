@@ -166,7 +166,9 @@
             <br>
             <div class="avatarVer" id="cart-btn">
                 <h1>Utilizador</h1> 
-                <img id="imagemUt" src="/resources/images/user-img/{{ $user->avatar }}">
+                <a href="/perfil-user/{{$user->id}}">
+                    <img id="imagemUt" src="/resources/images/user-img/{{ $user->avatar }}">
+                </a>
                 <h1 class="nameVendor">{{ $user->name }} <i class="fa fa-envelope" aria-hidden="true" data-email="{{ $user->email }}" data-phone="{{ is_numeric($user->telemovel) ? (strval($user->telemovel) >= 9 ? $user->telemovel : 'Sem telemovel definido') : '' }}"></i></h1>
             </div>
 

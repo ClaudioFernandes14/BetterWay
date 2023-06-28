@@ -9,23 +9,23 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="icon" type="image/png" sizes="100x100" href="../resources/images/icon_logo-removebg-preview.png">
+        <link rel="icon" type="image/png" sizes="100x100" href="/resources/images/icon_logo-removebg-preview.png">
 
         <!-- jquery.vectormap css -->
-        <link href="../resources/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 
         <!-- DataTables -->
-        <link href="../resources/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Responsive datatable examples -->
-        <link href="../resources/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
+        <link href="/resources/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
 
         <!-- Bootstrap Css -->
-        <link href="../resources/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="/resources/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="../resources/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="/resources/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -42,7 +42,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                          <a href="/" class="logo"><img src="../resources/images/logo.png" height="70px"></a>
+                          <a href="/" class="logo"><img src="/resources/images/logo.png" height="70px"></a>
                         </div>
 
                         <!-- App Search-->
@@ -82,7 +82,7 @@
                             
                             <button type="button" class="btn header-item waves-effect "
                             style="cursor: default">
-                                <img class="" src="../resources/images/flags/portugal.png" style="cursor: default" alt="Header Language" height="20">
+                                <img class="" src="/resources/images/flags/portugal.png" style="cursor: default" alt="Header Language" height="20">
                             </button>
                             {{-- <div class="dropdown-menu dropdown-menu-end">
                     
@@ -106,7 +106,7 @@
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="../resources/images/user-img/{{Auth::user()->avatar}}"
+                                <img class="rounded-circle header-profile-user" src="/resources/images/user-img/{{Auth::user()->avatar}}"
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1">{{Auth::user()->name}}</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -144,7 +144,7 @@
                     <!-- User details -->
                     <div class="user-profile text-center mt-3">
                         <div class="">
-                            <img src="../resources/images/user-img/{{Auth::user()->avatar}}" alt="" class="avatar-md rounded-circle">
+                            <img src="/resources/images/user-img/{{Auth::user()->avatar}}" alt="" class="avatar-md rounded-circle">
                         </div>
                         <div class="mt-3">
                             <h4 class="font-size-16 mb-1">{{Auth::user()->name}}</h4>
@@ -229,12 +229,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Dashboard</h4>
+                                    <h4 class="mb-sm-0">Lista de Utilizadores</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">BetterWay</a></li>
-                                            <li class="breadcrumb-item active">Dashboard</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utilizadores</a></li>
+                                            <li class="breadcrumb-item active">Lista</li>
                                         </ol>
                                     </div>
 
@@ -243,103 +243,46 @@
                         </div>
                         <!-- end page title -->
 
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">Novos Produtos</p>
-                                                <h4 class="mb-2">{{ $novosProdutosCount }}</h4>
-                                                <p class="text-muted mb-0">
-                                                    <span class="text-danger fw-bold font-size-12 me-2">
-                                                        <i class="ri-arrow-right-down-line me-1 align-middle"></i>
-                                                        {{ number_format($novosProdutosPercentChange, 2) }}%
-                                                    </span>
-                                                    em relação ao período anterior
-                                                </p>
+                        <div class="page-content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-4">Utilizadores</h4>
+                                                <div class="table-responsive">
+                                                    <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>Nome</th>
+                                                                <th>Email</th>
+                                                                <th>Morada</th>
+                                                                <th>Codigo Postal</th>
+                                                                <th>Telemovel</th>
+                                                                <th>Cargo</th>
+                                                            </tr>
+                                                        </thead><!-- end thead -->
+                                                        <tbody>
+                                                            @foreach ($users as $user)
+                                                                <tr>
+                                                                    <td><h6 class="mb-0">{{ $user->name }}</h6></td>
+                                                                    <td>{{ $user->email }}</td>
+                                                                    <td>{{ $user->morada }}</td>
+                                                                    <td>{{ $user->cod_postal }}</td>
+                                                                    <td>{{ $user->telemovel }}</td>
+                                                                    <td>{{ $user->idCargo }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody><!-- end tbody -->
+                                                    </table> <!-- end table -->
+                                                </div>
                                             </div>
-                                            <div class="avatar-sm">
-                                                <span class="avatar-title bg-light text-success rounded-3">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
-                                                    <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
-                                                  </svg>
-                                                </span>
-                                            </div>
-                                        </div>                                              
-                                    </div><!-- end cardbody -->
-                                </div><!-- end card -->
-                            </div><!-- end col -->
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-truncate font-size-14 mb-2">Novos Utilizadores</p>
-                                                <h4 class="mb-2">{{ $novosUsuariosCount }}</h4>
-                                                <p class="text-muted mb-0">
-                                                    <span class="text-success fw-bold font-size-12 me-2">
-                                                        <i class="ri-arrow-right-up-line me-1 align-middle"></i>
-                                                        {{ number_format($novosUsuariosPercentChange, 2) }}%
-                                                    </span>
-                                                    em relação ao período anterior
-                                                </p>
-                                            </div>
-                                            <div class="avatar-sm">
-                                                <span class="avatar-title bg-light text-primary rounded-3">
-                                                    <i class="ri-user-3-line font-size-24"></i>  
-                                                </span>
-                                            </div>
-                                        </div>                                              
-                                    </div><!-- end cardbody -->
-                                </div><!-- end card -->
-                            </div><!-- end col -->
-                            
-                        </div><!-- end row -->
-
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card">
-                                    <div class="card-body pb-0">
-                                        <h4 class="card-title mb-4">Utilizadores</h4>
-                        
-                                        <div class="text-center pt-3">
-                                            <div class="row">
-                                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <div>
-                                                        <h5>{{ array_sum(array_column($chartData, 'y')) }}</h5>
-                                                        <p class="text-muted text-truncate mb-0">Total</p>
-                                                    </div>
-                                                </div><!-- end col -->
-                                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <div>
-                                                        <h5>{{ end($chartData)['y'] }}</h5>
-                                                        <p class="text-muted text-truncate mb-0">Último Mês</p>
-                                                    </div>
-                                                </div><!-- end col -->
-                                                <div class="col-sm-4">
-                                                    <div>
-                                                        @if (count($chartData) >= 2)
-                                                            <h5>{{ $chartData[count($chartData) - 2]['y'] }}</h5>
-                                                        @else
-                                                            <h5>N/A</h5>
-                                                        @endif
-                                                        <p class="text-muted text-truncate mb-0">Mês Anterior</p>
-                                                    </div>
-                                                </div><!-- end col -->
-                                            </div><!-- end row -->
                                         </div>
-                                        </div>
-                                        <canvas id="myChart"></canvas>
                                     </div>
-                                    
-                                </div><!-- end card -->
-
-                            </div><!-- end col -->
-
-                            
+                                </div>
+                            </div>
                         </div>
-                        
+                        <!-- end row -->
                     </div>
                     
                 </div>
@@ -371,79 +314,33 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        
-        <script>
-            // obtenha o elemento canvas do gráfico
-            var ctx = document.getElementById('myChart').getContext('2d');
-
-            // defina os nomes dos meses em português
-            var meses = [
-                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-            ];
-
-            // crie um novo gráfico com os dados do array $chartData
-            var myChart = new Chart(ctx, {
-                type: 'bar', // defina o tipo de gráfico (por exemplo, barras, linhas, etc.)
-                data: {
-                    labels: meses, // defina as etiquetas do eixo X com os nomes dos meses em português
-                    datasets: [{
-                        label: 'Utilizadores', // defina o rótulo do conjunto de dados
-                        data: [
-                            @foreach($chartData as $data)
-                                {{ $data['y'] }},
-                            @endforeach
-                            @for($i = count($chartData); $i < 12; $i++)
-                                0,
-                            @endfor
-                        ], // defina os valores do conjunto de dados com os valores do array $chartData e adicione zeros para os meses sem dados
-                        backgroundColor: '#007FFF', // defina a cor de fundo do conjunto de dados
-                        borderColor: 'rgba(255, 99, 132, 1)', // defina a cor da borda do conjunto de dados
-                        borderWidth: 1 // defina a largura da borda do conjunto de dados
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true, // defina o início do eixo Y em zero
-                                max: 100, // defina o valor máximo do eixo Y como 100
-                                stepSize: 10 // defina o intervalo entre cada marcação do eixo Y como 10
-                            }
-                        }]
-                    },
-                    locale: "pt-BR" // defina a formatação de data e hora em português
-                }
-            });
-        </script>
-        <script src="../resources/libs/jquery/jquery.min.js"></script>
-        <script src="../resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="../resources/libs/metismenu/metisMenu.min.js"></script>
-        <script src="../resources/libs/simplebar/simplebar.min.js"></script>
-        <script src="../resources/libs/node-waves/waves.min.js"></script>
+        <script src="/resources/libs/jquery/jquery.min.js"></script>
+        <script src="/resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/resources/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/resources/libs/simplebar/simplebar.min.js"></script>
+        <script src="/resources/libs/node-waves/waves.min.js"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
 
         
 
         
         <!-- apexcharts -->
-        <script src="../resources/libs/apexcharts/apexcharts.min.js"></script>
+        <script src="/resources/libs/apexcharts/apexcharts.min.js"></script>
 
         <!-- jquery.vectormap map -->
-        <script src="../resources/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="/resources/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
         
-        <script src="../resources/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+        <script src="/resources/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
         
         <!-- Required datatable js -->
-        <script src="../resources/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../resources/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/resources/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/resources/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
         
         <!-- Responsive examples -->
-        <script src="../resources/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="../resources/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script> --}}
+        <script src="/resources/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/resources/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script> --}}
 
-       <script src="../resources/js/pages/dashboard.init.js"></script>
+       <script src="/resources/js/pages/dashboard.init.js"></script>
 
       
 
@@ -452,8 +349,3 @@
     </body>
 
 </html>
-
-
-
-    
-    

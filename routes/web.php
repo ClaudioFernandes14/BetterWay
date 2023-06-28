@@ -63,8 +63,9 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     // Route::get('set-cookie', [App\Http\Controllers\HomeController::class, 'setCookie']);
     Route::get('get-cookie', [App\Http\Controllers\HomeController::class, 'getCookie']);
     Route::get('delete-cookie', [App\Http\Controllers\HomeController::class, 'deleteCookie']);
-    Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified');
+    Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified')->name('perfil-user');
     Route::get('/favoritos', [App\Http\Controllers\FavoritosController::class, 'mostraFavoritos'])->name('cliente.favoritos')->middleware('auth')->middleware('verified');
+    Route::get('/admin/users/lista', [App\Http\Controllers\AdminController::class, 'listaUsers'])->name('users_lista');
 // </Forma as rotas>
 
 
