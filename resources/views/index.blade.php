@@ -44,7 +44,7 @@
     </nav>
 
     <div class="icons">
-        <div class="fas fa-bars" id="menu-btn" ></div>
+        
         <div class="fas fa-search" id="search-btn"></div>
     </div>
 
@@ -74,6 +74,7 @@
        
        
         <li class="nav-link dropdown">
+            
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name}}
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -81,6 +82,11 @@
 
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
                 <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil</a>
+               <?php 
+                    if (Auth::user()->idCargo == 1) {
+                        echo '<a href="/admin/dashboard" class="links"><i class="fas fa-arrow-right"></i> Admin Zone</a>';
+                    }
+                ?> 
                 <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
                                 
                     onclick="event.preventDefault();
@@ -98,9 +104,9 @@
         @endguest
     </div>
 
-    <form action="" class="search-form" >
-        <input type="search" id="search-box" placeholder="pesquisar">
-        <label for="search-box" class="fas fa-search"></label>
+    <form action="{{ route('search') }}" class="search-form" method="GET">
+        <input type="search" id="search-box" name="searchTerm" placeholder="pesquisar">
+        <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
     </form>
 
 </header>
@@ -143,7 +149,7 @@
         </div>
 
         <div class="box">
-            <img src="resources/images/papagaio.png" alt="">
+            <img src="resources/images/brinquedo.png" alt="">
             <h3>Brinquedos</h3>
         </div>
 
@@ -211,6 +217,32 @@
 
 
 <!-- footer section ends -->
+
+<script>
+  const searchBox = document.getElementById('search-box');
+  const productList = document.getElementById('product-list');
+  const searchButton = document.getElementById('search-button');
+
+  const searchForm = document.querySelector('search-form');
+
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+
+  const searchButton = document.getElementById('search-button');
+
+    searchButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const searchValue = searchBox.value.toLowerCase();
+
+    // Envia uma solicitação AJAX para buscar os resultados da pesquisa
+    fetch(`{{ route('search') }}?searchTerm=${searchValue}`)
+        .then(response => response.text())
+        .then(data => {
+        productList.innerHTML = data;
+        });
+});
+</script>
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 

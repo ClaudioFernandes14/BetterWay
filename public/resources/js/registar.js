@@ -158,4 +158,31 @@ function showConfpw(){
 }
 
 
+// Obtém o link que abre o modal
+var link = document.getElementById("termos-link");
+
+// Obtém o modal
+var modal = document.getElementById("termos-modal");
+
+// Obtém o botão de fechar o modal
+var span = document.getElementsByClassName("close")[0];
+
+// Quando o usuário clicar no link, abre o modal
+link.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Quando o usuário clicar no botão de fechar, fecha o modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Quando o usuário clicar fora do modal, fecha o modal
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
     

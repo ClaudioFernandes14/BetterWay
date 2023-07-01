@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -12,34 +11,26 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
+    <!-- Icons Css -->
+    <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
+
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   
-    <!-- Icons Css -->
-    <link href="/resources/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="/resources/css/verPerfil.css">
-   
+    <link rel="stylesheet" href="../resources/css/style-home.css">
 
-    <link rel="icon" type="image/png" sizes="100x100" href="/resources/images/icon_logo-removebg-preview.png">
-
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+    <link rel="icon" type="image/png" sizes="100x100" href="resources/images/icon_logo-removebg-preview.png">
 
 </head>
 <body>
-   
+    
+    
 <!-- header section starts  -->
 
 <header class="header">
 
-    <a href="/" class="logo"><img src="/resources/images/logo.png" height="90px"></a>
+    <a href="/" class="logo"><img src="../resources/images/logo.png" height="90px"></a>
 
     <nav class="navbar">
         <a href="/favoritos">
@@ -48,8 +39,8 @@
               </svg> 
               ‎ Favoritos
         </a>
-        <a href="7index">Categorias</a>
-        <a href="/produtos/criar">Adicionar Produto</a>
+        <a href="/index">Categorias</a>
+        <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
     <div class="icons">
@@ -65,7 +56,7 @@
             <li class="title login">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
-            @endif
+        @endif
         </div>
 
         <div class="teste-register">
@@ -77,26 +68,32 @@
         </div>
         
         @else
-        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="/resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
+        
+        <div class="avatar" id="cart-btn"><a href="/perfil"><img id="imagemUt" src="../resources/images/user-img/{{Auth::user()->avatar}}"></a></div>
+       
+       
         <li class="nav-link dropdown">
-
             <a id="navbarDropdown" class="nav-link dropdown-toggle" onclick="myFunction()" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name}}
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </a>
 
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
-               
-                <a href="/perfil" class="links"><i class="fas fa-arrow-right"></i> Perfil</a>
+                <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil</a>
+                <?php 
+                    if ($user->idCargo == 1) {
+                        echo '<a href="/admin/dashboard" class="links"><i class="fas fa-arrow-right"></i> Admin Zone</a>';
+                    }
+                ?>
                 <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
                                 
                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 <i class="ri-shut-down-line align-middle me-1 text-danger" style="color: red"></i>
                     {{ __('Logout') }}
-                 
+             
                 </a>
-            
+        
                 <form  id="logout-form"  action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -109,79 +106,45 @@
         <input type="search" id="search-box" name="searchTerm" placeholder="pesquisar">
         <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
     </form>
+
 </header>
 
 <!-- header section ends -->
 
-<!-- features section starts  -->
-<h1 class="heading"><span><h3>Perfil</h3></span></h1>
-<section id="mostrarProdutos" class="criarProdutos">
-    <form action="verProdutos">
+<!-- home section starts  -->
 
-        <div class="form-group">
-            
-            <div class="avatarVer" id="cart-btn">
-                <h1>Utilizador</h1> 
-                <img id="imagemUt" src="/resources/images/user-img/{{ $user->avatar }}">
-                <h1 class="nameVendor">{{ $user->name }} <i class="fa fa-envelope" aria-hidden="true" data-email="{{ $user->email }}" data-phone="{{ is_numeric($user->telemovel) ? (strval($user->telemovel) >= 9 ? $user->telemovel : 'Sem telemovel definido') : '' }}"></i></h1>
-            </div>
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="detalhes-produto">
-                <h1>Morada</h1>
-                <h3>{{ str_repeat('*', strlen($user->morada)) }}</h3>
-                
-            </div>
-
-            
-            <div class="detalhes-produto">
-                <h1>Codigo Postal</h1>
-                <h3>{{ str_repeat('*', strlen($user->cod_postal)) }}</h3>
-            </div>
-
-            <div class="detalhes-produto">
-                <h1>NIF</h1>
-                <?php if ($user->nif == 1): ?>
-                    <h3>*********</h3>
-                <?php else: ?>
-                    <h3><?php echo $user->nif; ?></h3>
-                    <h3>{{ str_repeat('*', strlen($user->nif)) }}</h3>
-                <?php endif; ?>
-            </div>
-            
-        </div>
-    </form>
+<section class="home" id="home">
+    <div class="content">
+        <h3>Aqui estao todos os Produtos que <span>Procura</span>.</h3>
+    </div>
 </section>
 
+<!-- home section ends -->
 
-<h1 class="heading"><span>Produtos do Utilizador</span></h1>
 
-<form action="meusProdutos">
-    <section class="features" id="features">
+<!-- products section starts  -->
+<section class="features" id="features">
+    <h1 class="heading"><span>Produtos</span></h1>
+
+    @if(!empty($produtos))
         <div class="box-container">
             @foreach ($produtos as $produto)
-                <div class="box">
-                    @if ($imagens->where('id_produto', $produto->id)->count() > 0)
-                        <div class="imagem">
-                            <img src="../resources/images/produtos/{{ $imagens->where('id_produto', $produto->id)->first()->url }}" alt="">
-                        </div>
-                    @endif
-                    <h3>{{ $produto->nome }}</h3>
-                    <div class="price">{{ $produto->preco }} €</div>
-                    <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
-                </div>
+                @if (stristr($produto->nome, $searchTerm))
+                    <div class="box">
+                        <img src="../resources/images/produtos/{{ $produto->imagens->first()->url }}" alt="">
+                        <h3>{{ $produto->nome }}</h3>
+                        <div class="price">{{ $produto->preco }} €</div>
+                        <p class="user">{{ $produto->user->name }}</p>
+                        <a href="/produtos/ver/{{$produto->id}}" class="btn">Ver Produto</a><br>    
+                    </div>
+                @endif
             @endforeach
         </div>
-    </section>
-</form>
+    @endif
+   
+</section>
 
-
-<!-- features section ends -->
-
+<!-- products section ends -->
 
 <!-- footer section starts  -->
 
@@ -207,14 +170,17 @@
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
-            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produto </a>
+            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
         </div>
 
     </div>
+    
 
 </section>
 
+
+<!-- footer section ends -->
 <script>
     const searchBox = document.getElementById('search-box');
     const productList = document.getElementById('product-list');
@@ -240,21 +206,13 @@
           });
   });
   </script>
-
-<!-- footer section ends -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="/resources/js/script.js"></script>
-<script src="/resources/js/perfil.js"></script>
-<script src="/resources/js/produtos/mostrarProdutos.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-
+<script src="../resources/js/script.js"></script>
 
 </body>
 </html>

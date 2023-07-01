@@ -24,26 +24,10 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
 // <Forma as rotas>
  
     
-    Route::get('/welcome', function () {
-        return view('welcome');
-    });
-    
-    Route::post('/welcome', function () {
-        return view('welcome');
-    });
-    
-    Route::get('/mensagens', function () {
-        return view('mensagens');
-    })->middleware('verified');
-    
     Route::get('/favoritos', function () {
         return view('favoritos');
     })->middleware('verified');
     
-    
-    Route::get('/anunciar', function () {
-        return view('anunciar');
-    });
     
     Route::get('/2FA', function () {
         return view('Autenticacao2Fatores');
@@ -66,6 +50,8 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified')->name('perfil-user');
     Route::get('/favoritos', [App\Http\Controllers\FavoritosController::class, 'mostraFavoritos'])->name('cliente.favoritos')->middleware('auth')->middleware('verified');
     Route::get('/admin/users/lista', [App\Http\Controllers\AdminController::class, 'listaUsers'])->name('users_lista');
+    Route::get('/admin/user/{id}', [App\Http\Controllers\AdminController::class, 'paginaEditar']);
+    Route::get('/search', [App\Http\Controllers\ProdutosController::class, 'search'])->name('search');
 // </Forma as rotas>
 
 
@@ -78,12 +64,14 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::put('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->name('produtos.update');
     Route::post('/favoritos/add/{id}', [App\Http\Controllers\ProdutosController::class, 'adicionarAosFavoritos'])->middleware('auth')->name('favoritos.adicionar');
     Route::post('/favoritos/remover/{produto}', [App\Http\Controllers\FavoritosController::class, 'removerFavorito'])->middleware('auth');
+    Route::put('/admin/user/{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('users.update');
 // </Publica as rotas>
 
 
 // <Elimina dados>
     Route::delete('/user/{id}', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->middleware('auth')->name('users.delete');
     Route::delete('/produtos/{id}', [App\Http\Controllers\ProdutosController::class, 'destroy'])->middleware('auth')->name('produtos.destroy');
+    Route::delete('/admin/users/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('users.destroy');
     // Route::delete('/perfil/{user}/delete-account', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->name('delete-account');
 // </Elimina dados>
 

@@ -121,7 +121,15 @@
                 <input type="submit" value="Registar" >
             </div>
 
-            <div class="termos-link">Ao se registar vai aceitar os nossos <a href="">Termos e Condições!</a></div>
+            <div class="termos-link">Ao se registar vai aceitar os nossos <a href="#" id="termos-link">Termos e Condições!</a></div>
+            {{-- <div id="termos-modal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Termos e Condições</h2>
+                <p>Aqui estão os termos e condições da BetterWay:</p>
+                <p>Insira aqui o texto dos termos e condições.</p>
+              </div>
+            </div> --}}
         </form>
         
       </div>

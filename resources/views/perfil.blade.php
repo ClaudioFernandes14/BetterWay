@@ -14,6 +14,7 @@
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
    
     <!-- Icons Css -->
     <link href="../resources/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -46,7 +47,6 @@
     </nav>
 
     <div class="icons">
-        <div class="fas fa-bars" id="menu-btn" ></div>
         <div class="fas fa-search" id="search-btn"></div>
     </div>
 
@@ -99,9 +99,9 @@
         @endguest
     </div>
 
-    <form action="" class="search-form" autocomplete="off">
-        <input type="search" id="search-box" placeholder="pesquisar">
-        <label for="search-box" class="fas fa-search"></label>
+    <form action="{{ route('search') }}" class="search-form" method="GET">
+        <input type="search" id="search-box" name="searchTerm" placeholder="pesquisar">
+        <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
     </form>
 </header>
 
@@ -324,19 +324,6 @@
         </section>
     </form>
 
-   
-
-    {{-- <div class="stars">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= $produto->avaliacao)
-                            <i class="fas fa-star"></i>
-                        @elseif ($i == ceil($produto->avaliacao))
-                            <i class="fas fa-star-half-alt"></i>
-                        @else
-                            <i class="far fa-star"></i>
-                        @endif
-                    @endfor
-                </div> --}}
 
 <!-- products section ends -->
 
@@ -374,7 +361,31 @@
 </section>
 
 <!-- footer section ends -->
-
+<script>
+    const searchBox = document.getElementById('search-box');
+    const productList = document.getElementById('product-list');
+    const searchButton = document.getElementById('search-button');
+  
+    const searchForm = document.querySelector('search-form');
+  
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  
+    const searchButton = document.getElementById('search-button');
+  
+      searchButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const searchValue = searchBox.value.toLowerCase();
+  
+      // Envia uma solicitação AJAX para buscar os resultados da pesquisa
+      fetch(`{{ route('search') }}?searchTerm=${searchValue}`)
+          .then(response => response.text())
+          .then(data => {
+          productList.innerHTML = data;
+          });
+  });
+  </script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->

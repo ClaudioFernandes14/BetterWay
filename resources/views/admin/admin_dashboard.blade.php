@@ -46,38 +46,11 @@
                         </div>
 
                         <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Procurar">
-                                <span class="ri-search-line"></span>
-                            </div>
-                        </form>
+                       
 
                     </div>
 
                     <div class="d-flex">
-
-                        <div class="dropdown d-inline-block d-lg-none ms-2">
-                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ri-search-line"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                                aria-labelledby="page-header-search-dropdown">
-                    
-                                <form class="p-3">
-                                    <div class="mb-3 m-0">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search ...">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="submit"><i class="ri-search-line"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
                         <div class="dropdown d-none d-sm-inline-block" >
                             
                             <button type="button" class="btn header-item waves-effect "
@@ -93,14 +66,6 @@
 
                             </div> --}}
                         </div>
-
-                       
-
-                        {{-- <div class="dropdown d-none d-lg-inline-block ms-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                                <i class="ri-fullscreen-line"></i>
-                            </button>
-                        </div> --}}
 
                        
                         <div class="dropdown d-inline-block user-dropdown">
@@ -174,7 +139,6 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="/admin/users/lista">Lista</a></li>
-                                    <li><a href="email-read.html">Editar</a></li>
                                 </ul>
                             </li>
                 
@@ -186,8 +150,8 @@
                                     <span>Categorias</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read Email</a></li>
+                                    <li><a href="email-inbox.html">Lista</a></li>
+                                    <li><a href="email-read.html">Adicionar</a></li>
                                 </ul>
                             </li>
 
@@ -250,21 +214,14 @@
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
                                                 <p class="text-truncate font-size-14 mb-2">Novos Produtos</p>
+                                                
                                                 <h4 class="mb-2">{{ $novosProdutosCount }}</h4>
-                                                <p class="text-muted mb-0">
-                                                    <span class="text-danger fw-bold font-size-12 me-2">
-                                                        <i class="ri-arrow-right-down-line me-1 align-middle"></i>
-                                                        {{ number_format($novosProdutosPercentChange, 2) }}%
-                                                    </span>
-                                                    em relação ao período anterior
-                                                </p>
+                                               
                                             </div>
                                             <div class="avatar-sm">
-                                                <span class="avatar-title bg-light text-success rounded-3">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
-                                                    <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
                                                   </svg>
-                                                </span>
                                             </div>
                                         </div>                                              
                                     </div><!-- end cardbody -->
@@ -277,13 +234,7 @@
                                             <div class="flex-grow-1">
                                                 <p class="text-truncate font-size-14 mb-2">Novos Utilizadores</p>
                                                 <h4 class="mb-2">{{ $novosUsuariosCount }}</h4>
-                                                <p class="text-muted mb-0">
-                                                    <span class="text-success fw-bold font-size-12 me-2">
-                                                        <i class="ri-arrow-right-up-line me-1 align-middle"></i>
-                                                        {{ number_format($novosUsuariosPercentChange, 2) }}%
-                                                    </span>
-                                                    em relação ao período anterior
-                                                </p>
+                                                
                                             </div>
                                             <div class="avatar-sm">
                                                 <span class="avatar-title bg-light text-primary rounded-3">
@@ -376,30 +327,23 @@
         <script>
             // obtenha o elemento canvas do gráfico
             var ctx = document.getElementById('myChart').getContext('2d');
-
+        
             // defina os nomes dos meses em português
             var meses = [
                 "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
                 "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
             ];
-
-            // crie um novo gráfico com os dados do array $chartData
+        
+            // crie um novo gráfico com os dados do array $valoresUsuarios
             var myChart = new Chart(ctx, {
                 type: 'bar', // defina o tipo de gráfico (por exemplo, barras, linhas, etc.)
                 data: {
                     labels: meses, // defina as etiquetas do eixo X com os nomes dos meses em português
                     datasets: [{
-                        label: 'Utilizadores', // defina o rótulo do conjunto de dados
-                        data: [
-                            @foreach($chartData as $data)
-                                {{ $data['y'] }},
-                            @endforeach
-                            @for($i = count($chartData); $i < 12; $i++)
-                                0,
-                            @endfor
-                        ], // defina os valores do conjunto de dados com os valores do array $chartData e adicione zeros para os meses sem dados
-                        backgroundColor: '#007FFF', // defina a cor de fundo do conjunto de dados
-                        borderColor: 'rgba(255, 99, 132, 1)', // defina a cor da borda do conjunto de dados
+                        label: 'Contas Criadas', // defina o rótulo do conjunto de dados
+                        data: {!! json_encode($valoresUsuarios) !!}, // defina os valores do conjunto de dados com os valores do array $valoresUsuarios
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // defina a cor de fundo do conjunto de dados
+                        borderColor: 'rgba(54, 162, 235, 1)', // defina a cor da borda do conjunto de dados
                         borderWidth: 1 // defina a largura da borda do conjunto de dados
                     }]
                 },
@@ -408,12 +352,14 @@
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true, // defina o início do eixo Y em zero
-                                max: 100, // defina o valor máximo do eixo Y como 100
-                                stepSize: 10 // defina o intervalo entre cada marcação do eixo Y como 10
+                                stepSize: 1 // defina o intervalo entre cada marcação do eixo Y como 1
                             }
                         }]
                     },
-                    locale: "pt-BR" // defina a formatação de data e hora em português
+                    locale: "pt-BR", // defina a formatação de data e hora em português
+                    legend: {
+                        display: false // oculte a legenda do gráfico
+                    }
                 }
             });
         </script>

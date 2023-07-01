@@ -241,54 +241,87 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
-                        <div class="page-content">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h4 class="card-title mb-4">Utilizadores</h4>
-                                                <div class="table-responsive">
-                                                    <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
-                                                        <thead class="table-light">
-                                                            <tr>
-                                                                <th>Nome</th>
-                                                                <th>Email</th>
-                                                                <th>Morada</th>
-                                                                <th>Codigo Postal</th>
-                                                                <th>Telemovel</th>
-                                                                <th>Cargo</th>
-                                                            </tr>
-                                                        </thead><!-- end thead -->
-                                                        <tbody>
-                                                            @foreach ($users as $user)
-                                                              <tr>
-                                                                <td class="editable" contenteditable="false">{{ $user->name }}</td>
-                                                                <td class="editable" contenteditable="false">{{ $user->email }}</td>
-                                                                <td class="editable" contenteditable="false">{{ $user->morada }}</td>
-                                                                <td class="editable" contenteditable="false">{{ $user->cod_postal }}</td>
-                                                                <td class="editable" contenteditable="false">{{ $user->telemovel }}</td>
-                                                                <td class="editable" contenteditable="false">{{ $user->idCargo }}</td>
+                        <form action="{{ route('users.update', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="page-content">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="card-title mb-4">Editar a conta do <Span>{{$user->name}}</Span></h4>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                                                            <thead class="table-light">
+                                                                <tr>
+                                                                    <th>Nome</th>
+                                                                    <th>Email</th>
+                                                                    <th>Morada</th>
+                                                                    <th>Codigo Postal</th>
+                                                                    <th>Telemovel</th>
+                                                                    <th>Cargo</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-primary btn-edit" data-id="{{ $user->id }}">Editar</button>
-                                                                  <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este usuário?')">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                                  </form>
+                                                                    <div class="card-body">
+                                                                    <input class="form-control" type="text" name="name" size="30" placeholder="{{ $user->name }}" >
+                                                                    </div>
                                                                 </td>
-                                                              </tr>
-                                                            @endforeach
-                                                        </tbody>>
-                                                    </table> <!-- end table -->
+                                                                <td>
+                                                                    <div class="card-body">
+                                                                    <input class="form-control" type="email" name="email" size="30" placeholder="{{ $user->email }}"  >
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="card-body">
+                                                                    <input class="form-control" type="text" name="morada" size="30" placeholder="{{ $user->morada }}" >
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="card-body">
+                                                                    <input class="form-control" type="text" name="cod_postal" size="20" placeholder="{{ $user->cod_postal }}" >
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="card-body">
+                                                                        @if ($user->telemovel == 1)
+                                                                        <input class="card-text" type="text" name="telemovel" size="20" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
+                                                                        @else
+                                                                            <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
+                                                                        @endif
+                                                                    
+                                                                        @error('telemovel')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>O número de telefone deve ter exatamente 9 dígitos.</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="card-body">
+                                                                        <select class="form-control" name="idCargo">
+                                                                            <option value="1" {{ $user->idCargo == 1 ? 'selected' : '' }}>Admin</option>
+                                                                            <option value="2" {{ $user->idCargo == 2 ? 'selected' : '' }}>Cliente</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <button type="submit" class="btn btn-success btn-save" data-id="{{ $user->id }}" >Salvar</button>
+                                                                </td>
+                                                                </tr>
+                                                            </tbody>>
+                                                        </table> <!-- end table -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <!-- end row -->
                     </div>
                     
@@ -321,21 +354,6 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        <script>
-            // Seleciona todos os botões "Editar"
-            const editButtons = document.querySelectorAll('.btn-edit');
-        
-            // Adiciona um evento de clique a cada botão "Editar"
-            editButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Obtém o ID do usuário a partir do atributo "data-id" do botão
-                    const userId = button.dataset.id;
-        
-                    // Redireciona o usuário para a página desejada com o ID do usuário
-                    window.location.replace(`/admin/user/${userId}`);
-                });
-            });
-        </script>
         <script src="/resources/libs/jquery/jquery.min.js"></script>
         <script src="/resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/resources/libs/metismenu/metisMenu.min.js"></script>

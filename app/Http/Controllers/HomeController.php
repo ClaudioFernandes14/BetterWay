@@ -46,20 +46,26 @@ class HomeController extends Controller
         if (!request()->hasCookie('cookie_consent')) {
             return response(view('index'))->withCookie(cookie('cookie_consent', Str::uuid(), 365));
         }
-
+        
         $produtos = ProdutosModel::orderBy('created_at', 'desc')->take(9)->get();
-
         
         foreach ($produtos as $produto) {
             $imagens = ImagensModel::where('id_produto', $produto->id)->get();
             $produto->imagens = $imagens;
         }
+        
         return view('index', [
             'user' => $user,
             'produtos' => $produtos,
             'imagens' => $imagens
-        ]);
+        ]);;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 
     public function getCookie() {
        return request()->cookie('cookie_consent');
@@ -231,9 +237,5 @@ class HomeController extends Controller
     }
 
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
     
 }

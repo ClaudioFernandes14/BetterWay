@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProdutosModel; 
 use App\Models\ImagensModel;
 use App\Models\CategoriaModel;
+use App\Models\FavoritosModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Auth;
@@ -78,34 +79,41 @@ class ProdutosController extends Controller
         }
     }
 
-
     public function destroy(Request $request, $id)
     {
         $produto = ProdutosModel::find($id);
-
+    
         $user = $produto->user;
         // Verifica se a senha inserida pelo usuário é a mesma que a senha armazenada no banco de dados
-        if (!empty($request->password) && !Hash::check($request->password, $user->password))  {
+        if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Senha incorreta']);
-           
-        } else {
-             // Busca o produto pelo id
-             $produto = ProdutosModel::findOrFail($id);
     
-             // Busca as imagens associadas ao produto pelo id
-              $imagens = ImagensModel::where('id_produto', $id)->get();
-  
-              // Exclui as imagens do produto do servidor e do banco de dados
-              foreach ($imagens as $imagem) {
-                  Storage::delete($imagem->url);
-                  $imagem->delete();
-              }
-      
-              // Exclui o produto do banco de dados
-              $produto->delete();
-      
-              // Redireciona o usuário para a página de listagem de produtos
-              return redirect()->route('index')->with('success', 'Produto excluído com sucesso.');
+        } else {
+            // Busca o produto pelo id
+            $produto = ProdutosModel::findOrFail($id);
+    
+            // Busca as imagens associadas ao produto pelo id
+            $imagens = ImagensModel::where('id_produto', $id)->get();
+    
+            // Busca os favoritos associados ao produto pelo id
+            $favoritos = FavoritosModel::where('idProdutos', $id)->get();
+    
+            // Exclui os favoritos associados ao produto do banco de dados
+            foreach ($favoritos as $favorito) {
+                $favorito->delete();
+            }
+    
+            // Exclui o produto do banco de dados
+            $produto->delete();
+    
+            // Exclui as imagens do produto do servidor e do banco de dados
+            foreach ($imagens as $imagem) {
+                Storage::delete($imagem->url);
+                $imagem->delete();
+            }
+    
+            // Redireciona o usuário para a página de listagem de produtos
+            return redirect()->route('index')->with('success', 'Produto excluído com sucesso.');
         }
     }
 
@@ -137,6 +145,21 @@ class ProdutosController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        // Obter o utilizador autenticado
+        $user = Auth::user();
+    
+        $searchTerm = $request->input('searchTerm');
+        $produtos = ProdutosModel::where('nome', 'LIKE', "%$searchTerm%")->get();
+        foreach ($produtos as $produto) {
+            $imagens = ImagensModel::where('id_produto', $produto->id)->get();
+            $produto->imagens = $imagens;
+        }
+        return view('search', ['produtos' => $produtos, 'user'=> $user, 'searchTerm' => $searchTerm]);
+    }
+
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'idUser');

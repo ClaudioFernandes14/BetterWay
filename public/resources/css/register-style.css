@@ -327,7 +327,18 @@
       transition: all 0.4s ease;
       cursor: pointer;
     }
-    
+
+
+    #termos-link {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .termos-link {
+      font-size: 14px;
+      margin-top: 10px;
+    }
 
 
     @media (max-width:991px){

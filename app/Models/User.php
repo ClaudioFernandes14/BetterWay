@@ -60,8 +60,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'cod_postal',
         'telemovel',
         'nif',
-        'date_of_birth'
+        'date_of_birth',
+        'idCargo'
     ];
+
+    // no modelo User
+    public function canEditUsers()
+    {
+        return $this->idCargo === 1; // retorna verdadeiro se o usuário tiver cargo de admin
+    }
 
     /**
      * The attributes that should be hidden for serialization.

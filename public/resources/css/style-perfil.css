@@ -285,6 +285,15 @@ section{
     color:var(--blue);
 }
 
+button[type="submit"] {
+    background-color: var(--blue);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .header .shopping-cart{
     position: absolute;
     top:110%; right:-110%;

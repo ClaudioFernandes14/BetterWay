@@ -44,7 +44,7 @@
     </nav>
 
     <div class="icons">
-        <div class="fas fa-bars" id="menu-btn" ></div>
+        
         <div class="fas fa-search" id="search-btn"></div>
     </div>
 
@@ -98,9 +98,9 @@
         @endguest
     </div>
 
-    <form action="" class="search-form" >
-        <input type="search" id="search-box" placeholder="pesquisar">
-        <label for="search-box" class="fas fa-search"></label>
+    <form action="{{ route('search') }}" class="search-form" method="GET">
+        <input type="search" id="search-box" name="searchTerm" placeholder="pesquisar">
+        <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
     </form>
 </header>
 
@@ -173,6 +173,31 @@
 
 
 <!-- footer section ends -->
+<script>
+    const searchBox = document.getElementById('search-box');
+    const productList = document.getElementById('product-list');
+    const searchButton = document.getElementById('search-button');
+  
+    const searchForm = document.querySelector('search-form');
+  
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  
+    const searchButton = document.getElementById('search-button');
+  
+      searchButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const searchValue = searchBox.value.toLowerCase();
+  
+      // Envia uma solicitação AJAX para buscar os resultados da pesquisa
+      fetch(`{{ route('search') }}?searchTerm=${searchValue}`)
+          .then(response => response.text())
+          .then(data => {
+          productList.innerHTML = data;
+          });
+  });
+  </script>
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
