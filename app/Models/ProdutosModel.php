@@ -17,6 +17,10 @@ class ProdutosModel extends Model
         return $this->hasOne(CategoriaModel::class);
     }
 
+    public function categoria()
+    {
+        return $this->belongsTo(CategoriaModel::class, 'id_categoria');
+    }
 
     public function imagens()
     {
@@ -40,6 +44,7 @@ class ProdutosModel extends Model
 
     protected $fillable = [
         'nome',
+        'preco',
         'id_categoria',
         'idUser',
         'morada',

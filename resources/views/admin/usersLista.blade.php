@@ -190,8 +190,8 @@
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-dark-sidebar.html">Lista</a></li>
-                                            <li><a href="layouts-compact-sidebar.html">Editar</a></li>
+                                            <li><a href="/admin/produtos/lista">Lista</a></li>
+                                            
                                         </ul>
                                     </li>
                                    
@@ -283,7 +283,7 @@
                                                                 <td>
                                                                     @if ($user->id != 1) <!-- verifica se o id do usuário é diferente de 1 -->
                                                                     <button type="button" class="btn btn-primary btn-edit" data-id="{{ $user->id }}">Editar</button><br><br>
-                                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este usuário?')">
+                                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este utilizador?')">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit" class="btn btn-danger">Eliminar</button>

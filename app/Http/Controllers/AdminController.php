@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\CargoModel;
 use App\Models\ProdutosModel;
 use App\Models\CategoriaModel;
+use App\Models\ImagensModel;
+use App\Models\FavoritosModel;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -114,6 +116,34 @@ class AdminController extends Controller
         abort(403, 'Acesso negado.');
     }
 
+
+    public function listaProdutos(Request $request)
+    {
+        $user = Auth::user();
+        if ($user && $user->idCargo === 1) {
+            $sort = $request->input('sort', 'opcao_asc');
+            if ($sort == 'opcao_asc') {
+                $order = 'asc';
+                $orderBy = 'nome';
+            } elseif ($sort == 'opcao_desc') {
+                $order = 'desc';
+                $orderBy = 'nome';
+            } elseif ($sort == 'idUser_asc') {
+                $order = 'asc';
+                $orderBy = 'idUser';
+            } elseif ($sort == 'idUser_desc') {
+                $order = 'desc';
+                $orderBy = 'idUser';
+            } else {
+                $order = 'asc';
+                $orderBy = 'nome';
+            }
+            $produtos = ProdutosModel::with(['user', 'categoria'])->orderBy($orderBy, $order)->paginate(3);
+            return view('admin.produtosLista', ['user' => $user, 'produtos' => $produtos, 'sort' => $sort]);
+        }
+        abort(403, 'Acesso negado.');
+    }
+
     public function adicionarCategorias(Request $request)
     {
         $user = Auth::user();
@@ -162,6 +192,33 @@ class AdminController extends Controller
         }
     }
 
+
+    public function deleteProduto($id)
+    {
+        $produto = ProdutosModel::find($id);
+    
+        if ($produto) {
+            $imagens = ImagensModel::where('id_produto', $id)->get();
+            $favoritos = FavoritosModel::where('idProdutos', $id)->get();
+            
+            // Exclui os registros da tabela 'favoritos' relacionados ao produto
+            foreach ($favoritos as $favorito) {
+                $favorito->delete();
+            }
+    
+            // Exclui os registros da tabela 'imagens' correspondentes ao produto
+            foreach ($imagens as $imagem) {
+                $imagem->delete();
+            }
+    
+            // Exclui o registro do produto
+            $produto->delete();
+            return redirect()->route('produtos_lista')->with('success', 'Produto removido com sucesso.');
+        } else {
+            return redirect()->route('produtos_lista')->with('error', 'Produto não encontrado.');
+        }
+    }
+
     // Mostra a pagina do editar user para o admin
     public function paginaEditar(Request $request, $id)
     {
@@ -180,6 +237,12 @@ class AdminController extends Controller
         return view('admin.editaCategorias', ['categoria' => $categoria]);
     }
 
+    public function paginaEditarProduto(Request $request, $id)
+    {
+        $produto = ProdutosModel::find($id);
+        $categorias = CategoriaModel::orderBy('categoria', 'asc')->pluck('categoria', 'categoria');
+        return view('admin.editaProdutos', ['produto' => $produto, 'categorias' => $categorias]);
+    }
 
     public function update(Request $request, $id)
     {
@@ -220,11 +283,51 @@ class AdminController extends Controller
             'categoria' => $request->categoria ?: $categoria->categoria,
         ]);
     
-        // Salva as alteracões feitas do utilizador
         $categoria->save();
         
         return redirect()->route('categorias_lista')->with('success', 'Categoria atualizada com sucesso.');
     }   
 
 
+    // Atualiza o Produto
+    public function updateProduto(Request $request, $id)
+    {
+        $produto = ProdutosModel::find($id);
+
+        $nome_categoria = $request->input('id_categoria');
+
+        // Busca a categoria correspondente ao nome da categoria selecionada
+        $categoria = CategoriaModel::where('categoria', $nome_categoria)->first();
+
+        // Obtém a categoria atualmente associada ao produto
+        $categoria_atual = $produto->categoria;
+
+        // Se o nome da categoria for especificado na requisição, obtém a categoria correspondente
+        if ($nome_categoria && $categoria) {
+            $categoria_atual = $categoria;
+        } else {
+            // Se o nome da categoria não for especificado, usa a categoria padrão com ID 1
+            $categoria_padrao = CategoriaModel::find(1);
+            $categoria_atual = $categoria_padrao ?? $categoria_atual;
+        }
+
+        $produto->update([
+            'nome' => $request->nome ?: $produto->nome,
+            'preco' => $request->preco ?: $produto->preco,
+            'id_categoria' => $categoria_atual->id ?: $produto->id_categoria,
+            'morada' => $request->morada ?: $produto->morada,
+            'descricao' => $request->descricao ?: $produto->descricao,
+        ]);
+
+        return redirect()->route('produtos_lista')->with('success', 'Produto atualizado com sucesso.');
+    }
+
+
+
+    
+
+
 }
+
+
+

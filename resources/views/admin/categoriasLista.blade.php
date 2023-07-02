@@ -194,8 +194,8 @@
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-dark-sidebar.html">Lista</a></li>
-                                            <li><a href="layouts-compact-sidebar.html">Editar</a></li>
+                                            <li><a href="/admin/produtos/lista">Lista</a></li>
+                                            
                                         </ul>
                                     </li>
                                    
@@ -226,7 +226,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utilizadores</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Categorias</a></li>
                                             <li class="breadcrumb-item active">Lista</li>
                                         </ol>
                                     </div>

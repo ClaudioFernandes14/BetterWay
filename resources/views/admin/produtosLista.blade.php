@@ -44,9 +44,6 @@
                         <div class="navbar-brand-box">
                           <a href="/" class="logo"><img src="/resources/images/logo.png" height="70px"></a>
                         </div>
-
-                     
-
                     </div>
 
                     <div class="d-flex">
@@ -142,7 +139,7 @@
                         </div>
                         <div class="mt-3">
                             <h4 class="font-size-16 mb-1">{{Auth::user()->name}}</h4>
-                            <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span>
+                            {{-- <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span> --}}
                         </div>
                     </div>
 
@@ -194,7 +191,7 @@
                                     <li>
                                         <ul class="sub-menu" aria-expanded="true">
                                             <li><a href="/admin/produtos/lista">Lista</a></li>
-                                           
+                                            
                                         </ul>
                                     </li>
                                    
@@ -221,12 +218,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Editar Utilizador</h4>
+                                    <h4 class="mb-sm-0">Lista de Produtos</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utilizadores</a></li>
-                                            <li class="breadcrumb-item active">Editar</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Produtos</a></li>
+                                            <li class="breadcrumb-item active">Lista</li>
                                         </ol>
                                     </div>
 
@@ -234,20 +231,18 @@
                             </div>
                         </div>
                         <!-- end page title -->
-                        <form action="{{ route('users.update', $user->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="page-content">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h4 class="card-title mb-4">Editar a conta do <Span>{{$user->name}}</Span></h4>
+
+                        <div class="page-content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-4">Produtos</h4>
                                                     @if (session('error'))
-                                                        <div class="alert alert-danger">
-                                                            {{ session('error') }}
-                                                        </div
+                                                            <div class="alert alert-danger">
+                                                                {{ session('error') }}
+                                                            </div
                                                     
                                                     @endif
 
@@ -256,77 +251,57 @@
                                                             {{ session('success') }}
                                                         </div>
                                                     @endif
-                                                    <div class="table-responsive">
-                                                        <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
-                                                            <thead class="table-light">
-                                                                <tr>
-                                                                    <th>Nome</th>
-                                                                    <th>Email</th>
-                                                                    <th>Morada</th>
-                                                                    <th>Codigo Postal</th>
-                                                                    <th>Telemovel</th>
-                                                                    <th>Cargo</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
+                                                    <form method="GET" action="{{ route('produtos_lista') }}">
+                                                        <label for="sort">Ordenar por:</label>
+                                                        <select id="sort" name="sort">
+                                                            <option value="opcao_asc"{{ ($sort == 'opcao_asc') ? ' selected' : '' }}>Nome (A-Z)</option>
+                                                            <option value="opcao_desc"{{ ($sort == 'opcao_desc') ? ' selected' : '' }}>Nome (Z-A)</option>
+                                                        </select>
+                                                        <button type="submit">Filtrar</button>
+                                                    </form>
+                                                <div class="table-responsive">
+                                                    <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>Utilizador</th>
+                                                                <th>Nome</th>
+                                                                <th>Preco</th>
+                                                                <th>Categoria</th>
+                                                                <th>Morada</th>
+                                                                <th>Descrição</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($produtos as $produto)
+                                                            <tr>
+                                                                <td class="editable" contenteditable="false">{{ $produto->user->name }}</td>
+                                                                <td class="editable" contenteditable="false">{{ $produto->nome }}</td>
+                                                                <td class="editable" contenteditable="false">{{ $produto->preco }}</td>
+                                                                <td class="editable" contenteditable="false">{{ $produto->categoria->categoria }}</td>
+                                                                <td class="editable" contenteditable="false">{{ $produto->morada }}</td>
+                                                                <td class="editable" contenteditable="false">{{ $produto->descricao }}</td>
                                                                 <td>
-                                                                    <div class="card-body">
-                                                                    <input class="form-control" type="text" name="name" size="700" placeholder="{{ $user->name }}" >
-                                                                    </div>
+                                                                    <button type="button" class="btn btn-primary btn-edit" data-id="{{ $produto->id }}">Editar</button><br><br>
+                                                                    <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este produto?')">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                    </form>
                                                                 </td>
-                                                                <td>
-                                                                    <div class="card-body">
-                                                                    <input class="form-control" type="email" name="email" size="700" placeholder="{{ $user->email }}"  >
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="card-body">
-                                                                    <input class="form-control" type="text" name="morada" size="700" placeholder="{{ $user->morada }}" >
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="card-body">
-                                                                    <input class="form-control" type="text" name="cod_postal" size="700" placeholder="{{ $user->cod_postal }}" >
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="card-body">
-                                                                        @if ($user->telemovel == 1)
-                                                                        <input class="form-control" type="text" name="telemovel" size="700" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
-                                                                        @else
-                                                                            <input class="form-control" type="text" name="telemovel" size="700" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
-                                                                        @endif
-                                                                    
-                                                                        @error('telemovel')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>O número de telefone deve ter exatamente 9 dígitos.</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="card-body">
-                                                                        <select class="form-control custom-select-lg" name="idCargo">
-                                                                            <option value="1" {{ $user->idCargo == 1 ? 'selected' : '' }}>Admin</option>
-                                                                            <option value="2" {{ $user->idCargo == 2 ? 'selected' : '' }}>Cliente</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <button type="submit" class="btn btn-success btn-save" data-id="{{ $user->id }}" >Salvar</button>
-                                                                </td>
-                                                                </tr>
-                                                            </tbody>>
-                                                        </table> <!-- end table -->
-                                                    </div>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table> 
                                                 </div>
+                                                <br>
+                                                {{ $produtos->links('vendor.pagination.custom') }}
+                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                         <!-- end row -->
                     </div>
                     
@@ -359,6 +334,21 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
+        <script>
+            // Seleciona todos os botões "Editar"
+            const editButtons = document.querySelectorAll('.btn-edit');
+        
+            // Adiciona um evento de clique a cada botão "Editar"
+            editButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Obtém o ID do usuário a partir do atributo "data-id" do botão
+                    const produtosId = button.dataset.id;
+        
+                    // Redireciona o usuário para a página desejada com o ID do usuário
+                    window.location.replace(`/admin/produtos/${produtosId}`);
+                });
+            });
+        </script>
         <script src="/resources/libs/jquery/jquery.min.js"></script>
         <script src="/resources/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/resources/libs/metismenu/metisMenu.min.js"></script>

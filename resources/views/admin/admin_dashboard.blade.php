@@ -164,8 +164,8 @@
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-dark-sidebar.html">Lista</a></li>
-                                            <li><a href="layouts-compact-sidebar.html">Editar</a></li>
+                                            <li><a href="/admin/produtos/lista">Lista</a></li>
+                                           
                                         </ul>
                                     </li>
                                    

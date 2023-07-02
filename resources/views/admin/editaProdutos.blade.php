@@ -221,11 +221,11 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Editar Utilizador</h4>
+                                    <h4 class="mb-sm-0">Editar Produto</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utilizadores</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Produtos</a></li>
                                             <li class="breadcrumb-item active">Editar</li>
                                         </ol>
                                     </div>
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                         <!-- end page title -->
-                        <form action="{{ route('users.update', $user->id) }}" method="POST">
+                        <form action="{{ route('produtosAdmin.update', $produto->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="page-content">
@@ -243,7 +243,7 @@
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h4 class="card-title mb-4">Editar a conta do <Span>{{$user->name}}</Span></h4>
+                                                    <h4 class="card-title mb-4">Editar o produto de <Span>{{$produto->user->name}}</Span></h4>
                                                     @if (session('error'))
                                                         <div class="alert alert-danger">
                                                             {{ session('error') }}
@@ -261,60 +261,41 @@
                                                             <thead class="table-light">
                                                                 <tr>
                                                                     <th>Nome</th>
-                                                                    <th>Email</th>
+                                                                    <th>Preco</th>
+                                                                    <th>Categoria</th>
                                                                     <th>Morada</th>
-                                                                    <th>Codigo Postal</th>
-                                                                    <th>Telemovel</th>
-                                                                    <th>Cargo</th>
+                                                                    <th>Descrição</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="name" size="700" placeholder="{{ $user->name }}" >
+                                                                        <input class="form-control" type="text" name="nome" size="700" placeholder="{{ $produto->nome }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="email" name="email" size="700" placeholder="{{ $user->email }}"  >
+                                                                        <input class="form-control" type="text" name="preco" size="200" value="{{ $produto->preco }}" pattern="[0-9]+" title="Por favor, insira apenas números.">
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="morada" size="700" placeholder="{{ $user->morada }}" >
+                                                                        {!! Form::select('id_categoria', [$produto->categoria->id => $produto->categoria->categoria] + $categorias->toArray(), null, ['class' => 'form-control custom-select-lg']) !!}
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="cod_postal" size="700" placeholder="{{ $user->cod_postal }}" >
+                                                                    <input class="form-control" type="text" name="morada" size="700" placeholder="{{ $produto->morada }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                        @if ($user->telemovel == 1)
-                                                                        <input class="form-control" type="text" name="telemovel" size="700" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
-                                                                        @else
-                                                                            <input class="form-control" type="text" name="telemovel" size="700" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
-                                                                        @endif
-                                                                    
-                                                                        @error('telemovel')
-                                                                            <span class="invalid-feedback" role="alert">
-                                                                                <strong>O número de telefone deve ter exatamente 9 dígitos.</strong>
-                                                                            </span>
-                                                                        @enderror
+                                                                    <input class="form-control" type="text" name="descricao" size="700" placeholder="{{ $produto->descricao }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="card-body">
-                                                                        <select class="form-control custom-select-lg" name="idCargo">
-                                                                            <option value="1" {{ $user->idCargo == 1 ? 'selected' : '' }}>Admin</option>
-                                                                            <option value="2" {{ $user->idCargo == 2 ? 'selected' : '' }}>Cliente</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <button type="submit" class="btn btn-success btn-save" data-id="{{ $user->id }}" >Salvar</button>
+                                                                    <button type="submit" class="btn btn-success btn-save" data-id="{{ $produto->id }}" >Salvar</button>
                                                                 </td>
                                                                 </tr>
                                                             </tbody>>
