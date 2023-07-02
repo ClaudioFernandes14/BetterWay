@@ -51,6 +51,9 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('/favoritos', [App\Http\Controllers\FavoritosController::class, 'mostraFavoritos'])->name('cliente.favoritos')->middleware('auth')->middleware('verified');
     Route::get('/admin/users/lista', [App\Http\Controllers\AdminController::class, 'listaUsers'])->name('users_lista');
     Route::get('/admin/user/{id}', [App\Http\Controllers\AdminController::class, 'paginaEditar']);
+    Route::get('/admin/categorias/lista', [App\Http\Controllers\AdminController::class, 'listaCategorias'])->name('categorias_lista');
+    Route::get('/admin/categorias/adicionar', [App\Http\Controllers\AdminController::class, 'adicionarCategorias'])->name('categorias_adicionar');
+    Route::get('/admin/categorias/{id}', [App\Http\Controllers\AdminController::class, 'paginaEditarCategoria']);
     Route::get('/search', [App\Http\Controllers\ProdutosController::class, 'search'])->name('search');
 // </Forma as rotas>
 
@@ -65,6 +68,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::post('/favoritos/add/{id}', [App\Http\Controllers\ProdutosController::class, 'adicionarAosFavoritos'])->middleware('auth')->name('favoritos.adicionar');
     Route::post('/favoritos/remover/{produto}', [App\Http\Controllers\FavoritosController::class, 'removerFavorito'])->middleware('auth');
     Route::put('/admin/user/{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('users.update');
+    Route::put('/admin/categorias/{id}', [App\Http\Controllers\AdminController::class, 'updateCategoria'])->name('categorias.update');
 // </Publica as rotas>
 
 
@@ -72,6 +76,7 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::delete('/user/{id}', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->middleware('auth')->name('users.delete');
     Route::delete('/produtos/{id}', [App\Http\Controllers\ProdutosController::class, 'destroy'])->middleware('auth')->name('produtos.destroy');
     Route::delete('/admin/users/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('users.destroy');
+    Route::delete('/admin/categorias/{id}', [App\Http\Controllers\AdminController::class, 'deleteCategoria'])->name('categorias.destroy');
     // Route::delete('/perfil/{user}/delete-account', [App\Http\Controllers\HomeController::class, 'deleteProfile'])->name('delete-account');
 // </Elimina dados>
 

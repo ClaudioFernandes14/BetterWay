@@ -14,6 +14,8 @@ return [
     */
 
     'previous' => '&laquo; Anterior',
-    'next' => 'Proximo &raquo;',
+    'next' => 'Próximo &raquo;',
+    'showing' => 'Exibindo resultados de :first a :last de um total de :total resultados.',
+    'pagination' => 'Paginação',
 
 ];

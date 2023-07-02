@@ -45,13 +45,7 @@
                           <a href="/" class="logo"><img src="/resources/images/logo.png" height="70px"></a>
                         </div>
 
-                        <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Procurar">
-                                <span class="ri-search-line"></span>
-                            </div>
-                        </form>
+                     
 
                     </div>
 
@@ -185,15 +179,15 @@
                                     <span>Categorias</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
+                                    <li><a href="/admin/categorias/lista">Lista</a></li>
                                     <li><a href="email-read.html">Read Email</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                        <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
                                       </svg>
                                     <span>Produtos</span>
                                 </a>
@@ -251,6 +245,18 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title mb-4">Editar a conta do <Span>{{$user->name}}</Span></h4>
+                                                    @if (session('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session('error') }}
+                                                        </div
+                                                    
+                                                    @endif
+
+                                                    @if(session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
+                                                    @endif
                                                     <div class="table-responsive">
                                                         <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
                                                             <thead class="table-light">
@@ -267,30 +273,30 @@
                                                                 <tr>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="name" size="30" placeholder="{{ $user->name }}" >
+                                                                    <input class="form-control" type="text" name="name" size="700" placeholder="{{ $user->name }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="email" name="email" size="30" placeholder="{{ $user->email }}"  >
+                                                                    <input class="form-control" type="email" name="email" size="700" placeholder="{{ $user->email }}"  >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="morada" size="30" placeholder="{{ $user->morada }}" >
+                                                                    <input class="form-control" type="text" name="morada" size="700" placeholder="{{ $user->morada }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                    <input class="form-control" type="text" name="cod_postal" size="20" placeholder="{{ $user->cod_postal }}" >
+                                                                    <input class="form-control" type="text" name="cod_postal" size="700" placeholder="{{ $user->cod_postal }}" >
                                                                     </div>
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
                                                                         @if ($user->telemovel == 1)
-                                                                        <input class="card-text" type="text" name="telemovel" size="20" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
+                                                                        <input class="form-control" type="text" name="telemovel" size="700" placeholder="Sem telemovel definido" minlength="9" maxlength="9">
                                                                         @else
-                                                                            <input class="card-text" type="text" name="telemovel" size="20" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
+                                                                            <input class="form-control" type="text" name="telemovel" size="700" placeholder="{{$user->telemovel}}" minlength="9" maxlength="9">
                                                                         @endif
                                                                     
                                                                         @error('telemovel')
@@ -302,7 +308,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <div class="card-body">
-                                                                        <select class="form-control" name="idCargo">
+                                                                        <select class="form-control custom-select-lg" name="idCargo">
                                                                             <option value="1" {{ $user->idCargo == 1 ? 'selected' : '' }}>Admin</option>
                                                                             <option value="2" {{ $user->idCargo == 2 ? 'selected' : '' }}>Cliente</option>
                                                                         </select>

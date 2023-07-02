@@ -89,6 +89,11 @@
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
                
                 <a href="/perfil" class="links"><i class="fas fa-arrow-right"></i> Perfil</a>
+                <?php 
+                    if (Auth::user()->idCargo == 1) {
+                        echo '<a href="/admin/dashboard" class="links"><i class="fas fa-arrow-right"></i> Admin Zone</a>';
+                    }
+                ?> 
                 <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
                                 
                     onclick="event.preventDefault();

@@ -44,15 +44,6 @@
                         <div class="navbar-brand-box">
                           <a href="/" class="logo"><img src="/resources/images/logo.png" height="70px"></a>
                         </div>
-
-                        <!-- App Search-->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Procurar">
-                                <span class="ri-search-line"></span>
-                            </div>
-                        </form>
-
                     </div>
 
                     <div class="d-flex">
@@ -148,7 +139,7 @@
                         </div>
                         <div class="mt-3">
                             <h4 class="font-size-16 mb-1">{{Auth::user()->name}}</h4>
-                            <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span>
+                            {{-- <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> Online</span> --}}
                         </div>
                     </div>
 
@@ -185,15 +176,14 @@
                                     <span>Categorias</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read Email</a></li>
+                                    <li><a href="/admin/categorias/lista">Lista</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                        <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
                                       </svg>
                                     <span>Produtos</span>
                                 </a>
@@ -249,6 +239,26 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title mb-4">Utilizadores</h4>
+                                                    @if (session('error'))
+                                                            <div class="alert alert-danger">
+                                                                {{ session('error') }}
+                                                            </div
+                                                    
+                                                    @endif
+
+                                                    @if(session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
+                                                    @endif
+                                                <form method="GET" action="{{ route('users_lista') }}">
+                                                    <label for="sort">Ordenar por:</label>
+                                                    <select id="sort" name="sort">
+                                                        <option value="name_asc"{{ ($sort == 'name_asc') ? ' selected' : '' }}>Nome (A-Z)</option>
+                                                        <option value="name_desc"{{ ($sort == 'name_desc') ? ' selected' : '' }}>Nome (Z-A)</option>
+                                                    </select>
+                                                    <button type="submit">Filtrar</button>
+                                                </form>
                                                 <div class="table-responsive">
                                                     <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
                                                         <thead class="table-light">
@@ -260,10 +270,10 @@
                                                                 <th>Telemovel</th>
                                                                 <th>Cargo</th>
                                                             </tr>
-                                                        </thead><!-- end thead -->
+                                                        </thead>
                                                         <tbody>
                                                             @foreach ($users as $user)
-                                                              <tr>
+                                                            <tr>
                                                                 <td class="editable" contenteditable="false">{{ $user->name }}</td>
                                                                 <td class="editable" contenteditable="false">{{ $user->email }}</td>
                                                                 <td class="editable" contenteditable="false">{{ $user->morada }}</td>
@@ -271,18 +281,23 @@
                                                                 <td class="editable" contenteditable="false">{{ $user->telemovel }}</td>
                                                                 <td class="editable" contenteditable="false">{{ $user->idCargo }}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-primary btn-edit" data-id="{{ $user->id }}">Editar</button>
-                                                                  <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este usuário?')">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                                  </form>
+                                                                    @if ($user->id != 1) <!-- verifica se o id do usuário é diferente de 1 -->
+                                                                    <button type="button" class="btn btn-primary btn-edit" data-id="{{ $user->id }}">Editar</button><br><br>
+                                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este usuário?')">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                    </form>
+                                                                    @endif
                                                                 </td>
-                                                              </tr>
+                                                            </tr>
                                                             @endforeach
-                                                        </tbody>>
-                                                    </table> <!-- end table -->
+                                                        </tbody>
+                                                    </table> 
                                                 </div>
+                                                <br>
+                                                {{ $users->links('vendor.pagination.custom') }}
+                                                
                                             </div>
                                         </div>
                                     </div>

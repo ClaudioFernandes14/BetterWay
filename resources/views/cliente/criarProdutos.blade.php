@@ -89,6 +89,11 @@
             <div id="myDropdown" class="dropdown-content" aria-labelledby="navbarDropdown">
                
                 <a href="/perfil" class="links"><i class="fas fa-arrow-right"></i> Perfil</a>
+                <?php 
+                    if (Auth::user()->idCargo == 1) {
+                        echo '<a href="/admin/dashboard" class="links"><i class="fas fa-arrow-right"></i> Admin Zone</a>';
+                    }
+                ?> 
                 <a class="dropdown-item text-danger" style="color:red"  href="{{ route('logout') }}"
                                 
                     onclick="event.preventDefault();
@@ -246,6 +251,7 @@
           productList.innerHTML = data;
           });
   });
+
   </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
