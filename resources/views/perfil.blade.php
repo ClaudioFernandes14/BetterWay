@@ -43,7 +43,7 @@
               ‎ Favoritos
         </a>
         <a href="/index">Categorias</a>
-        <a href="/produtos/criar">Adicionar Produto</a>
+        <a href="/produtos/criar">Adicionar Produtos</a>
     </nav>
 
     <div class="icons">
@@ -356,7 +356,7 @@
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
-            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produto </a>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
             
         </div>

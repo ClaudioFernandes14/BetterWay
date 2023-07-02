@@ -31,9 +31,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // DB::table('users')->insert([
-        //     ['nome' => 'vazio', 'preco' =>1 , 'morada' => 'vazio', 'descricao' => 'vazio'],
-        // ]);
+        DB::insert("INSERT INTO users (name, email, password, created_at, updated_at) VALUES ('Claudio', 'admin@mailinator.com', '$2y$10$7s2g9ZUJX6SdLqNwD1.RW.7m3FBZs7Ff7VZ4fW9fP.BNLRKqOnVzS', NOW(), NOW())");
 
     }
 
