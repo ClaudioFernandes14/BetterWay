@@ -183,7 +183,7 @@ class AdminController extends Controller
                 return redirect()->route('categorias_lista')->with('error', 'Não é possível excluir esta categoria.');
             }
             // Atualiza o campo id_categoria dos produtos relacionados para NULL
-            ProdutosModel::where('id_categoria', $categoria->id)->update(['id_categoria' => null]);
+            ProdutosModel::where('id_categoria', $categoria->id)->update(['id_categoria' => 3]);
             // Exclui a categoria
             $categoria->delete();
             return redirect()->route('categorias_lista')->with('success', 'Categoria removida com sucesso.');
