@@ -37,14 +37,11 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
     Route::get('/verificar/conta', [App\Http\Controllers\EmailVerificationController::class, '__invoke'])->name('verification.notice');
     Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-    // Route::get('/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
     Route::match(['get', 'put' ,'delete'], '/perfil', [App\Http\Controllers\HomeController::class, 'perfil'])->name('perfil')->middleware('verified');
     Route::get('/produtos/criar', [App\Http\Controllers\CriarProdutosController::class, 'mostraCriarProdutos'])->middleware('verified');
     Route::get('/produtos/ver/{id}', [App\Http\Controllers\ProdutosController::class, 'mostraProdutos'])->middleware('auth')->middleware('verified');
     Route::get('/produtos/editar/{id}', [App\Http\Controllers\ProdutosController::class, 'editarProdutos'])->middleware('auth')->middleware('verified');
-   
-    // Route::get('set-cookie', [App\Http\Controllers\HomeController::class, 'setCookie']);
     Route::get('get-cookie', [App\Http\Controllers\HomeController::class, 'getCookie']);
     Route::get('delete-cookie', [App\Http\Controllers\HomeController::class, 'deleteCookie']);
     Route::get('/perfil-user/{id}', [App\Http\Controllers\HomeController::class, 'verPerfil'])->middleware('auth')->middleware('verified')->name('perfil-user');

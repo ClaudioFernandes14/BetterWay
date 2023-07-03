@@ -158,31 +158,21 @@ function showConfpw(){
 }
 
 
-// Obtém o link que abre o modal
-var link = document.getElementById("termos-link");
+const termosLink = document.querySelector('#termos-link');
+		const termosPopup = document.querySelector('.termos-popup');
 
-// Obtém o modal
-var modal = document.getElementById("termos-modal");
+		termosLink.addEventListener('click', function(event) {
+			event.preventDefault();
+			termosPopup.style.display = 'block';
+		});
 
-// Obtém o botão de fechar o modal
-var span = document.getElementsByClassName("close")[0];
-
-// Quando o usuário clicar no link, abre o modal
-link.onclick = function() {
-  modal.style.display = "block";
-}
-
-// Quando o usuário clicar no botão de fechar, fecha o modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// Quando o usuário clicar fora do modal, fecha o modal
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+		const termosContent = document.querySelector('.termos-content');
+		termosContent.addEventListener('click', function(event) {
+			event.stopPropagation();
+		});
+		termosPopup.addEventListener('click', function() {
+			termosPopup.style.display = 'none';
+		});
 
 
     

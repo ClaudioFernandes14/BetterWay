@@ -121,15 +121,32 @@
                 <input type="submit" value="Registar" >
             </div>
 
-            <div class="termos-link">Ao se registar vai aceitar os nossos <a href="#" id="termos-link">Termos e Condições!</a></div>
-            {{-- <div id="termos-modal" class="modal">
-              <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Termos e Condições</h2>
-                <p>Aqui estão os termos e condições da BetterWay:</p>
-                <p>Insira aqui o texto dos termos e condições.</p>
+            <div class="termos-link">
+              Ao se registar vai aceitar os nossos <a href="#" id="termos-link">Termos e Condições!</a>
+            </div>
+            
+            <div class="termos-popup">
+              <div class="termos-content">
+                <h2>Termos e Condições - BetterWay</h2>
+          
+                <p>Ao acessar ou utilizar os serviços da BetterWay, você concorda com estes termos e condições.</p>
+          
+                <h2>1. Privacidade</h2>
+                <p>A BetterWay preocupa-se com sua privacidade e proteção de dados. Ao utilizar nossos serviços, você concorda com nossa Política de Privacidade, que descreve como coletamos, usamos e compartilhamos suas informações.</p>
+          
+                <h2>2. Propriedade Intelectual</h2>
+                <p>Todos os direitos de propriedade intelectual relacionados aos serviços da BetterWay, incluindo marcas comerciais, logotipos, textos, gráficos, imagens e outros materiais, são de propriedade exclusiva da BetterWay ou de seus licenciadores. Você não deve usar ou reproduzir qualquer conteúdo dos serviços da BetterWay sem nossa autorização prévia por escrito.</p>
+          
+                <h2>3. Responsabilidade</h2>
+                <p>A BetterWay oferece todos os esforços razoáveis para fornecer serviços precisos e confiáveis, mas não garante que os serviços estejam livres de erros, interrupções ou indisponibilidades. A BetterWay não será responsável por quaisquer perdas ou danos decorrentes da utilização ou impossibilidade de utilização dos serviços.</p>
+          
+                <h2>4. Modificações</h2>
+                <p>A BetterWay reserva-se o direito de modificar estes termos e condições a qualquer momento, sem aviso prévio. A continuação do uso dos serviços da BetterWay após as modificações constitui sua aceitação dessas modificações.</p>
+          
+                <h2>5. Lei Aplicável</h2>
+                <p>Estes termos e condições serão regidos e interpretados de acordo com a legislação do país em que a BetterWay está sediada.</p>
               </div>
-            </div> --}}
+            </div>
         </form>
         
       </div>
@@ -138,5 +155,8 @@
 </body>
 
 <script src="../resources/js/registar.js"></script>
+
+
+
 
 </html>
