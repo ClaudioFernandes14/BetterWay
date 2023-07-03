@@ -31,7 +31,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::insert("INSERT INTO users (name, email, password, created_at, updated_at) VALUES ('Claudio', 'admin@mailinator.com', '$2y$10$7s2g9ZUJX6SdLqNwD1.RW.7m3FBZs7Ff7VZ4fW9fP.BNLRKqOnVzS', NOW(), NOW())");
+        $senha = '12345678';
+        $senha_criptografada = password_hash($senha, PASSWORD_DEFAULT);
+        
+        DB::insert("INSERT INTO users (name, email, password, idCargo, created_at, updated_at) VALUES ('Claudio', 'adbetterway@mailinator.com', '$senha_criptografada', 1, NOW(), NOW())");
 
     }
 

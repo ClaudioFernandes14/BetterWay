@@ -262,20 +262,20 @@
                                                     </div>
                                                 </div><!-- end col -->
                                                 <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <div>
+                                                    {{-- <div>
                                                         <h5>{{ end($chartData)['y'] }}</h5>
                                                         <p class="text-muted text-truncate mb-0">Último Mês</p>
-                                                    </div>
+                                                    </div> --}}
                                                 </div><!-- end col -->
                                                 <div class="col-sm-4">
-                                                    <div>
+                                                    {{-- <div>
                                                         @if (count($chartData) >= 2)
                                                             <h5>{{ $chartData[count($chartData) - 2]['y'] }}</h5>
                                                         @else
                                                             <h5>N/A</h5>
                                                         @endif
                                                         <p class="text-muted text-truncate mb-0">Mês Anterior</p>
-                                                    </div>
+                                                    </div> --}}
                                                 </div><!-- end col -->
                                             </div><!-- end row -->
                                         </div>

@@ -43,6 +43,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $imagens = ImagensModel::all();
         if (!request()->hasCookie('cookie_consent')) {
             return response(view('index'))->withCookie(cookie('cookie_consent', Str::uuid(), 365));
         }

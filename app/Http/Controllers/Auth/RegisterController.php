@@ -100,7 +100,6 @@ class RegisterController extends Controller
                 // 'telemovel' => 1,
                 // 'nif' => 1,    
                 'idFavoritos' => null,    
-                'idClassificacao' => null,
             ]
 
 
