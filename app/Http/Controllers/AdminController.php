@@ -164,10 +164,18 @@ class AdminController extends Controller
     public function deleteUser($id)
     {
         $user = User::find($id);
-    
+
         if ($user) {
-            $user->usertype()->delete(); // Remove os registros relacionados na tabela usertype
-            $user->delete(); // Remove o usuário
+            $produtos = ProdutosModel::where('idUser', $user->id)->get(); // Obtém os registros relacionados na tabela produtos
+            foreach ($produtos as $produto) {
+                $imagens = ImagensModel::where('id_produto', $produto->id)->get(); // Obtém os registros relacionados na tabela imagens
+                foreach ($imagens as $imagem) {
+                    $imagem->delete(); // Exclui os registros relacionados na tabela imagens
+                }
+                $produto->delete(); // Exclui os registros relacionados na tabela produtos
+            }
+            $user->usertype()->delete(); // Exclui os registros relacionados na tabela usertype
+            $user->delete(); // Exclui o registro na tabela users
             return redirect()->route('admin_dashboard')->with('success', 'Utilizador removido com sucesso.');
         } else {
             return redirect()->route('admin_dashboard')->with('error', 'Utilizador não encontrado.');
@@ -192,33 +200,30 @@ class AdminController extends Controller
         }
     }
 
-
     public function deleteProduto($id)
     {
-        $produto = ProdutosModel::find($id);
-    
-        if ($produto) {
-            $imagens = ImagensModel::where('id_produto', $id)->get();
-            $favoritos = FavoritosModel::where('idProdutos', $id)->get();
-            
-            // Exclui os registros da tabela 'favoritos' relacionados ao produto
-            foreach ($favoritos as $favorito) {
-                $favorito->delete();
-            }
-    
-            // Exclui os registros da tabela 'imagens' correspondentes ao produto
+        $produtos = ProdutosModel::where('idUser', $idUser)->get();
+        
+        // Exclui cada produto individualmente
+        foreach ($produtos as $produto) {
+            // Exclui os registros da tabela 'imagens' relacionados ao produto
+            $imagens = ImagensModel::where('id_produto', $produto->id)->get();
             foreach ($imagens as $imagem) {
                 $imagem->delete();
             }
     
+            // Exclui os registros da tabela 'favoritos' relacionados ao produto
+            $favoritos = FavoritosModel::where('idProdutos', $produto->id)->get();
+            foreach ($favoritos as $favorito) {
+                $favorito->delete();
+            }
+    
             // Exclui o registro do produto
             $produto->delete();
-            return redirect()->route('produtos_lista')->with('success', 'Produto removido com sucesso.');
-        } else {
-            return redirect()->route('produtos_lista')->with('error', 'Produto não encontrado.');
         }
+        
+        return redirect()->route('produtos_lista')->with('success', 'Produtos removidos com sucesso.');
     }
-
     // Mostra a pagina do editar user para o admin
     public function paginaEditar(Request $request, $id)
     {

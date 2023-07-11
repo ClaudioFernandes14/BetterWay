@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../resources/css/style-home.css">
 
     <link rel="icon" type="image/png" sizes="100x100" href="resources/images/icon_logo-removebg-preview.png">
+   
 
 </head>
 <body>
@@ -40,7 +41,9 @@
               ‎ Favoritos
         </a>
         <a href="/index">Categorias</a>
-        <a href="/produtos/criar">Adicionar Produtos</a>
+        <?php if (Auth::check() && Auth::user()->idCargo != 1): ?>
+            <a href="/produtos/criar" class="links"> Adicionar Produtos </a>
+        <?php endif; ?>
     </nav>
 
     <div class="icons">
@@ -203,12 +206,14 @@
         </div>
 
         <div class="box">
-            <h3>Links Rapidos</h3>
+            <h3>Links Rápidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
-            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
+            <?php if (Auth::check() && Auth::user()->idCargo != 1): ?>
+                <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
+            <?php endif; ?>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
-        </div>
+          </div>
 
     </div>
     

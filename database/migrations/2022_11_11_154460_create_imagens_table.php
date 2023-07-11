@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url')->default('Sem imagens Inseridas');
             $table->unsignedBigInteger('id_produto')->nullable();
-            $table->foreign('id_produto')->references('id')->on('produtos');
+            $table->foreign('id_produto')->references('id')->on('produtos')->onDelete('cascade');
             $table->timestamps();
         });
 

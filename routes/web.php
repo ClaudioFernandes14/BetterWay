@@ -23,6 +23,10 @@ use Laravel\Fortify\Http\Controllers\ResetPasswordController;
 
 // <Forma as rotas>
  
+
+    // Route::get('/', function () {
+    //     return view('index');
+    // });
     
     Route::get('/favoritos', function () {
         return view('favoritos');

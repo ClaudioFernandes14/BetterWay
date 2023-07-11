@@ -289,7 +289,7 @@
     position: fixed;
     left: 58%;
     right: 57%;
-    bottom: 14rem;
+    bottom: 13.3rem;
     transition: all 0.4s ease;
     cursor: pointer;
   }
@@ -303,7 +303,7 @@
     position: fixed;
     left: 58%;
     right: 57%;
-    bottom: 9.7rem;
+    bottom: 8.8rem;
     transition: all .5s;
     cursor: pointer;
   }

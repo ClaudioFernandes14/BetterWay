@@ -315,7 +315,6 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
-                                    Credits to Themesdesign
                                 </div>
                             </div>
                         </div>

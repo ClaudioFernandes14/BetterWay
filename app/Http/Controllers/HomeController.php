@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\UserTypeModel;
 use App\Models\ProdutosModel;
 use App\Models\ImagensModel;
+use App\Models\FavoritosModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AccountDeleted;
 use Illuminate\Support\Str;
@@ -30,10 +31,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -199,10 +200,21 @@ class HomeController extends Controller
     public function deleteProfile(Request $request, $id){
         $user = User::find($id);
     
-        // Verifica se a senha inserida pelo usuário é a mesma que a senha armazenada no banco de dados
+        // Verifica se a senha inserida pelo utilizador é a mesma que a senha armazenada no banco de dados
         if (Hash::check($request->password, $user->password)) {
             
-            // Exclui o registro da tabela 'user_type' relacionado ao usuário
+            // Exclui os registros da tabela 'favoritos' relacionados ao utilizador
+            \App\Models\FavoritosModel::where('idUser', $id)->delete();
+
+            $produtos = \App\Models\ProdutosModel::where('idUser', $id)->get();
+            foreach ($produtos as $produto) {
+                $imagens = \App\Models\ImagensModel::where('id_produto', $produto->id)->get(); // Obtém os registros relacionados na tabela imagens
+                foreach ($imagens as $imagem) {
+                    $imagem->delete(); // Exclui os registros relacionados na tabela imagens
+                }
+                $produto->delete(); // Exclui os registros relacionados na tabela produtos
+            }
+            // Exclui o registro da tabela 'user_type' relacionado ao utilizador
             \App\Models\UserTypeModel::where('user_id', $id)->delete();
     
             // Exclui o registro da tabela 'users'
@@ -218,14 +230,14 @@ class HomeController extends Controller
     
 
     public function verPerfil(Request $request, $id){
-        // Obtém as informações do usuário com o id presente na URL
+        // Obtém as informações do utilizador com o id presente na URL
         $user = User::find($id);
     
         if (!$user) {
             abort(404, 'Utilizador não encontrado');
         }
        
-        // Obtém os produtos relacionados ao usuário com o id presente na URL
+        // Obtém os produtos relacionados ao utilizador com o id presente na URL
         $produtos = ProdutosModel::where('idUser', $id)->get();
     
         $imagens = ImagensModel::whereIn('id_produto', $produtos->pluck('id'))->get();

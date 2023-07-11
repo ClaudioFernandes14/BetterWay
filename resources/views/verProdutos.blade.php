@@ -240,7 +240,9 @@
             <h3>Links Rapidos</h3>
             <a href="/favoritos" class="links"> <i class="fas fa-arrow-right"></i> Favoritos </a>
             <a href="/index" class="links"> <i class="fas fa-arrow-right"></i> Categorias </a>
-            <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
+            <?php if (Auth::check() && Auth::user()->idCargo != 1): ?>
+                <a href="/produtos/criar" class="links"> <i class="fas fa-arrow-right"></i> Adicionar Produtos </a>
+            <?php endif; ?>
             <a href="/perfil" class="links"> <i class="fas fa-arrow-right"></i> Perfil </a>
         </div>
 

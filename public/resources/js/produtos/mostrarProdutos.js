@@ -82,7 +82,7 @@ envelope.addEventListener('click', function() {
     closeButton.classList.add('closeButton');
 
     var whatsappLink = document.createElement('a');
-    whatsappLink.href = 'https://wa.me/' + phone;
+    whatsappLink.href = 'https://www.whatsapp.com/';
     whatsappLink.target = '_blank';
     whatsappLink.classList.add('whatsappLink');
     whatsappLink.innerHTML = '<i class="fab fa-whatsapp custom-size"></i>';
